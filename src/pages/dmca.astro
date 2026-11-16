@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { ShieldAlert } from 'lucide-astro';
+
+const title = "DMCA & Urheberrechts-Hinweis — German IPTV";
+const description = "Urheberrechts- und DMCA-Konformitätserklärung von German IPTV. Verfahren zur Meldung von Urheberrechtsverletzungen.";
+---
+
+<Layout title={title} description={description}>
+  <StickyHeader />
+
+  <main class="py-16 md:py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Header -->
+    <div class="mb-12 text-center sm:text-left border-b border-white/10 pb-8">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/10 text-gray-300 text-xs font-bold uppercase tracking-wider mb-4">
+        <ShieldAlert class="w-4 h-4 text-[#F59E0B]" />
+        <span>Urheberrecht & Konformität</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+        DMCA & Urheberrechts-Hinweis
+      </h1>
+      <p class="text-sm text-gray-400">
+        German IPTV respektiert das geistige Eigentum Dritter und befolgt die internationalen Bestimmungen des Digital Millennium Copyright Act (DMCA) sowie des europäischen Urheberrechts.
+      </p>
+    </div>
+
+    <div class="space-y-8 text-gray-300 text-sm leading-relaxed">
+      
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white">1. Haftungsausschluss für externe Inhalte</h2>
+        <p>
+          German IPTV betreibt keine eigenen Rundfunksender und hostet keine geschützten Mediendateien auf seinen direkten Webservern. Unser Dienst fungiert als technischer Vermittler und Indexierungsdienst für öffentlich im World Wide Web verfügbare Stream-Protokolle und Playlists.
+        </p>
+      </section>
+
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white">2. Mitteilungsverfahren (Notice and Takedown)</h2>
+        <p>
+          Wenn Sie Inhaber von Urheberrechten sind oder bevollmächtigt sind, im Namen eines Rechteinhabers zu handeln, und glauben, dass Inhalte Ihre Rechte verletzen, bitten wir Sie um eine formelle Mitteilung mit folgenden Angaben:
+        </p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li>Genaue Beschreibung des urheberrechtlich geschützten Werkes, das Gegenstand der behaupteten Verletzung ist.</li>
+          <li>Genaue URL oder technische Bezeichnung des betreffenden Streams / Links.</li>
+          <li>Ihre Kontaktdaten (Name, Adresse, Telefonnummer und E-Mail-Adresse).</li>
+          <li>Eine Erklärung nach bestem Wissen und Gewissen, dass die beanstandete Nutzung nicht durch den Rechteinhaber autorisiert ist.</li>
+        </ul>
+      </section>
+
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white">3. Zuständige Stelle für Meldungen</h2>
+        <p>
+          Bitte senden Sie formelle Mitteilungen an unsere Rechtsabteilung:
+        </p>
+        <div class="p-4 rounded-xl bg-black/40 border border-white/5 space-y-1 text-gray-300">
+          <p class="font-bold text-white">Rechtsabteilung / DMCA Compliance Desk</p>
+          <p>E-Mail: <a href="mailto:support@castvera.com" class="text-[#DC2626] underline">support@castvera.com</a></p>
+          <p>Kopie an: <a href="mailto:contact@germaniptv.cloud" class="text-[#DC2626] underline">contact@germaniptv.cloud</a></p>
+        </div>
+        <p class="text-xs text-gray-400 pt-2">
+          Gültige Mitteilungen werden innerhalb von 24 bis 48 Stunden nach Eingang geprüft und unberechtigte Verweise unverzüglich aus unseren Indizes entfernt.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

@@ -1,0 +1,293 @@
+---
+import { Mail, MessageCircle, Send, Clock, ShieldCheck } from 'lucide-astro';
+
+const whatsappNumber = "+213 550 59 22 00";
+const whatsappUrl = "https://wa.me/213550592200";
+const whatsappChannelUrl = "https://whatsapp.com/channel/0029VayVaLpD8SE3bf8wMY3v";
+const telegramChannelUrl = "https://t.me/castvera_com";
+const contactEmail = "contact@germaniptv.cloud";
+const supportEmail = "support@castvera.com";
+---
+
+<section id="contact-section" class="py-20 md:py-28 relative overflow-hidden bg-[#0B0C10]" aria-labelledby="contact-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DC2626]/10 border border-[#DC2626]/30 text-[#DC2626] text-xs font-bold uppercase tracking-wider mb-4">
+        <Mail class="w-3.5 h-3.5" />
+        <span>Offizieller Kundenservice</span>
+      </div>
+      <h2 id="contact-heading" class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+        Kontaktieren Sie <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] to-[#F59E0B]">German IPTV</span>
+      </h2>
+      <p class="text-base sm:text-lg text-gray-300 font-normal leading-relaxed">
+        Unser deutsches Support-Team steht Ihnen 24 Stunden am Tag, 7 Tage die Woche für sofortige Freischaltungen, technische Einrichtungsfragen und Beratung zur Seite.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      
+      <!-- Left Column: Official Contact Channels Display -->
+      <div class="lg:col-span-5 space-y-6">
+        
+        <!-- Channels Card -->
+        <div class="rounded-3xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-6 shadow-xl">
+          <h3 class="text-xl font-bold text-white tracking-tight pb-4 border-b border-white/[0.06]">
+            Offizielle Kontaktkanäle
+          </h3>
+
+          <!-- WhatsApp Number -->
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-[#10B981]/15 border border-[#10B981]/30 flex items-center justify-center text-[#10B981] shrink-0">
+              <MessageCircle class="w-6 h-6" />
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-gray-400">WhatsApp Support 24/7</div>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-base sm:text-lg font-extrabold text-white hover:text-[#10B981] transition-colors"
+              >
+                {whatsappNumber}
+              </a>
+              <p class="text-xs text-[#10B981] font-medium">Antwortzeit in der Regel unter 3 Minuten</p>
+            </div>
+          </div>
+
+          <!-- Official Contact Email -->
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-[#DC2626]/15 border border-[#DC2626]/30 flex items-center justify-center text-[#DC2626] shrink-0">
+              <Mail class="w-6 h-6" />
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-gray-400">Offizielle E-Mail</div>
+              <a
+                href={`mailto:${contactEmail}`}
+                class="text-base font-bold text-white hover:text-[#DC2626] transition-colors break-all"
+              >
+                {contactEmail}
+              </a>
+              <p class="text-xs text-gray-400">Für allgemeine Anfragen und geschäftliche Belange</p>
+            </div>
+          </div>
+
+          <!-- Technical Support Email -->
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-[#F59E0B]/15 border border-[#F59E0B]/30 flex items-center justify-center text-[#F59E0B] shrink-0">
+              <Mail class="w-6 h-6" />
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-gray-400">Technischer Support (Global)</div>
+              <a
+                href={`mailto:${supportEmail}`}
+                class="text-base font-bold text-white hover:text-[#F59E0B] transition-colors break-all"
+              >
+                {supportEmail}
+              </a>
+              <p class="text-xs text-gray-400">Für Serverfragen, M3U-Playlists und Rückerstattungen</p>
+            </div>
+          </div>
+
+          <!-- Official WhatsApp Channel -->
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-[#10B981]/15 border border-[#10B981]/30 flex items-center justify-center text-[#10B981] shrink-0">
+              <MessageCircle class="w-6 h-6" />
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-gray-400">Offizieller WhatsApp Kanal</div>
+              <a
+                href={whatsappChannelUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm font-bold text-[#10B981] hover:underline"
+              >
+                Kanal auf WhatsApp abonnieren
+              </a>
+              <p class="text-xs text-gray-400">Für Neuigkeiten, Serverstatus und Rabatte</p>
+            </div>
+          </div>
+
+          <!-- Official Telegram Channel -->
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-[#2563EB]/15 border border-[#2563EB]/30 flex items-center justify-center text-sky-400 shrink-0">
+              <Send class="w-6 h-6" />
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-gray-400">Offizieller Telegram Kanal</div>
+              <a
+                href={telegramChannelUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm font-bold text-sky-400 hover:underline"
+              >
+                t.me/castvera_com
+              </a>
+              <p class="text-xs text-gray-400">DACH Community & Spielankündigungen</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Service Level Agreement Box -->
+        <div class="p-6 rounded-3xl bg-[#12141D] border border-white/[0.08] space-y-3 text-xs text-gray-300">
+          <div class="flex items-center gap-2 text-white font-bold text-sm">
+            <Clock class="w-4 h-4 text-[#F59E0B]" />
+            <span>Verfügbarkeit: 24 Stunden, 365 Tage im Jahr</span>
+          </div>
+          <p>
+            Unser deutsches Technik- und Support-Team ist rund um die Uhr erreichbar. Die Aktivierungsdauer beträgt durchschnittlich unter 2 Minuten nach Bestätigung.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Interactive Direct Message Form -->
+      <div class="lg:col-span-7">
+        <div class="rounded-3xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-10 shadow-2xl relative">
+          
+          <h3 class="text-2xl font-bold text-white mb-2">
+            Nachricht senden
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-400 mb-8">
+            Füllen Sie das Formular aus oder kontaktieren Sie uns für eine Sofort-Aktivierung direkt per WhatsApp.
+          </p>
+
+          <form id="contact-form" class="space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="name" class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">
+                  Ihr Name *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="z.B. Markus Weber"
+                  class="w-full px-4 py-3.5 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-[#DC2626] focus:border-transparent transition-all"
+                />
+              </div>
+
+              <div>
+                <label for="email" class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">
+                  E-Mail Adresse *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="markus@beispiel.de"
+                  class="w-full px-4 py-3.5 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-[#DC2626] focus:border-transparent transition-all"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="device" class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">
+                  Ihr Gerät / App
+                </label>
+                <select
+                  id="device"
+                  name="device"
+                  class="w-full px-4 py-3.5 rounded-xl bg-[#1A1D2B] border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#DC2626] focus:border-transparent transition-all"
+                >
+                  <option value="Fire TV Stick">Amazon Fire TV Stick / Cube</option>
+                  <option value="Smart TV (Samsung/LG)">Samsung oder LG Smart TV</option>
+                  <option value="Android Box / Shield">Android TV / Nvidia Shield</option>
+                  <option value="Apple TV / iOS">Apple TV / iPhone / iPad</option>
+                  <option value="Windows / Mac">Windows PC / Mac</option>
+                  <option value="MAG Box">MAG Box / Stalker Portal</option>
+                  <option value="Anderes">Anderes Gerät</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="subject" class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">
+                  Betreff / Anliegen
+                </label>
+                <select
+                  id="subject"
+                  name="subject"
+                  class="w-full px-4 py-3.5 rounded-xl bg-[#1A1D2B] border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#DC2626] focus:border-transparent transition-all"
+                >
+                  <option value="Neues Abonnement">Neues Abonnement / Beratung</option>
+                  <option value="24h Test">Kostenlosen 24h Test anfordern</option>
+                  <option value="Hilfe bei Einrichtung">Hilfe bei der Einrichtung / App</option>
+                  <option value="Verlängerung">Abonnement-Verlängerung</option>
+                  <option value="Sonstiges">Sonstige Frage</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="message" class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">
+                Ihre Nachricht *
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                required
+                placeholder="Wie können wir Ihnen weiterhelfen? (z.B. Fragen zur Bezahlung per PayPal oder zur Einrichtung auf dem Fire TV Stick)"
+                class="w-full px-4 py-3.5 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-[#DC2626] focus:border-transparent transition-all resize-none"
+              ></textarea>
+            </div>
+
+            <div class="flex items-center gap-2 pt-2 text-xs text-gray-400">
+              <ShieldCheck class="w-4 h-4 text-[#10B981] shrink-0" />
+              <span>Ihre Angaben werden vertraulich nach DSGVO-Richtlinien behandelt und niemals an Dritte weitergegeben.</span>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full inline-flex items-center justify-center gap-3 py-4 px-6 rounded-2xl bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#B91C1C] text-white font-black text-sm uppercase tracking-wider shadow-[0_0_30px_rgba(220,38,38,0.35)] hover:shadow-[0_0_40px_rgba(220,38,38,0.5)] transition-all duration-300 hover:scale-[1.01] active:scale-[0.98]"
+            >
+              <Send class="w-4 h-4" />
+              <span>Nachricht Absenden</span>
+            </button>
+          </form>
+
+          <!-- Success Alert Placeholder -->
+          <div id="form-success" class="hidden mt-6 p-4 rounded-2xl bg-[#10B981]/15 border border-[#10B981]/30 text-xs text-[#10B981] text-center">
+            Vielen Dank! Ihre Nachricht wurde empfangen. Für eine noch schnellere Freischaltung schreiben Sie uns bitte direkt auf WhatsApp.
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const successBox = document.getElementById('form-success');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const name = formData.get('name');
+      const device = formData.get('device');
+      const subject = formData.get('subject');
+      const message = formData.get('message');
+
+      const whatsappText = encodeURIComponent(
+        `Hallo German IPTV Team,\n\nMein Name ist ${name}.\nBetreff: ${subject}\nGerät: ${device}\nNachricht: ${message}`
+      );
+
+      if (successBox) {
+        successBox.classList.remove('hidden');
+      }
+
+      // Redirect to WhatsApp with pre-filled inquiry for maximum conversion
+      setTimeout(() => {
+        window.open(`https://wa.me/213550592200?text=${whatsappText}`, '_blank');
+      }, 800);
+    });
+  }
+</script>

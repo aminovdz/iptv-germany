@@ -1,0 +1,315 @@
+---
+import { Check, Sparkles, ShieldCheck, MessageCircle, Award } from 'lucide-astro';
+
+interface Plan {
+  id: string;
+  name: string;
+  duration: string;
+  price: string;
+  monthlyEquivalent: string;
+  savings?: string;
+  featured?: boolean;
+  popularBadge?: string;
+  bonus?: string;
+  features: string[];
+  ctaText: string;
+  whatsappMessage: string;
+}
+
+const plans: Plan[] = [
+  {
+    id: "12-months",
+    name: "12 Monate Testsieger Paket",
+    duration: "12 Monate",
+    price: "55",
+    monthlyEquivalent: "nur 4,58 € / Monat",
+    savings: "Größte Ersparnis · Bestes Angebot",
+    featured: true,
+    popularBadge: "TESTSIEGER · MEISTGEWÄHLT IN DEUTSCHLAND",
+    bonus: "Bonus: Offizielle Premium Player Lizenz inklusive",
+    features: [
+      "Transmission in echtem Ultra HD 4K & 8K bei 60 FPS",
+      "Alle deutschen & internationalen Premium-Sender",
+      "Bundesliga, UEFA Champions League & Live-Sport",
+      "Anti-Freeze 9.8™ High-Speed Server (DE-CIX)",
+      "Elektronischer TV-Guide (EPG) & 7-Tage Replay",
+      "Premium Player App Lizenz inklusive",
+      "Kompatibel mit Fire TV Stick, Smart TV, iOS & Android",
+      "Sofortige Freischaltung in 2 Minuten via WhatsApp",
+      "Prioritärer VIP-Support 24/7 auf Deutsch",
+      "24-Stunden Geld-zurück-Garantie"
+    ],
+    ctaText: "Testsieger Paket Sichern (55 €)",
+    whatsappMessage: "Hallo%2C%20ich%20m%C3%B6chte%20gerne%20das%2012-Monate%20Paket%20f%C3%BCr%2055%20%E2%82%AC%20inkl.%20Premium%20Player%20German%20IPTV%20bestellen."
+  },
+  {
+    id: "6-months",
+    name: "6 Monate Halbjahres-Paket",
+    duration: "6 Monate",
+    price: "30",
+    monthlyEquivalent: "nur 5,00 € / Monat",
+    savings: "Sehr Beliebt",
+    featured: false,
+    popularBadge: "PREMIUM PLAYER INKLUSIVE",
+    bonus: "Bonus: Offizielle Premium Player Lizenz inklusive",
+    features: [
+      "Transmission in Ultra HD 4K & Full HD bei 60 FPS",
+      "Alle deutschen & internationalen Sender",
+      "Alle Bundesliga-Spiele & Live-Events",
+      "Anti-Freeze 9.8™ Technologie ohne Pufferung",
+      "EPG TV-Guide & Catch-Up TV Funktion",
+      "Premium Player App Lizenz inklusive",
+      "Funktioniert auf Smart TV, Fire TV, Smartphone & PC",
+      "Automatische Aktivierung in unter 2 Minuten",
+      "24/7 Support auf Deutsch via WhatsApp",
+      "24-Stunden Geld-zurück-Garantie"
+    ],
+    ctaText: "6 Monate Paket Sichern (30 €)",
+    whatsappMessage: "Hallo%2C%20ich%20m%C3%B6chte%20gerne%20das%206-Monate%20Paket%20f%C3%BCr%2030%20%E2%82%AC%20inkl.%20Premium%20Player%20German%20IPTV%20bestellen."
+  },
+  {
+    id: "3-months",
+    name: "3 Monate Quartals-Paket",
+    duration: "3 Monate",
+    price: "20",
+    monthlyEquivalent: "nur 6,66 € / Monat",
+    savings: "Flexibel & Günstig",
+    featured: false,
+    features: [
+      "Stabiles Full HD & 4K Streaming bei 60 FPS",
+      "Vollständiger Zugriff auf deutsche Sender",
+      "Live-Sport und europäischer Spitzenfußball",
+      "Anti-Buffering Server-Architektur",
+      "EPG Programmübersicht",
+      "Kompatibel mit allen gängigen IPTV Apps",
+      "Schnelle Freischaltung per WhatsApp",
+      "Deutscher Kundensupport 24/7",
+      "24-Stunden Geld-zurück-Garantie"
+    ],
+    ctaText: "3 Monate Paket Sichern (20 €)",
+    whatsappMessage: "Hallo%2C%20ich%20m%C3%B6chte%20gerne%20das%203-Monate%20Paket%20f%C3%BCr%2020%20%E2%82%AC%20German%20IPTV%20bestellen."
+  },
+  {
+    id: "1-month",
+    name: "1 Monat Flexibel",
+    duration: "1 Monat",
+    price: "8",
+    monthlyEquivalent: "8,00 € / Monat",
+    savings: "Keine Vertragsbindung",
+    featured: false,
+    features: [
+      "Voller Zugriff auf das 4K & Full HD Senderangebot",
+      "Live-Sport & alle Bundesliga-Wochenenden",
+      "Standard Anti-Buffering Schutz",
+      "EPG Programm-Guide",
+      "Kompatibel mit allen Geräten",
+      "Monatlich kündbar — 0 Bindung",
+      "Aktivierung in wenigen Minuten",
+      "Support per WhatsApp & E-Mail",
+      "24-Stunden Geld-zurück-Garantie"
+    ],
+    ctaText: "1 Monat Flexibel Starten (8 €)",
+    whatsappMessage: "Hallo%2C%20ich%20m%C3%B6chte%20gerne%20das%201-Monats-Paket%20f%C3%BCr%208%20%E2%82%AC%20German%20IPTV%20bestellen."
+  }
+];
+
+// Product and AggregateOffer Schema for Google Rich Snippets
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "German IPTV Premium Streaming Abonnement",
+  "description": "Bestes Streaming von German IPTV mit 4K/8K Streaming, Anti-Freeze 9.8™ Technologie, allen Bundesliga-Spielen live und sofortiger WhatsApp-Freischaltung.",
+  "brand": {
+    "@type": "Brand",
+    "name": "German IPTV"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "1840",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "EUR",
+    "lowPrice": "8.00",
+    "highPrice": "55.00",
+    "offerCount": "4",
+    "offers": plans.map(p => ({
+      "@type": "Offer",
+      "name": p.name,
+      "price": p.price,
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "url": "https://germaniptv.cloud/#pricing"
+    }))
+  }
+};
+---
+
+<section id="pricing" class="py-20 md:py-32 relative bg-[#0B0C10] overflow-hidden" aria-labelledby="pricing-heading">
+  <!-- Dynamic JSON-LD for Product & Pricing Snippets -->
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(productSchema)} />
+
+  <!-- Ambient Glow Behind Pricing Cards -->
+  <div class="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-gradient-to-b from-[#DC2626]/12 to-transparent rounded-full blur-[150px]"></div>
+    <div class="absolute bottom-10 right-10 w-80 h-80 bg-[#F59E0B]/08 rounded-full blur-[140px]"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DC2626]/15 border border-[#DC2626]/30 text-[#DC2626] text-xs font-bold uppercase tracking-wider mb-4">
+        <Sparkles class="w-3.5 h-3.5 text-[#F59E0B]" />
+        <span>Transparente Tarife · Ohne Knebelvertrag</span>
+      </div>
+
+      <h2 id="pricing-heading" class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-6">
+        Wählen Sie Ihr <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] via-[#EF4444] to-[#F59E0B]">IPTV Paket</span> — Sofort einsatzbereit
+      </h2>
+
+      <p class="text-base sm:text-lg text-gray-400 font-normal leading-relaxed">
+        Keine versteckten Kosten, keine 24-monatige Vertragsbindung. Alle Pakete beinhalten den vollen Senderumfang in 4K/8K, Anti-Freeze 9.8™ und die 24-Stunden Geld-zurück-Garantie.
+      </p>
+    </div>
+
+    <!-- Pricing Cards Grid (Starts Prominently with the 12-Month Plan) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 items-stretch">
+      {plans.map((plan) => {
+        const isFeatured = plan.featured;
+        const checkoutUrl = `https://wa.me/213550592200?text=${plan.whatsappMessage}`;
+
+        return (
+          <div
+            class={`relative rounded-3xl flex flex-col justify-between transition-all duration-300 ${
+              isFeatured
+                ? 'bg-gradient-to-b from-[#1E1925] via-[#151624] to-[#10121D] border-2 border-[#DC2626] shadow-[0_0_40px_rgba(220,38,38,0.25)] lg:-translate-y-3 z-10'
+                : 'bg-[#12141D] border border-white/[0.08] hover:border-white/20 hover:-translate-y-1 shadow-lg'
+            }`}
+          >
+            {/* Featured Badge */}
+            {isFeatured && (
+              <div class="absolute -top-4 inset-x-0 flex justify-center">
+                <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#DC2626] to-[#B91C1C] text-white text-[11px] font-black uppercase tracking-wider shadow-md">
+                  <Award class="w-3.5 h-3.5 text-[#F59E0B]" />
+                  {plan.popularBadge}
+                </span>
+              </div>
+            )}
+
+            {/* Non-featured badge */}
+            {!isFeatured && plan.popularBadge && (
+              <div class="absolute -top-3 inset-x-0 flex justify-center">
+                <span class="inline-flex items-center px-3 py-1 rounded-full bg-[#F59E0B]/20 border border-[#F59E0B]/40 text-[#F59E0B] text-[10px] font-bold uppercase tracking-wider">
+                  {plan.popularBadge}
+                </span>
+              </div>
+            )}
+
+            <div class="p-6 sm:p-8 flex-1 flex flex-col">
+              
+              <!-- Plan Header -->
+              <div class="mb-6 pb-6 border-b border-white/[0.08]">
+                <h3 class="text-xl font-bold text-white mb-2">{plan.name}</h3>
+                <div class="flex items-baseline gap-1 my-3">
+                  <span class="text-4xl sm:text-5xl font-black text-white tracking-tight">{plan.price} €</span>
+                  <span class="text-xs text-gray-400 font-medium">/ {plan.duration}</span>
+                </div>
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-gray-300 font-semibold">{plan.monthlyEquivalent}</span>
+                  {plan.savings && (
+                    <span class="px-2 py-0.5 rounded bg-[#10B981]/15 text-[#10B981] font-bold">
+                      {plan.savings}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Bonus Highlight Callout */}
+              {plan.bonus && (
+                <div class="mb-6 p-3 rounded-xl bg-[#F59E0B]/10 border border-[#F59E0B]/25 text-xs text-amber-200 flex items-start gap-2">
+                  <Sparkles class="w-4 h-4 text-[#F59E0B] shrink-0 mt-0.5" />
+                  <span class="font-medium">{plan.bonus}</span>
+                </div>
+              )}
+
+              {/* Features List */}
+              <ul class="space-y-3 mb-8 flex-1 text-xs sm:text-sm text-gray-300" role="list">
+                {plan.features.map((feat) => (
+                  <li class="flex items-start gap-2.5">
+                    <Check class="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+                    <span>{feat}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <!-- CTA Checkout Button -->
+              <a
+                href={checkoutUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class={`w-full inline-flex items-center justify-center gap-2.5 py-4 px-6 rounded-2xl text-xs font-black uppercase tracking-wider transition-all duration-200 ${
+                  isFeatured
+                    ? 'bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#B91C1C] text-white shadow-[0_0_25px_rgba(220,38,38,0.4)] hover:shadow-[0_0_35px_rgba(220,38,38,0.6)] hover:scale-[1.02] active:scale-[0.98]'
+                    : 'bg-white/[0.08] hover:bg-white/[0.15] text-white border border-white/10 hover:border-white/20 hover:scale-[1.02] active:scale-[0.98]'
+                }`}
+                aria-label={`Paket ${plan.name} für ${plan.price} Euro per WhatsApp bestellen`}
+              >
+                <MessageCircle class="w-4 h-4" />
+                <span>{plan.ctaText}</span>
+              </a>
+
+              <div class="mt-3 text-center">
+                <span class="text-[10px] text-gray-400">
+                  🔒 Sichere WhatsApp Aktivierung in 2 Min.
+                </span>
+              </div>
+
+            </div>
+
+            <!-- Card Bottom Trust Footer -->
+            <div class="px-6 py-3 bg-black/25 border-t border-white/[0.06] rounded-b-3xl flex items-center justify-between text-[11px] text-gray-400">
+              <span class="flex items-center gap-1">
+                <ShieldCheck class="w-3.5 h-3.5 text-[#10B981]" />
+                24h Garantie
+              </span>
+              <span class="text-gray-300">0 € Einrichtungsgebühr</span>
+            </div>
+
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Free Trial Banner Underneath Pricing -->
+    <div class="mt-16 rounded-2xl bg-gradient-to-r from-[#161824] via-[#12141D] to-[#161824] border border-[#DC2626]/30 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+      <div class="flex items-center gap-4 text-left">
+        <div class="w-12 h-12 rounded-xl bg-[#10B981]/15 border border-[#10B981]/30 flex items-center justify-center shrink-0">
+          <ShieldCheck class="w-6 h-6 text-[#10B981]" />
+        </div>
+        <div>
+          <h3 class="text-base sm:text-lg font-bold text-white mb-1">
+            Noch unsicher? Starten Sie mit dem kostenlosen 24-Stunden Test
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-400">
+            Überzeugen Sie sich vor dem Kauf selbst von unserer Bildqualität und Stabilität — 100% unverbindlich ohne Zahlungsdaten.
+          </p>
+        </div>
+      </div>
+
+      <a
+        href="https://wa.me/213550592200?text=Hallo%2C%20ich%20m%C3%B6chte%20gerne%20den%20kostenlosen%2024-Stunden%20Test%20f%C3%BCr%20German%20IPTV%20anfordern."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#10B981] hover:bg-[#059669] text-black font-extrabold text-xs uppercase tracking-wider shadow-lg transition-all hover:scale-105 shrink-0"
+      >
+        <MessageCircle class="w-4 h-4" />
+        <span>Jetzt 24h Gratis Testen</span>
+      </a>
+    </div>
+
+  </div>
+</section>

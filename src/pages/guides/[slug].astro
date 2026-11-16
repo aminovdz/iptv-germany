@@ -1,0 +1,829 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StickyHeader from '../../components/StickyHeader.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
+import ExitPopup from '../../components/ExitPopup.astro';
+import { getCollection } from 'astro:content';
+import { 
+  Clock, User, Calendar, ShieldCheck, ChevronRight, MessageCircle, 
+  ArrowLeft, Share2, Copy, Check, BookOpen, Sparkles, Tv, ArrowRight, 
+  Send, Bookmark, CheckCircle2, FileText, ListOrdered, Award, Zap
+} from 'lucide-astro';
+import { currentYear, injectCurrentYear } from '../../utils/date';
+
+export async function getStaticPaths() {
+  const guides = await getCollection('guides');
+  return guides.map((guide) => ({
+    params: { slug: guide.slug },
+    props: { guide }
+  }));
+}
+
+const { guide } = Astro.props;
+const { Content, headings } = await guide.render();
+
+const allGuides = await getCollection('guides');
+const relatedGuides = allGuides
+  .filter((g) => g.slug !== guide.slug)
+  .slice(0, 3);
+
+// Dynamic year title and description ensuring automatic yearly freshness
+const dynamicTitle = injectCurrentYear(guide.data.title);
+const dynamicDescription = injectCurrentYear(guide.data.description);
+
+// Filter headings for Table of Contents (H2 and H3) with dynamic year
+const tocHeadings = headings
+  .filter((h) => h.depth === 2 || h.depth === 3)
+  .map((h) => ({
+    ...h,
+    text: injectCurrentYear(h.text)
+  }));
+
+const title = `${dynamicTitle} — German IPTV`;
+const description = dynamicDescription;
+const canonical = `https://germaniptv.cloud/guides/${guide.slug}/`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": dynamicTitle,
+  "description": dynamicDescription,
+  "image": `https://germaniptv.cloud${guide.data.image}`,
+  "datePublished": guide.data.pubDate.toISOString(),
+  "dateModified": (guide.data.updatedDate || guide.data.pubDate).toISOString(),
+  "author": {
+    "@type": "Organization",
+    "name": guide.data.author,
+    "url": "https://germaniptv.cloud"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "German IPTV",
+    "url": "https://germaniptv.cloud",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://germaniptv.cloud/favicon.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonical
+  }
+};
+---
+
+<Layout 
+  title={title} 
+  description={description} 
+  canonicalURL={canonical} 
+  image={guide.data.image}
+  keywords={guide.data.tags}
+  type="article"
+  publishedTime={guide.data.pubDate.toISOString()}
+  modifiedTime={(guide.data.updatedDate || guide.data.pubDate).toISOString()}
+  schema={articleSchema}
+>
+  <!-- Reading Progress Bar pinned to top of viewport -->
+  <div 
+    id="reading-progress-bar" 
+    class="fixed top-0 left-0 h-1 bg-gradient-to-r from-[#DC2626] via-[#EF4444] to-[#F59E0B] z-50 transition-all duration-150 ease-out shadow-[0_0_12px_rgba(220,38,38,0.8)]"
+    style="width: 0%;"
+    aria-hidden="true"
+  ></div>
+
+  <StickyHeader currentPath="/guides" />
+
+  <!-- Breadcrumb & Top Bar -->
+  <nav class="bg-[#0E1017] border-b border-white/[0.06] py-3 sticky top-[73px] z-30 backdrop-blur-xl bg-[#0E1017]/90" aria-label="Breadcrumb">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div class="flex items-center gap-2 text-gray-400 overflow-hidden text-ellipsis whitespace-nowrap">
+        <a href="/" class="hover:text-white transition-colors">Startseite</a>
+        <ChevronRight class="w-3 h-3 text-gray-600 shrink-0" />
+        <a href="/guides/" class="hover:text-white transition-colors">Ratgeber</a>
+        <ChevronRight class="w-3 h-3 text-gray-600 shrink-0" />
+        <span class="text-white font-medium truncate max-w-[200px] sm:max-w-md">{dynamicTitle}</span>
+      </div>
+
+      <!-- Quick Share Tools -->
+      <div class="flex items-center gap-2 shrink-0">
+        <span class="text-gray-400 hidden sm:inline">Teilen:</span>
+        <a
+          href={`https://api.whatsapp.com/send?text=${encodeURIComponent(dynamicTitle + ' — ' + canonical)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-1.5 rounded-lg bg-white/5 hover:bg-[#10B981]/20 text-gray-300 hover:text-[#10B981] border border-white/5 transition-colors"
+          title="Auf WhatsApp teilen"
+          aria-label="Auf WhatsApp teilen"
+        >
+          <MessageCircle class="w-3.5 h-3.5" />
+        </a>
+        <a
+          href={`https://t.me/share/url?url=${encodeURIComponent(canonical)}&text=${encodeURIComponent(dynamicTitle)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-1.5 rounded-lg bg-white/5 hover:bg-[#2563EB]/20 text-gray-300 hover:text-sky-400 border border-white/5 transition-colors"
+          title="Auf Telegram teilen"
+          aria-label="Auf Telegram teilen"
+        >
+          <Send class="w-3.5 h-3.5" />
+        </a>
+        <button
+          id="copy-link-btn"
+          type="button"
+          class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border border-white/5 transition-colors cursor-pointer text-[11px]"
+          title="Artikel-Link kopieren"
+        >
+          <Copy class="w-3.5 h-3.5" id="copy-icon" />
+          <span id="copy-text">Link kopieren</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Editorial Article Header Section -->
+  <header class="relative pt-10 pb-12 md:pt-16 md:pb-16 overflow-hidden bg-gradient-to-b from-[#0B0C10] via-[#0E1017] to-[#090A10] border-b border-white/[0.06]">
+    <div class="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[750px] h-[340px] bg-gradient-to-r from-[#DC2626]/15 via-[#F59E0B]/10 to-transparent rounded-full blur-[140px]"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Back to Guides Button -->
+      <a 
+        href="/guides/" 
+        class="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-400 hover:text-white mb-6 py-1.5 px-3 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/5 transition-all w-fit"
+      >
+        <ArrowLeft class="w-3.5 h-3.5" />
+        <span>Zurück zu allen Ratgebern</span>
+      </a>
+
+      <!-- Category & Meta Tags -->
+      <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs text-gray-300 mb-5">
+        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#DC2626]/20 border border-[#DC2626]/40 text-[#DC2626] font-bold uppercase tracking-wider text-[11px]">
+          <Sparkles class="w-3 h-3 text-[#F59E0B]" />
+          <span>{guide.data.category}</span>
+        </span>
+        <span class="flex items-center gap-1.5 bg-white/[0.04] px-3 py-1 rounded-full border border-white/5">
+          <Clock class="w-3.5 h-3.5 text-[#F59E0B]" />
+          <span>{guide.data.readingTime}</span>
+        </span>
+        <span class="flex items-center gap-1.5 bg-white/[0.04] px-3 py-1 rounded-full border border-white/5">
+          <Calendar class="w-3.5 h-3.5 text-gray-400" />
+          <span>Aktualisiert: {guide.data.pubDate.toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+        </span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] font-black text-white tracking-tight leading-[1.15] mb-6">
+        {dynamicTitle}
+      </h1>
+
+      <!-- Lead Lede Paragraph -->
+      <p class="text-base sm:text-lg text-gray-300 leading-relaxed font-normal mb-8">
+        {dynamicDescription}
+      </p>
+
+      <!-- Author, Fact Check & E-E-A-T Guarantee Card -->
+      <div class="p-4 sm:p-5 rounded-2xl bg-[#12141D] border border-white/[0.08] flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3.5">
+          <div class="relative w-12 h-12 rounded-xl bg-gradient-to-br from-[#DC2626] to-[#991B1B] flex items-center justify-center text-white font-black text-base shadow-md">
+            <User class="w-6 h-6 text-white" />
+            <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-[#10B981] border-2 border-[#12141D] flex items-center justify-center">
+              <Check class="w-2.5 h-2.5 text-black stroke-[3]" />
+            </span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-bold text-white">{guide.data.author}</span>
+              <span class="px-2 py-0.5 rounded-full bg-[#10B981]/15 text-[#10B981] text-[10px] font-bold uppercase">Verifiziert</span>
+            </div>
+            <div class="text-xs text-gray-400 mt-0.5">Fachredaktion Streaming & Medienrecht · German IPTV</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 text-xs text-gray-300 bg-white/[0.04] px-3.5 py-2 rounded-xl border border-white/5">
+          <ShieldCheck class="w-4 h-4 text-[#10B981] shrink-0" />
+          <span>Faktencheck {currentYear} & EuGH-Konformität bestätigt</span>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Article Body & Layout -->
+  <main class="py-10 md:py-16 bg-[#0B0C10]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Featured Image Frame with High-Craft Styling -->
+      <div class="max-w-4xl mx-auto mb-12">
+        <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-[#12141D] group">
+          <img
+            src={guide.data.image}
+            alt={injectCurrentYear(guide.data.imageAlt)}
+            width="1200"
+            height="630"
+            class="w-full h-auto object-cover max-h-[480px] group-hover:scale-[1.01] transition-transform duration-700"
+            loading="eager"
+            decoding="async"
+          />
+          <div class="absolute bottom-3 right-3 px-3 py-1.5 rounded-xl bg-black/70 backdrop-blur-md border border-white/10 text-[11px] text-gray-300 font-mono flex items-center gap-1.5 pointer-events-none">
+            <Award class="w-3.5 h-3.5 text-[#F59E0B]" />
+            <span>Praxis-Guide {currentYear} • German IPTV Redaktion</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Two-Column Editorial Grid: Article + Sticky Sidebar -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 max-w-7xl mx-auto items-start">
+        
+        <!-- Left: Main Article Content (8 cols) -->
+        <div class="lg:col-span-8 min-w-0">
+          
+          <!-- Key Takeaways / Executive Summary Box -->
+          <div class="mb-10 p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-[#161826] to-[#12141D] border border-white/10 shadow-xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-48 h-48 bg-[#DC2626]/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="flex items-center gap-2.5 text-sm font-bold text-white uppercase tracking-wider mb-4 pb-3 border-b border-white/[0.08]">
+              <Zap class="w-4 h-4 text-[#F59E0B]" />
+              <span>Das Wichtigste auf einen Blick</span>
+            </div>
+
+            <ul class="space-y-2.5 text-xs sm:text-sm text-gray-300">
+              <li class="flex items-start gap-2.5">
+                <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+                <span>Rechtlich geprüft & aktuell auf dem Stand {currentYear} nach deutschem UrhG und EuGH-Vorgaben.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+                <span>Kein teures Pay-TV nötig: Alle Bundesliga-Spiele und internationalen Sender in 4K bei 60 FPS bündeln.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+                <span>Schritt-für-Schritt-Anleitung für Smart TV, Fire TV Stick, Apple TV und Android mit 2-Minuten-Setup.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Mobile Inhaltsverzeichnis (Collapsible on small screens) -->
+          {tocHeadings.length > 0 && (
+            <div class="lg:hidden mb-10 p-5 rounded-2xl bg-[#12141D] border border-white/10">
+              <details class="group/toc">
+                <summary class="flex items-center justify-between font-bold text-sm text-white cursor-pointer select-none">
+                  <span class="flex items-center gap-2">
+                    <ListOrdered class="w-4 h-4 text-[#DC2626]" />
+                    <span>Inhaltsverzeichnis ({tocHeadings.length} Abschnitte)</span>
+                  </span>
+                  <ChevronRight class="w-4 h-4 text-gray-400 group-open/toc:rotate-90 transition-transform" />
+                </summary>
+                <div class="mt-4 pt-3 border-t border-white/[0.08] space-y-2 text-xs">
+                  {tocHeadings.map((h, index) => (
+                    <a 
+                      href={`#${h.slug}`}
+                      class={`block py-1 hover:text-[#DC2626] transition-colors ${
+                        h.depth === 3 ? 'pl-4 text-gray-400 text-[11px]' : 'text-gray-300 font-medium'
+                      }`}
+                    >
+                      {h.text}
+                    </a>
+                  ))}
+                </div>
+              </details>
+            </div>
+          )}
+
+          <!-- Rich Modern Markdown Article Body -->
+          <article class="prose-editorial">
+            <Content />
+          </article>
+
+          <!-- Article Bottom Author Sign-Off & Verification Note -->
+          <div class="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-gray-400">
+            <div class="flex items-center gap-2">
+              <BookOpen class="w-4 h-4 text-[#F59E0B]" />
+              <span>Verfasst von der Fachredaktion German IPTV</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <a
+                href={`https://api.whatsapp.com/send?text=${encodeURIComponent(dynamicTitle + ' — ' + canonical)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 text-gray-300 hover:text-[#10B981] transition-colors"
+              >
+                <MessageCircle class="w-3.5 h-3.5" />
+                <span>Teilen auf WhatsApp</span>
+              </a>
+              <span>•</span>
+              <a href="#top" class="hover:text-white transition-colors">Nach oben ↑</a>
+            </div>
+          </div>
+
+          <!-- Mid/Bottom Author Guarantee & Service Box -->
+          <div class="mt-10 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#1C1217] via-[#12141D] to-[#0E1017] border-2 border-[#DC2626]/40 shadow-2xl relative overflow-hidden">
+            <div class="absolute -top-20 -right-20 w-52 h-52 bg-[#DC2626]/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="flex items-center gap-3 text-white font-bold text-lg mb-3">
+              <ShieldCheck class="w-6 h-6 text-[#10B981] shrink-0" />
+              <span>Sicher & Pufferfrei Streamen mit German IPTV</span>
+            </div>
+            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-6">
+              Alle Sender und Live-Sportübertragungen werden über verschlüsselte europäische Hochleistungsserver mit <strong>Anti-Freeze 9.8™</strong> bereitgestellt. Keine Protokollierung, keine Vertragsbindung und persönliche deutschsprachige Betreuung via WhatsApp.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center gap-3.5">
+              <a
+                href="https://wa.me/213550592200?text=Hallo%21%20Ich%20habe%20den%20Ratgeber%20gelesen%20und%20m%C3%B6chte%20gerne%20den%20kostenlosen%2024-Stunden%20Test%20f%C3%BCr%20German%20IPTV%20starten."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-black bg-[#10B981] hover:bg-[#059669] transition-all shadow-md text-xs uppercase tracking-wider"
+              >
+                <MessageCircle class="w-4 h-4" />
+                <span>Kostenlos 24h Testen</span>
+              </a>
+              <a
+                href="/iptv-kaufen/"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-white bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#EF4444] hover:to-[#DC2626] transition-all shadow-md text-xs uppercase tracking-wider"
+              >
+                <Tv class="w-4 h-4" />
+                <span>Pakete ab 8 € ansehen</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Sticky Editorial Sidebar (4 cols on desktop) -->
+        <aside class="hidden lg:block lg:col-span-4 sticky top-28 space-y-6">
+          
+          <!-- Desktop Table of Contents Box -->
+          {tocHeadings.length > 0 && (
+            <div class="p-6 rounded-2xl bg-[#12141D] border border-white/[0.08] shadow-xl">
+              <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.08]">
+                <h3 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                  <ListOrdered class="w-4 h-4 text-[#DC2626]" />
+                  <span>Inhaltsverzeichnis</span>
+                </h3>
+                <span class="text-[10px] text-gray-500 font-mono">{tocHeadings.length} Punkte</span>
+              </div>
+
+              <div class="space-y-2 text-xs max-h-[380px] overflow-y-auto pr-1">
+                {tocHeadings.map((h, i) => (
+                  <a
+                    href={`#${h.slug}`}
+                    class={`toc-link block py-1.5 px-2.5 rounded-lg transition-all ${
+                      h.depth === 3 
+                        ? 'pl-5 text-gray-400 text-[11px] hover:text-white hover:bg-white/5' 
+                        : 'text-gray-300 font-medium hover:text-white hover:bg-white/[0.06]'
+                    }`}
+                    data-heading-id={h.slug}
+                  >
+                    <span class="truncate block">{h.text}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Quick Fast-Action Trial Card -->
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-[#1A1218] via-[#14121A] to-[#0B0C10] border-2 border-[#DC2626]/40 shadow-xl text-center">
+            <div class="w-10 h-10 mx-auto rounded-xl bg-[#DC2626]/20 border border-[#DC2626]/40 flex items-center justify-center text-[#DC2626] mb-3">
+              <Tv class="w-5 h-5 text-[#DC2626]" />
+            </div>
+
+            <div class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#DC2626]/20 border border-[#DC2626]/30 text-[#DC2626] text-[10px] font-bold uppercase mb-2">
+              Direkt Loslegen
+            </div>
+
+            <h4 class="text-base font-bold text-white mb-1.5">
+              German IPTV 24h Test
+            </h4>
+            <p class="text-xs text-gray-400 mb-5 leading-relaxed">
+              Überzeuge dich selbst vor dem Kauf: 24h unverbindlicher Testzugang in 4K bei 60 FPS ohne Zahlungsdaten.
+            </p>
+
+            <a
+              href="https://wa.me/213550592200?text=Hallo%21%20Ich%20m%C3%B6chte%20gerne%20den%20kostenlosen%2024-Stunden%20Test%20f%C3%BCr%20German%20IPTV%20starten."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#10B981] hover:bg-[#059669] text-black font-extrabold text-xs uppercase tracking-wider transition-all shadow-md hover:scale-105"
+            >
+              <MessageCircle class="w-4 h-4" />
+              <span>24h Test auf WhatsApp</span>
+            </a>
+
+            <div class="mt-4 pt-3 border-t border-white/5 text-[10px] text-gray-500 flex items-center justify-center gap-1.5">
+              <ShieldCheck class="w-3.5 h-3.5 text-[#10B981]" />
+              <span>Keine Kreditkarte nötig</span>
+            </div>
+          </div>
+
+          <!-- Customer Service Contact Helper -->
+          <div class="p-5 rounded-2xl bg-[#12141D] border border-white/[0.06] text-xs text-gray-300">
+            <div class="font-bold text-white mb-1">Fragen zu diesem Thema?</div>
+            <p class="text-gray-400 mb-3 leading-relaxed">
+              Unser deutsches Support-Team hilft dir gerne bei der Einrichtung oder App-Auswahl.
+            </p>
+            <a
+              href="https://wa.me/213550592200?text=Hallo%2C%20ich%20habe%20eine%20Frage%20zu%20einem%20eurer%20Ratgeber."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 text-[#10B981] hover:text-emerald-300 font-semibold"
+            >
+              <span>WhatsApp Support kontaktieren</span>
+              <ArrowRight class="w-3.5 h-3.5" />
+            </a>
+          </div>
+
+        </aside>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Related Guides Section (Keeps Readers Engaged) -->
+  {relatedGuides.length > 0 && (
+    <section class="py-16 bg-[#090A10] border-t border-white/[0.08]" aria-labelledby="related-guides-heading">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <h2 id="related-guides-heading" class="text-2xl font-bold text-white">
+              Weitere interessante Ratgeber & Anleitungen
+            </h2>
+            <p class="text-xs text-gray-400 mt-1">Rechtliches, Technik-Guides und Streaming-Tipps unserer Redaktion.</p>
+          </div>
+          <a href="/guides/" class="text-xs font-bold text-[#DC2626] hover:text-red-400 flex items-center gap-1">
+            <span>Alle Artikel</span>
+            <ChevronRight class="w-4 h-4" />
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {relatedGuides.map((relGuide) => (
+            <article class="flex flex-col bg-[#12141D] border border-white/[0.08] rounded-2xl overflow-hidden hover:border-[#DC2626]/40 transition-all group shadow-lg">
+              <a href={`/guides/${relGuide.slug}/`} class="block aspect-[16/9] overflow-hidden bg-white/5 relative">
+                <img
+                  src={relGuide.data.image}
+                  alt={relGuide.data.imageAlt}
+                  width="500"
+                  height="281"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+              </a>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between text-xs text-gray-400 mb-3">
+                    <span class="px-2 py-0.5 rounded-full bg-white/5 border border-white/5 font-semibold text-[#F59E0B] text-[10px]">
+                      {relGuide.data.category}
+                    </span>
+                    <span class="flex items-center gap-1 text-[11px]">
+                      <Clock class="w-3 h-3" />
+                      {relGuide.data.readingTime}
+                    </span>
+                  </div>
+
+                  <h3 class="text-base font-bold text-white group-hover:text-red-400 transition-colors mb-2 leading-snug">
+                    <a href={`/guides/${relGuide.slug}/`}>
+                      {injectCurrentYear(relGuide.data.title)}
+                    </a>
+                  </h3>
+                  <p class="text-xs text-gray-400 line-clamp-2 leading-relaxed mb-4">
+                    {injectCurrentYear(relGuide.data.description)}
+                  </p>
+                </div>
+
+                <div class="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
+                  <span class="text-gray-500 text-[11px]">{relGuide.data.pubDate.toLocaleDateString('de-DE', { month: 'short', year: 'numeric' })}</span>
+                  <a href={`/guides/${relGuide.slug}/`} class="inline-flex items-center gap-1 font-bold text-[#DC2626] group-hover:translate-x-1 transition-transform text-[11px]">
+                    <span>Lesen</span>
+                    <ChevronRight class="w-3 h-3" />
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  )}
+
+  <Footer />
+  <FloatingWhatsApp />
+  <ExitPopup />
+</Layout>
+
+<!-- Client-side Interactive Reading Progress & Active TOC Spy -->
+<script is:inline>
+  // Top Viewport Reading Progress Bar
+  const progressBar = document.getElementById('reading-progress-bar');
+  function updateProgress() {
+    if (!progressBar) return;
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    if (docHeight <= 0) return;
+    const progress = Math.min(100, Math.max(0, (scrollTop / docHeight) * 100));
+    progressBar.style.width = progress + '%';
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+
+  // Copy Link with Feedback
+  const copyBtn = document.getElementById('copy-link-btn');
+  const copyText = document.getElementById('copy-text');
+  const copyIcon = document.getElementById('copy-icon');
+
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        if (copyText) copyText.textContent = 'Kopiert!';
+        if (copyBtn) copyBtn.classList.add('text-[#10B981]', 'border-[#10B981]/40');
+        setTimeout(() => {
+          if (copyText) copyText.textContent = 'Link kopieren';
+          if (copyBtn) copyBtn.classList.remove('text-[#10B981]', 'border-[#10B981]/40');
+        }, 2000);
+      } catch (err) {
+        // Fallback
+      }
+    });
+  }
+
+  // Active TOC Heading Spy
+  const tocLinks = document.querySelectorAll('.toc-link');
+  const articleHeadings = document.querySelectorAll('.prose-editorial h2, .prose-editorial h3');
+
+  function updateActiveHeading() {
+    if (articleHeadings.length === 0 || tocLinks.length === 0) return;
+
+    let currentActiveId = '';
+    const scrollPos = window.scrollY + 140;
+
+    articleHeadings.forEach((heading) => {
+      const top = heading.getBoundingClientRect().top + window.scrollY;
+      if (scrollPos >= top) {
+        currentActiveId = heading.getAttribute('id') || '';
+      }
+    });
+
+    tocLinks.forEach((link) => {
+      const targetId = link.getAttribute('data-heading-id');
+      if (targetId && targetId === currentActiveId) {
+        link.classList.add('bg-[#DC2626]/15', 'text-white', 'border-l-2', 'border-[#DC2626]');
+        link.classList.remove('text-gray-400', 'text-gray-300');
+      } else {
+        link.classList.remove('bg-[#DC2626]/15', 'text-white', 'border-l-2', 'border-[#DC2626]');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveHeading, { passive: true });
+
+  // Dynamic Year synchronizer for editorial article body text
+  try {
+    const currentYearVal = new Date().getFullYear().toString();
+    const proseBody = document.querySelector('.prose-editorial');
+    if (proseBody) {
+      const textWalker = document.createTreeWalker(proseBody, NodeFilter.SHOW_TEXT, null);
+      let currentNode;
+      while ((currentNode = textWalker.nextNode())) {
+        if (currentNode.nodeValue && /\b202[4-9]\b|\b203[0-5]\b/.test(currentNode.nodeValue)) {
+          currentNode.nodeValue = currentNode.nodeValue.replace(/\b202[4-9]\b|\b203[0-5]\b/g, currentYearVal);
+        }
+      }
+    }
+  } catch (e) {
+    // Graceful fallback
+  }
+</script>
+
+<style>
+  /* High-Craft Editorial Typography System */
+  :global(.prose-editorial) {
+    color: #D1D5DB;
+    font-size: 1.0625rem;
+    line-height: 1.85;
+    word-break: break-word;
+  }
+
+  /* Headings */
+  :global(.prose-editorial h2) {
+    color: #FFFFFF;
+    font-size: clamp(1.5rem, 2.8vw, 1.875rem);
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+    margin-top: 3.25rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    scroll-margin-top: 100px;
+  }
+
+  :global(.prose-editorial h2::before) {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 48px;
+    height: 2px;
+    background: linear-gradient(90deg, #DC2626, #F59E0B);
+    border-radius: 2px;
+  }
+
+  :global(.prose-editorial h3) {
+    color: #F9FAFB;
+    font-size: clamp(1.2rem, 2.2vw, 1.375rem);
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    margin-top: 2.25rem;
+    margin-bottom: 0.85rem;
+    scroll-margin-top: 100px;
+  }
+
+  :global(.prose-editorial h4) {
+    color: #F3F4F6;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+    scroll-margin-top: 100px;
+  }
+
+  /* Paragraphs & Text */
+  :global(.prose-editorial p) {
+    margin-bottom: 1.5rem;
+  }
+
+  :global(.prose-editorial strong) {
+    color: #FFFFFF;
+    font-weight: 700;
+  }
+
+  :global(.prose-editorial em) {
+    color: #E5E7EB;
+    font-style: italic;
+  }
+
+  :global(.prose-editorial a) {
+    color: #EF4444;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    font-weight: 600;
+    transition: color 0.15s ease;
+  }
+
+  :global(.prose-editorial a:hover) {
+    color: #F59E0B;
+  }
+
+  /* Unordered Lists with Custom Red/Amber Bullet Dots */
+  :global(.prose-editorial ul) {
+    margin-top: 1.25rem;
+    margin-bottom: 1.75rem;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  :global(.prose-editorial ul > li) {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.75;
+  }
+
+  :global(.prose-editorial ul > li::before) {
+    content: '';
+    position: absolute;
+    left: 0.25rem;
+    top: 0.65rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #DC2626, #F59E0B);
+    box-shadow: 0 0 8px rgba(220, 38, 38, 0.6);
+  }
+
+  /* Ordered Lists */
+  :global(.prose-editorial ol) {
+    margin-top: 1.25rem;
+    margin-bottom: 1.75rem;
+    padding-left: 1.5rem;
+    list-style-type: decimal;
+  }
+
+  :global(.prose-editorial ol > li) {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+    line-height: 1.75;
+  }
+
+  :global(.prose-editorial ol > li::marker) {
+    color: #F59E0B;
+    font-weight: 700;
+  }
+
+  /* Callouts & Blockquotes */
+  :global(.prose-editorial blockquote) {
+    margin: 2.25rem 0;
+    padding: 1.25rem 1.5rem;
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.08) 0%, rgba(245, 158, 11, 0.04) 100%);
+    border: 1px solid rgba(220, 38, 38, 0.25);
+    border-left: 4px solid #DC2626;
+    border-radius: 0.875rem;
+    color: #F3F4F6;
+    font-style: normal;
+    box-shadow: 0 10px 25px -10px rgba(220, 38, 38, 0.15);
+  }
+
+  :global(.prose-editorial blockquote p) {
+    margin-bottom: 0.5rem;
+  }
+
+  :global(.prose-editorial blockquote p:last-child) {
+    margin-bottom: 0;
+  }
+
+  /* Modern Data Tables */
+  :global(.prose-editorial table) {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 2.5rem 0;
+    background: #12141D;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.5);
+  }
+
+  :global(.prose-editorial thead) {
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  :global(.prose-editorial th) {
+    padding: 1rem 1.25rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: left;
+  }
+
+  :global(.prose-editorial td) {
+    padding: 1rem 1.25rem;
+    font-size: 0.875rem;
+    color: #D1D5DB;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    vertical-align: top;
+  }
+
+  :global(.prose-editorial tbody tr:hover) {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  :global(.prose-editorial tbody tr:last-child td) {
+    border-bottom: none;
+  }
+
+  /* Code Blocks & Architecture Diagrams */
+  :global(.prose-editorial pre) {
+    margin: 2rem 0;
+    padding: 1.25rem 1.5rem;
+    background: #07080D;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: #E5E7EB;
+    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6);
+  }
+
+  :global(.prose-editorial code:not(pre code)) {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.375rem;
+    padding: 0.15rem 0.4rem;
+    font-size: 0.85em;
+    color: #F59E0B;
+    font-weight: 600;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  /* Horizontal Rule */
+  :global(.prose-editorial hr) {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    margin: 3.5rem 0;
+  }
+</style>

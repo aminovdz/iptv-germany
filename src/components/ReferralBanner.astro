@@ -1,0 +1,60 @@
+---
+import { Users, Gift, ArrowRight, MessageCircle } from 'lucide-astro';
+
+const referralShareText = encodeURIComponent("Schau dir bestes German IPTV in 4K/8K ohne Ruckler an! Mit meinem Link erhältst du sofortigen Zugang und Testsieger-Qualität: https://germaniptv.cloud");
+const whatsappShareUrl = `https://api.whatsapp.com/send?text=${referralShareText}`;
+---
+
+<section class="py-12 relative overflow-hidden" aria-label="Freunde Werben Programm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative rounded-3xl bg-gradient-to-r from-[#141622] via-[#1A1218] to-[#141622] border border-[#DC2626]/40 p-6 sm:p-10 shadow-[0_0_30px_rgba(220,38,38,0.15)] flex flex-col lg:flex-row items-center justify-between gap-6 overflow-hidden">
+      
+      <!-- Ambient Glow Decor -->
+      <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-[#DC2626]/15 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+      <!-- Content -->
+      <div class="flex items-center gap-5 text-center lg:text-left">
+        <div class="hidden sm:flex w-16 h-16 rounded-2xl bg-gradient-to-br from-[#DC2626] to-[#991B1B] items-center justify-center text-white shadow-lg shrink-0">
+          <Gift class="w-8 h-8" />
+        </div>
+
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#DC2626]/20 border border-[#DC2626]/30 text-[#DC2626] text-[11px] font-black uppercase tracking-wider mb-2">
+            <Users class="w-3.5 h-3.5" />
+            <span>Freunde Werben & Profitieren</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-black text-white tracking-tight">
+            Empfehlen Sie uns weiter & erhalten Sie <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] to-[#F59E0B]">+1 Monat GRATIS</span>!
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-300 mt-1 max-w-xl">
+            Für jeden geworbenen Freund, der ein Abonnement abschließt, schreiben wir Ihnen 1 vollen Monat kostenlose Laufzeit gut – und Ihr Freund profitiert sofort von 4K-Streaming.
+          </p>
+        </div>
+      </div>
+
+      <!-- Action CTAs -->
+      <div class="flex flex-wrap items-center justify-center gap-3 shrink-0 w-full lg:w-auto">
+        <a
+          href={whatsappShareUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#EF4444] hover:to-[#DC2626] text-white font-extrabold text-xs uppercase tracking-wider shadow-md transition-all hover:scale-105"
+          aria-label="Einladungslink auf WhatsApp teilen"
+        >
+          <MessageCircle class="w-4 h-4" />
+          <span>Auf WhatsApp Teilen</span>
+        </a>
+
+        <a
+          href="/referral/"
+          class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] text-white border border-white/10 text-xs font-bold uppercase tracking-wider transition-colors"
+          aria-label="Mehr über das Empfehlungsprogramm erfahren"
+        >
+          <span>Wie es funktioniert</span>
+          <ArrowRight class="w-4 h-4 text-[#F59E0B]" />
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>

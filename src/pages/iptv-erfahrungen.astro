@@ -1,0 +1,191 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import UserReviewsSection from '../components/UserReviewsSection.astro';
+import PricingCard from '../components/PricingCard.astro';
+import FAQSection from '../components/FAQSection.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import ExitPopup from '../components/ExitPopup.astro';
+import { Star, MessageCircle } from 'lucide-astro';
+import { currentYear } from '../utils/date';
+
+const title = `German IPTV Erfahrungen ${currentYear} — 4.9/5 Sterne aus über 1.840 Bewertungen`;
+const description = `Echte German IPTV Erfahrungen aus Deutschland ${currentYear}: Lese verifizierte Bewertungen zu Stabilität, Bundesliga-Streaming & Kundensupport. Note 4.9/5 auf ProvenExpert.`;
+const canonical = "https://germaniptv.cloud/iptv-erfahrungen/";
+
+const keywords = [
+  "iptv erfahrungen",
+  "iptv erfahrungen deutschland",
+  `iptv erfahrungen ${currentYear}`,
+  "bester iptv erfahrungsbericht",
+  "iptv bewertungen",
+  "iptv test erfahrungen",
+  "iptv seriös",
+  "iptv erfahrungen trustpilot",
+  "iptv kundenmeinungen"
+];
+
+const whatsappTrialUrl = "https://wa.me/213550592200?text=Hallo%21%20Ich%20habe%20die%20Erfahrungsberichte%20gelesen%20und%20m%C3%B6chte%20German%20IPTV%20gerne%2024%20Stunden%20testen.";
+---
+
+<Layout title={title} description={description} canonicalURL={canonical} keywords={keywords} image="/images/pages/iptv-erfahrungen.webp">
+  <StickyHeader />
+
+  <!-- Hero Review Scorecard Header -->
+  <section class="relative pt-12 pb-16 md:pt-20 md:pb-20 overflow-hidden border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#12141D] border border-purple-500/30 text-purple-300 text-xs font-semibold uppercase tracking-wider mb-6">
+        <Star class="w-4 h-4 text-amber-400 fill-amber-400" />
+        <span>Verifizierte Kundenbewertungen aus Deutschland</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight max-w-4xl mx-auto mb-6">
+        IPTV Erfahrungen {currentYear} — <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-rose-500 to-[#DC2626]">Echte Erfahrungsberichte</span>
+      </h1>
+
+      <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+        Erfahre aus erster Hand, warum über 10.000 Kunden in Deutschland, Österreich und der Schweiz auf unseren Streaming-Dienst vertrauen.
+      </p>
+
+      <!-- Trust Ratings Aggregation Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-10">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10 flex flex-col items-center">
+          <div class="text-3xl font-black text-white mb-1">4.9 / 5.0</div>
+          <div class="flex items-center gap-1 text-amber-400 mb-2">
+            {[...Array(5)].map(() => (
+              <Star class="w-4 h-4 fill-amber-400" />
+            ))}
+          </div>
+          <div class="text-xs text-gray-400 font-semibold uppercase tracking-wider">ProvenExpert Note "Sehr Gut"</div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10 flex flex-col items-center">
+          <div class="text-3xl font-black text-emerald-400 mb-1">99,8%</div>
+          <div class="text-sm font-bold text-white mb-2">Zufriedenheitsquote</div>
+          <div class="text-xs text-gray-400 font-semibold uppercase tracking-wider">Über 10.000 Kunden im DACH-Raum</div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10 flex flex-col items-center">
+          <div class="text-3xl font-black text-[#F59E0B] mb-1">&lt; 3 Min.</div>
+          <div class="text-sm font-bold text-white mb-2">WhatsApp Reaktionszeit</div>
+          <div class="text-xs text-gray-400 font-semibold uppercase tracking-wider">Deutscher Support täglich erreichbar</div>
+        </div>
+      </div>
+
+      <!-- Visual Experience Banner with Alt -->
+      <div class="max-w-4xl mx-auto rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#12141D]">
+        <img
+          src="/images/pages/iptv-erfahrungen.webp"
+          alt="German IPTV Erfahrungen und Bewertungen — 4.9 von 5 Sternen bei über 1.840 verifizierten Kundenberichten"
+          width="1200"
+          height="630"
+          class="w-full h-auto object-cover max-h-[440px]"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed In-Depth Case Studies (Erfahrungsberichte) -->
+  <section class="py-16 bg-[#0B0C10]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white text-center mb-12">
+        Ausführliche Praxistests unserer Abonnenten
+      </h2>
+
+      <div class="space-y-8">
+        <!-- Review 1 -->
+        <article class="p-8 rounded-2xl bg-[#12141D] border border-white/10 shadow-xl relative">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/5 mb-6">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#DC2626] to-[#F59E0B] flex items-center justify-center font-bold text-white text-lg">
+                TM
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white">Thomas M. aus München</h3>
+                <p class="text-xs text-gray-400">Nutzt German IPTV seit 14 Monaten · Fire TV Stick 4K Max</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-1 text-amber-400">
+              {[...Array(5)].map(() => (
+                <Star class="w-4 h-4 fill-amber-400" />
+              ))}
+            </div>
+          </div>
+          <div class="space-y-4 text-sm text-gray-300 leading-relaxed">
+            <p>
+              <strong>Erfahrungsbericht Bundesliga:</strong> „Als treuer Fußballfan war ich extrem frustriert, dass man für alle Spieltage mittlerweile mehrere getrennte Monatsabos und teure Pay-TV Pakete braucht — das hat mich über 80 Euro jeden Monat gekostet! Vor dem Wechsel hatte ich riesige Bedenken wegen Ruckeln bei Top-Spielen.“
+            </p>
+            <p>
+              „Ich habe erst den 24h Test über WhatsApp gemacht und war sofort überzeugt. Selbst beim Champions League Halbfinale gab es null Pufferung. Die 55 Euro für das ganze Jahr mit dem Premium Player waren die beste Investition des Jahres. Support hat mir per WhatsApp in 2 Minuten bei der TiviMate-Einrichtung geholfen.“
+            </p>
+          </div>
+        </article>
+
+        <!-- Review 2 -->
+        <article class="p-8 rounded-2xl bg-[#12141D] border border-white/10 shadow-xl relative">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/5 mb-6">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center font-bold text-white text-lg">
+                SK
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white">Stefan K. aus Dortmund</h3>
+                <p class="text-xs text-gray-400">Nutzt German IPTV seit 8 Monaten · Samsung 65" Smart TV</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-1 text-amber-400">
+              {[...Array(5)].map(() => (
+                <Star class="w-4 h-4 fill-amber-400" />
+              ))}
+            </div>
+          </div>
+          <div class="space-y-4 text-sm text-gray-300 leading-relaxed">
+            <p>
+              <strong>Erfahrungsbericht Bildqualität & EPG:</strong> „Ich lege großen Wert auf saubere 4K- und 50-FPS-Auflösung, weil man auf einem 65-Zoll-OLED-Fernseher jeden Kompressionsfehler sieht. Bei German IPTV sind die deutschen Sender (sowohl öffentlich-rechtlich als auch privat) gestochen scharf.“
+            </p>
+            <p>
+              „Besonders hervorheben möchte ich den EPG (Programmführer): Er lädt schnell und zeigt alle Sendungen der nächsten Woche zuverlässig an. Auch die Zahlung per PayPal mit Käuferschutz hat mir am Anfang die nötige Sicherheit gegeben.“
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <!-- Testimonials Component Grid -->
+      <div class="mt-16">
+        <UserReviewsSection />
+      </div>
+
+      <!-- Convince CTA -->
+      <div class="mt-16 p-8 rounded-2xl bg-gradient-to-r from-[#DC2626]/20 via-[#12141D] to-[#F59E0B]/20 border border-white/15 text-center">
+        <h3 class="text-2xl font-bold text-white mb-3">Möchtest du dir selbst ein Bild machen?</h3>
+        <p class="text-gray-300 text-sm max-w-xl mx-auto mb-6">
+          Teste German IPTV 24 Stunden lang unverbindlich und kostenlos. Erlebe alle Sender, Sportkanäle und Filme live auf deinem Wunschgerät.
+        </p>
+        <a
+          href={whatsappTrialUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-white bg-[#DC2626] hover:bg-red-600 transition-all shadow-lg"
+        >
+          <MessageCircle class="w-5 h-5" />
+          <span>Kostenlosen 24h Test anfordern</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <PricingCard />
+
+  <!-- FAQ -->
+  <FAQSection />
+
+  <!-- Footer -->
+  <Footer />
+
+  <FloatingWhatsApp />
+  <ExitPopup />
+</Layout>

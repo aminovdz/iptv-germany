@@ -1,0 +1,276 @@
+---
+import { Tv, Mail, MessageCircle, Send, MapPin, ShieldCheck, ArrowUpRight, CheckCircle2, Lock } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+
+const cities = [
+  { name: 'Berlin', slug: 'berlin' },
+  { name: 'München', slug: 'muenchen' },
+  { name: 'Hamburg', slug: 'hamburg' },
+  { name: 'Köln', slug: 'koeln' },
+  { name: 'Frankfurt am Main', slug: 'frankfurt' },
+  { name: 'Stuttgart', slug: 'stuttgart' },
+  { name: 'Düsseldorf', slug: 'duesseldorf' },
+  { name: 'Leipzig', slug: 'leipzig' },
+  { name: 'Dortmund', slug: 'dortmund' },
+  { name: 'Essen', slug: 'essen' },
+  { name: 'Bremen', slug: 'bremen' },
+  { name: 'Dresden', slug: 'dresden' },
+  { name: 'Hannover', slug: 'hannover' },
+  { name: 'Nürnberg', slug: 'nuernberg' },
+  { name: 'Duisburg', slug: 'duisburg' }
+];
+
+const quickLinks = [
+  { name: 'Startseite', href: '/' },
+  { name: '24h IPTV Testline', href: '/iptv-test/' },
+  { name: 'IPTV Kaufen', href: '/iptv-kaufen/' },
+  { name: 'Bester IPTV Anbieter', href: '/bester-iptv-anbieter/' },
+  { name: 'Live Match Center', href: '/livescore/' },
+  { name: 'Preise & Tarife', href: '/preise/' },
+  { name: 'Türkçe (IPTV Satın Al)', href: '/tr/iptv-satin-al/' },
+  { name: 'English Version', href: '/en/' },
+  { name: 'Kontakt & Support', href: '/contact/' }
+];
+
+const guidesLinks = [
+  { name: 'Fire TV Stick IPTV Anleitung', href: '/guides/fire-tv-stick-iptv-anleitung/' },
+  { name: 'Smart One & Net IPTV Player Test', href: '/guides/smart-one-iptv-net-iptv-player-vergleich/' },
+  { name: 'Beste IPTV App für Smart TV', href: '/guides/beste-iptv-app/' },
+  { name: `Ist IPTV in Deutschland Legal? (${currentYear})`, href: '/guides/ist-iptv-legal-deutschland/' },
+  { name: 'IPTV mit PayPal Bezahlen', href: '/guides/iptv-mit-paypal-bezahlen/' },
+  { name: 'Alle Streaming-Guides & Blog', href: '/guides/' }
+];
+
+const comparisons = [
+  { name: 'German IPTV vs Pay-TV', href: '/compare/iptv-deutschland-vs-pay-tv/' },
+  { name: 'German IPTV vs Einzel-Abos', href: '/compare/iptv-deutschland-vs-einzel-abos/' },
+  { name: 'German IPTV vs Kabelfernsehen', href: '/compare/iptv-deutschland-vs-kabel-fernsehen/' },
+  { name: 'German IPTV vs Basis-OTT Web-TV', href: '/compare/iptv-deutschland-vs-basis-ott/' }
+];
+
+const legalLinks = [
+  { name: 'Datenschutzerklärung (DSGVO)', href: '/privacy/' },
+  { name: 'Allgemeine Geschäftsbedingungen (AGB)', href: '/terms/' },
+  { name: 'Widerrufs- & Erstattungsrichtlinie (24h)', href: '/refund/' },
+  { name: 'DMCA & Urheberrechts-Hinweis', href: '/dmca/' },
+  { name: 'Haftungsausschluss (Disclaimer)', href: '/disclaimer/' },
+  { name: 'Impressum (§ 5 TMG)', href: '/impressum/' }
+];
+---
+
+<footer class="bg-[#07080D] border-t border-white/[0.08] text-gray-400 text-sm relative" aria-labelledby="footer-heading">
+  <h2 id="footer-heading" class="sr-only">Footer German IPTV</h2>
+
+  <!-- Top Footer Community & Social Channels Bar -->
+  <div class="border-b border-white/[0.06] py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 bg-[#0E1018] rounded-2xl p-6 sm:p-8 border border-white/[0.06]">
+        <div>
+          <h3 class="text-xl font-bold text-white mb-2">
+            Treten Sie unserer offiziellen DACH-Community bei
+          </h3>
+          <p class="text-gray-400 text-xs sm:text-sm max-w-xl">
+            Erhalten Sie tägliche Spielpläne, Kanal-Updates, Serverstatus in Echtzeit und exklusive Gutscheincodes auf WhatsApp und Telegram.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+          <a
+            href="https://whatsapp.com/channel/0029VayVaLpD8SE3bf8wMY3v"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#10B981]/15 hover:bg-[#10B981]/25 text-[#10B981] border border-[#10B981]/30 text-xs font-bold uppercase tracking-wider transition-colors"
+            aria-label="Offiziellem WhatsApp Kanal beitreten"
+          >
+            <MessageCircle class="w-4 h-4" />
+            <span>WhatsApp Kanal</span>
+          </a>
+          <a
+            href="https://t.me/castvera_com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#2563EB]/15 hover:bg-[#2563EB]/25 text-sky-400 border border-[#2563EB]/30 text-xs font-bold uppercase tracking-wider transition-colors"
+            aria-label="Offiziellem Telegram Kanal beitreten"
+          >
+            <Send class="w-4 h-4" />
+            <span>Telegram Kanal</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Multi-Column Footer Links -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
+      
+      <!-- Col 1: Brand Info & Support Contacts -->
+      <div class="lg:col-span-2 space-y-4">
+        <a href="/" class="flex items-center gap-3 group" aria-label="German IPTV">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1A1D2B] to-[#0B0C10] border border-[#DC2626]/50 flex items-center justify-center">
+            <Tv class="w-5 h-5 text-[#DC2626]" />
+          </div>
+          <span class="font-black text-xl tracking-tight text-white">
+            GERMAN <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] to-[#F59E0B]">IPTV</span>
+          </span>
+        </a>
+
+        <p class="text-xs sm:text-sm text-gray-400 leading-relaxed max-w-sm">
+          Ihr führender Premium-Streaming-Provider für die DACH-Region (Deutschland, Österreich, Schweiz). Ausfallsicherer Empfang in 4K & 8K bei 60 FPS, Anti-Freeze 9.8™ CDN und 24/7 persönlicher WhatsApp-Support.
+        </p>
+
+        <!-- Direct Contact Box -->
+        <div class="pt-2 space-y-2 text-xs">
+          <div class="flex items-center gap-2">
+            <Mail class="w-4 h-4 text-[#F59E0B]" />
+            <span>Support: <a href="mailto:support@castvera.com" class="text-gray-200 hover:text-white underline">support@castvera.com</a></span>
+          </div>
+          <div class="flex items-center gap-2">
+            <Mail class="w-4 h-4 text-[#DC2626]" />
+            <span>Offizieller Kontakt: <a href="mailto:contact@germaniptv.cloud" class="text-gray-200 hover:text-white underline">contact@germaniptv.cloud</a></span>
+          </div>
+          <div class="flex items-center gap-2">
+            <MessageCircle class="w-4 h-4 text-[#10B981]" />
+            <span>WhatsApp Hotline: <a href="https://wa.me/213550592200" target="_blank" rel="noopener noreferrer" class="text-[#10B981] hover:underline font-semibold">+213 550 59 22 00</a></span>
+          </div>
+        </div>
+
+        <!-- Security & Legal Seals -->
+        <div class="pt-4 flex flex-wrap items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-white/[0.05] border border-white/10 text-[11px] text-gray-300">
+            <Lock class="w-3 h-3 text-[#10B981]" />
+            SSL 256-Bit
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-white/[0.05] border border-white/10 text-[11px] text-gray-300">
+            <ShieldCheck class="w-3 h-3 text-[#10B981]" />
+            DSGVO Konform
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-white/[0.05] border border-white/10 text-[11px] text-gray-300">
+            <CheckCircle2 class="w-3 h-3 text-[#F59E0B]" />
+            24h Garantie
+          </span>
+        </div>
+      </div>
+
+      <!-- Col 2: Quick Links & Landing Pages -->
+      <div class="space-y-4">
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider">
+          Navigation & Tarife
+        </h4>
+        <ul class="space-y-2 text-xs sm:text-sm">
+          {quickLinks.map((item) => (
+            <li>
+              <a href={item.href} class="hover:text-white transition-colors flex items-center gap-1.5">
+                <span class="text-[#DC2626]">›</span>
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Col 3: Ratgeber & Vergleiche -->
+      <div class="space-y-4">
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider">
+          Ratgeber & Vergleiche
+        </h4>
+        <ul class="space-y-2 text-xs sm:text-sm">
+          {guidesLinks.map((item) => (
+            <li>
+              <a href={item.href} class="hover:text-white transition-colors flex items-center gap-1.5">
+                <span class="text-[#F59E0B]">›</span>
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider pt-4">
+          Dienst-Vergleiche
+        </h4>
+        <ul class="space-y-2 text-xs sm:text-sm">
+          {comparisons.map((item) => (
+            <li>
+              <a href={item.href} class="hover:text-white transition-colors flex items-center gap-1.5">
+                <span class="text-[#2563EB]">›</span>
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Col 4: Rechtliches & Verbraucherschutz -->
+      <div class="space-y-4">
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider">
+          Rechtliches & Schutz
+        </h4>
+        <ul class="space-y-2 text-xs sm:text-sm">
+          {legalLinks.map((item) => (
+            <li>
+              <a href={item.href} class="hover:text-white transition-colors flex items-center gap-1.5">
+                <span class="text-gray-500">›</span>
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div class="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-[11px] text-gray-400 mt-4">
+          <strong class="text-white block mb-1">24-Stunden Testzeitraum:</strong>
+          Testen Sie unseren Dienst 24 Stunden lang völlig risikofrei. Bei technischen Problemen erhalten Sie eine unkomplizierte Rückerstattung.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Germany Coverage & Cities Location Map Bar -->
+  <div class="border-t border-white/[0.06] py-10 bg-[#090A10]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
+        <div class="flex items-center gap-2">
+          <MapPin class="w-4 h-4 text-[#DC2626]" />
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">
+            Regionale Verfügbarkeit in Deutschland (Alle 16 Bundesländer & DACH)
+          </h4>
+        </div>
+        <span class="text-[11px] text-gray-400">
+          Optimierte lokale Edge-CDN Anbindungen für Latenzen unter 10ms
+        </span>
+      </div>
+
+      <!-- Cities Tags Grid -->
+      <div class="flex flex-wrap gap-2">
+        {cities.map((city) => (
+          <a
+            href={`/locations/${city.slug}/`}
+            class="px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-[#DC2626]/20 text-gray-300 hover:text-white border border-white/[0.06] hover:border-[#DC2626]/40 text-xs transition-all flex items-center gap-1.5"
+          >
+            <span>IPTV in {city.name}</span>
+            <ArrowUpRight class="w-3 h-3 opacity-60" />
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Legal Copyright & Payment Strip -->
+  <div class="border-t border-white/[0.06] py-8 text-xs text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p>
+        © {currentYear} German IPTV · Alle Rechte vorbehalten. contact@germaniptv.cloud & support@castvera.com.
+      </p>
+
+      <!-- Supported Payment Badges -->
+      <div class="flex flex-wrap items-center gap-3 text-[11px] text-gray-400">
+        <span class="text-white font-semibold">Zahlungsarten:</span>
+        <span class="px-2 py-0.5 rounded bg-white/[0.05] border border-white/10 text-gray-300">PayPal Käuferschutz</span>
+        <span class="px-2 py-0.5 rounded bg-white/[0.05] border border-white/10 text-gray-300">Klarna / Sofort</span>
+        <span class="px-2 py-0.5 rounded bg-white/[0.05] border border-white/10 text-gray-300">SEPA Lastschrift</span>
+        <span class="px-2 py-0.5 rounded bg-white/[0.05] border border-white/10 text-gray-300">Visa / Mastercard</span>
+        <span class="px-2 py-0.5 rounded bg-white/[0.05] border border-white/10 text-gray-300">Krypto (BTC/USDT)</span>
+      </div>
+    </div>
+  </div>
+</footer>

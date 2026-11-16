@@ -1,0 +1,135 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { Clock, ShieldCheck, MessageCircle, AlertCircle, CheckCircle2 } from 'lucide-astro';
+
+const title = "Widerrufs- & Erstattungsrichtlinie (24-Stunden-Garantie) — German IPTV";
+const description = "Offizielle 24-Stunden-Geld-zurück-Garantie von German IPTV. Klare und transparente Richtlinien für vollständige Rückerstattungen bei technischen Störungen.";
+const whatsappRefundUrl = "https://wa.me/213550592200?text=Hallo%2C%20ich%20m%C3%B6chte%20gerne%20eine%20R%C3%BCckerstattung%20gem%C3%A4%C3%9F%20der%2024-Stunden-Garantie%20beantragen.";
+---
+
+<Layout title={title} description={description}>
+  <StickyHeader />
+
+  <main class="py-16 md:py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Header -->
+    <div class="mb-12 text-center sm:text-left border-b border-white/10 pb-8">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-wider mb-4">
+        <Clock class="w-4 h-4" />
+        <span>Strikte 24-Stunden Frist</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+        Widerrufs- & Erstattungsrichtlinie
+      </h1>
+      <p class="text-sm text-gray-400">
+        Volle Transparenz nach deutschem Recht: Erfahren Sie hier, wie unsere 24-Stunden-Zufriedenheitsgarantie funktioniert und wie Sie eine unkomplizierte Rückerstattung veranlassen.
+      </p>
+    </div>
+
+    <!-- Main Alert Box: Strict 24-Hour Rule -->
+    <div class="rounded-3xl bg-gradient-to-r from-red-500/15 via-[#161218] to-red-500/10 border-2 border-red-500/40 p-6 sm:p-8 mb-10 shadow-[0_0_30px_rgba(239,68,68,0.15)]">
+      <div class="flex items-start gap-4">
+        <div class="w-12 h-12 rounded-2xl bg-red-500/20 border border-red-500/40 flex items-center justify-center text-red-400 shrink-0">
+          <AlertCircle class="w-6 h-6" />
+        </div>
+        <div>
+          <h2 class="text-xl font-extrabold text-white mb-2">
+            Verbindliche Regelung: Maximaler Erstattungszeitraum von 24 Stunden
+          </h2>
+          <p class="text-sm text-gray-200 leading-relaxed">
+            Die Geld-zurück-Garantie von <strong>German IPTV</strong> gilt <strong>ausschließlich innerhalb der ersten 24 Stunden</strong> ab dem exakten Zeitpunkt, an dem Ihre Zugangsdaten (M3U-Playlist oder Xtream Codes) generiert und an Sie übermittelt wurden. Nach Ablauf dieses 24-Stunden-Fensters sind Erstattungen für den verbleibenden Nutzungszeitraum grundsätzlich ausgeschlossen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Policy Content Sections -->
+    <div class="space-y-8 text-gray-300 text-sm leading-relaxed">
+      
+      <!-- Section 1 -->
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+          <ShieldCheck class="w-5 h-5 text-[#10B981]" />
+          1. Voraussetzungen für eine vollständige Rückerstattung
+        </h3>
+        <p>
+          Eine 100%ige Rückerstattung des gezahlten Kaufpreises wird gewährt, wenn folgende Bedingungen erfüllt sind und der Antrag innerhalb der 24-Stunden-Frist eingeht:
+        </p>
+        <ul class="space-y-2.5 pl-2">
+          <li class="flex items-start gap-2.5">
+            <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0 mt-1" />
+            <span>Unlösbare technische Inkompatibilität mit Ihrem Endgerät, die unser Support-Team auch nach Zusendung von Konfigurationsanleitungen nicht beheben konnte.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0 mt-1" />
+            <span>Anhaltende Serverstörungen oder Verbindungsabbrüche auf Seiten unserer Infrastruktur innerhalb der ersten 24 Stunden nach der Freischaltung.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0 mt-1" />
+            <span>Nicht-Lieferung der Zugangsdaten innerhalb von 2 Stunden nach ordnungsgemäßem Zahlungseingang.</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+          <Clock class="w-5 h-5 text-[#F59E0B]" />
+          2. Ausnahmen vom Erstattungsanspruch
+        </h3>
+        <p>
+          In den folgenden Fällen kann keine Rückerstattung gewährt werden:
+        </p>
+        <ul class="space-y-2.5 pl-2 text-gray-400">
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 font-bold">✕</span>
+            <span>Anträge, die nach Ablauf der 24-stündigen Frist nach Bereitstellung der Zugangsdaten eingereicht werden.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 font-bold">✕</span>
+            <span>Ungenügende Bandbreite oder Störungen auf Seiten Ihres lokalen Internetanbieters (wir empfehlen mindestens 30 Mbit/s für 4K-Inhalte).</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-red-400 font-bold">✕</span>
+            <span>Fehlkonfigurationen von Drittanbieter-Apps, bei denen der Kunde die Unterstützung unseres technischen Supports verweigert.</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+          <MessageCircle class="w-5 h-5 text-[#2563EB]" />
+          3. So fordern Sie eine Rückerstattung an
+        </h3>
+        <p>
+          Der Erstattungsprozess ist einfach und unbürokratisch:
+        </p>
+        <ol class="list-decimal pl-5 space-y-2 text-gray-300">
+          <li>Senden Sie innerhalb von 24 Stunden nach Erhalt der Zugangsdaten eine Nachricht an unseren WhatsApp-Support oder an <a href="mailto:support@castvera.com" class="text-red-400 underline">support@castvera.com</a> sowie <a href="mailto:contact@germaniptv.cloud" class="text-red-400 underline">contact@germaniptv.cloud</a>.</li>
+          <li>Geben Sie Ihre E-Mail-Adresse, Ihre Bestellnummer und den Grund für den Abbruch an.</li>
+          <li>Unser Support prüft die Anfrage unverzüglich. Nach Genehmigung wird der Erstattungsbetrag über dieselbe Zahlungsmethode (z.B. PayPal) innerhalb von 1 bis 3 Werktagen zurückgebucht.</li>
+        </ol>
+
+        <div class="pt-4">
+          <a
+            href={whatsappRefundUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-red-600 to-red-700 text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:scale-105 transition-all"
+          >
+            <MessageCircle class="w-4 h-4" />
+            <span>Erstattung via WhatsApp Beantragen</span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

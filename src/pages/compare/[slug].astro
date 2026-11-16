@@ -1,0 +1,271 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StickyHeader from '../../components/StickyHeader.astro';
+import PricingCard from '../../components/PricingCard.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
+import ExitPopup from '../../components/ExitPopup.astro';
+import { Scale, CheckCircle2, XCircle, ChevronRight } from 'lucide-astro';
+import { currentYear } from '../../utils/date';
+
+export async function getStaticPaths() {
+  const comparisons = [
+    {
+      slug: 'iptv-deutschland-vs-pay-tv',
+      competitorName: 'Traditionelles Pay-TV & Monopol-Bezahlsender',
+      competitorPrice: 'ab 35,00 € – 60,00 € / Monat',
+      competitorContract: '12–24 Monate Mindestlaufzeit',
+      competitorDrawbacks: [
+        'Aufgeteilte Sportrechte erfordern teure Zusatzverträge für alle Spieltage',
+        'Hohe monatliche Grundgebühren und automatische Preiserhöhungen nach dem 1. Jahr',
+        'Hardware-Zwang durch proprietäre Miet-Receiver',
+        'Zusätzliche monatliche Aufpreise für Ultra HD / 4K Freischaltung'
+      ],
+      ourAdvantages: [
+        'Alle Bundesliga-Spiele (Freitag, Samstag, Sonntag) gebündelt inklusive',
+        'Jahreszugang für einmalig nur 55 € (rechnerisch nur 4,58 € / Monat)',
+        'Funktioniert flexibel auf jedem Smart TV, Fire TV Stick und Apple TV ohne Mietbox',
+        'Keine Kündigungsfristen & keine automatische Vertragsverlängerung'
+      ],
+      summaryVerdict: 'Traditionelle Pay-TV-Anbieter binden Kunden an starre 24-Monats-Verträge und proprietäre Mietgeräte. German IPTV bietet das vollständige Sport- und Unterhaltungsprogramm in 4K bei 60 FPS zu einem Bruchteil der Kosten.'
+    },
+    {
+      slug: 'iptv-deutschland-vs-einzel-abos',
+      competitorName: 'Fragmentierte Sport-Streaming-Dienste',
+      competitorPrice: '34,99 € – 44,99 € / Monat (Einzeldienst)',
+      competitorContract: '12 Monate Bindung für günstigere Monatstarife',
+      competitorDrawbacks: [
+        'Drastische Preiserhöhungen der letzten Jahre bei gleichzeitig reduzierten Rechten',
+        'Keine Samstagsspiele der Bundesliga enthalten — zweites teures Abo zwingend nötig',
+        'Keine klassischen deutschen Fernsehsender oder Mediatheken integriert',
+        'Strikte Restriktionen bei gleichzeitigen Streams im Haushalt'
+      ],
+      ourAdvantages: [
+        'Komplette Bundesliga (alle Freitags-, Samstags- und Sonntagsspiele) auf einer Plattform',
+        'Volles deutsches öffentlich-rechtliches und privates Fernsehen in kristallklarem 4K',
+        'Einmalig nur 55 € für 12 Monate inklusive freigeschaltetem Premium Player',
+        'Persönlicher 24/7 WhatsApp Support bei allen Einrichtungsfragen'
+      ],
+      summaryVerdict: 'Wer Sport-Streaming über mehrere getrennte Monatsabonnements bucht, zahlt schnell über 90 € im Monat. Mit German IPTV bündelst du alle Wettbewerbe und Vollprogramme in einem einzigen, stabilen Jahreszugang.'
+    },
+    {
+      slug: 'iptv-deutschland-vs-kabel-fernsehen',
+      competitorName: 'Klassisches Kabelfernsehen (Post-Nebenkostenprivileg)',
+      competitorPrice: 'ab 15,00 € – 30,00 € / Monat Zwangsgrundgebühr',
+      competitorContract: '12–24 Monate Vertragslaufzeit',
+      competitorDrawbacks: [
+        'Seit Wegfall des Nebenkostenprivilegs 2024 muss jeder Mieter eigene Verträge abschließen',
+        'Kein Premium-Sport oder Bundesliga ohne teure Zusatzpakete enthalten',
+        'Zusatzkosten für private HD-Sender (HD+ Option ca. 6 €/Mo extra)',
+        'An die Kabeldose in der Wohnung gebunden — kein mobiles Fernsehen'
+      ],
+      ourAdvantages: [
+        'Kein Kabelanschluss oder Handwerkertermin erforderlich — läuft über Internet / WLAN',
+        'Alle privaten und öffentlich-rechtlichen Sender direkt in Full HD und 4K ohne Zusatzgebühr',
+        'Mobiler Empfang auf Smartphone, Tablet, Laptop und im Urlaub EU-weit',
+        '12 Monate Streaming für nur 55 € — spart monatliche Kabelgrundgebühren'
+      ],
+      summaryVerdict: 'Nach dem Wegfall des Nebenkostenprivilegs ist klassisches Kabelfernsehen für Mieter ein überteuertes Auslaufmodell. German IPTV bietet mehr Programme, bessere 4K-Bildqualität und maximale Freiheit ohne Kabelgebühr.'
+    },
+    {
+      slug: 'iptv-deutschland-vs-basis-ott',
+      competitorName: 'Standard Web-TV & OTT-Plattformen',
+      competitorPrice: '12,99 € – 29,99 € / Monat (eingeschränktes Paket)',
+      competitorContract: 'Monatlich kündbar',
+      competitorDrawbacks: [
+        'Keine exklusiven Bundesliga-Live-Rechte im Basistarif enthalten',
+        'Sport-Zusatzkombinationen treiben den monatlichen Preis massiv in die Höhe',
+        'Begrenzte internationale Sender außerhalb des deutschen Sprachraums',
+        'Regionale Beschränkungen und Geoblocking beim Auslandsaufenthalt'
+      ],
+      ourAdvantages: [
+        'Alle deutschen Sender plus kompletter Live-Sport (Bundesliga, Europapokal, Motorsport) inklusive',
+        'Österreichische und Schweizer Vollprogramme ohne Geoblocking-Sperren',
+        'Jahrespaket für einmalig 55 € inklusive optimiertem Premium Player',
+        'Keine separaten Zusatzabonnements für Sportübertragungen notwendig'
+      ],
+      summaryVerdict: 'Einfache OTT-Web-TV Plattformen eignen sich für Gelegenheitszuschauer, stoßen aber bei Fußball- und Sportfans schnell an teure Grenzen. German IPTV liefert das Gesamtpaket aus Free-TV und Live-Sport ohne Aufpreis.'
+    }
+  ];
+
+  return comparisons.map((comp) => ({
+    params: { slug: comp.slug },
+    props: { comp }
+  }));
+}
+
+const { comp } = Astro.props;
+
+const title = `German IPTV vs. ${comp.competitorName} — Test & Vergleich (${currentYear})`;
+const description = `Unabhängiger Vergleich ${currentYear}: German IPTV vs. ${comp.competitorName}. Kosten, Senderangebot in 4K, Sportrechte und warum sich der Wechsel lohnt.`;
+const canonical = `https://germaniptv.cloud/compare/${comp.slug}/`;
+const comparisonImage = `/images/compare/compare-${comp.slug.replace('iptv-deutschland-vs-', '')}.webp`;
+const comparisonImageAlt = `German IPTV im Vergleich zu ${comp.competitorName}: Kosten, Sender und Leistung`;
+
+const keywords = [
+  "german iptv vergleich",
+  "iptv vergleich",
+  `iptv vergleich ${currentYear}`,
+  "iptv test deutschland",
+  `iptv vs ${comp.slug.replace('iptv-deutschland-vs-', '')}`,
+  "bester iptv anbieter",
+  "iptv kosten vergleich"
+];
+---
+
+<Layout title={title} description={description} canonicalURL={canonical} keywords={keywords} image={comparisonImage}>
+  <StickyHeader />
+
+  <!-- Breadcrumbs Bar -->
+  <div class="bg-[#12141D] border-b border-white/5 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 text-xs text-gray-400">
+      <a href="/" class="hover:text-white transition-colors">Startseite</a>
+      <ChevronRight class="w-3.5 h-3.5" />
+      <span class="text-white font-medium">Vergleich</span>
+      <ChevronRight class="w-3.5 h-3.5" />
+      <span class="text-gray-300 truncate max-w-xs">{comp.competitorName}</span>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="py-16 md:py-24 bg-gradient-to-b from-[#12141D] to-[#0B0C10] border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-gray-300 text-xs font-semibold uppercase tracking-wider mb-6">
+        <Scale class="w-4 h-4 text-[#DC2626]" />
+        <span>Transparenter Kosten- & Leistungsvergleich {currentYear}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight max-w-3xl mx-auto mb-6">
+        German IPTV vs. <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] to-[#F59E0B]">{comp.competitorName}</span>
+      </h1>
+
+      <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed mb-10">
+        Lohnt sich der Wechsel? Erfahre hier im Detail, wie du monatlich Geld sparst, Vertragsfallen vermeidest und alle Bundesliga-Spiele auf einer Plattform bündelst.
+      </p>
+
+      <!-- Comparison Banner Graphic with Descriptive Alt -->
+      <div class="max-w-4xl mx-auto rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#12141D]">
+        <img
+          src={comparisonImage}
+          alt={comparisonImageAlt}
+          width="1200"
+          height="630"
+          class="w-full h-auto object-cover max-h-[440px]"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Side-by-Side Comparison Matrix -->
+  <section class="py-16 bg-[#0B0C10]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Competitor Card -->
+        <div class="rounded-3xl bg-[#12141D]/60 border border-white/10 p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-6 border-b border-white/10 mb-6">
+              <div>
+                <span class="text-xs uppercase font-bold tracking-wider text-gray-400">Herkömmliche Lösung</span>
+                <h2 class="text-2xl font-black text-white mt-1">{comp.competitorName}</h2>
+              </div>
+              <div class="text-right">
+                <span class="text-xs text-gray-400">Kosten</span>
+                <div class="text-base font-bold text-red-400">{comp.competitorPrice}</div>
+              </div>
+            </div>
+
+            <div class="mb-6 text-xs text-gray-400 bg-white/[0.02] p-3 rounded-xl border border-white/5">
+              <strong>Vertragslaufzeit:</strong> {comp.competitorContract}
+            </div>
+
+            <div class="space-y-4">
+              <h3 class="text-sm font-bold uppercase tracking-wider text-gray-300">Bekannte Nachteile:</h3>
+              <ul class="space-y-3 text-sm text-gray-400">
+                {comp.competitorDrawbacks.map((item: string) => (
+                  <li class="flex items-start gap-3">
+                    <XCircle class="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- German IPTV Card (Winner) -->
+        <div class="rounded-3xl bg-[#12141D] border-2 border-[#DC2626] p-8 flex flex-col justify-between relative shadow-[0_0_40px_rgba(220,38,38,0.2)]">
+          <div class="absolute -top-4 right-8 bg-[#DC2626] text-white text-xs font-black uppercase px-4 py-1.5 rounded-full shadow-lg">
+            Empfehlung der Redaktion
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between pb-6 border-b border-white/10 mb-6">
+              <div>
+                <span class="text-xs uppercase font-bold tracking-wider text-[#F59E0B]">Testsieger {currentYear}</span>
+                <h2 class="text-2xl font-black text-white mt-1">German IPTV</h2>
+              </div>
+              <div class="text-right">
+                <span class="text-xs text-gray-400">Jahres-Aktion</span>
+                <div class="text-2xl font-black text-emerald-400">55 € <span class="text-xs font-normal text-gray-400">/ Jahr</span></div>
+              </div>
+            </div>
+
+            <div class="mb-6 text-xs text-emerald-400 bg-emerald-500/10 p-3 rounded-xl border border-emerald-500/20">
+              <strong>Maximale Flexibilität:</strong> Keine Mindestlaufzeit, keine Verlängerung, monatlich ab 8 € verfügbar.
+            </div>
+
+            <div class="space-y-4">
+              <h3 class="text-sm font-bold uppercase tracking-wider text-white">Deine klaren Vorteile:</h3>
+              <ul class="space-y-3 text-sm text-gray-200">
+                {comp.ourAdvantages.map((item: string) => (
+                  <li class="flex items-start gap-3">
+                    <CheckCircle2 class="w-5 h-5 text-[#10B981] shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-white/10">
+            <a
+              href="/#pricing"
+              class="w-full inline-flex items-center justify-center py-4 rounded-xl bg-gradient-to-r from-[#DC2626] to-[#B91C1C] text-white font-black text-sm uppercase tracking-wider shadow-lg hover:brightness-110 transition-all hover:scale-[1.02]"
+            >
+              <span>Jetzt für 55 € wechseln</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Redaktions-Fazit -->
+      <div class="mt-12 p-8 rounded-2xl bg-[#12141D] border border-white/10">
+        <h3 class="text-lg font-bold text-white mb-2">Experten-Fazit der Redaktion</h3>
+        <p class="text-sm text-gray-300 leading-relaxed">
+          {comp.summaryVerdict}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Cards -->
+  <PricingCard />
+
+  <!-- FAQ -->
+  <FAQSection />
+
+  <!-- CTA -->
+  <CTASection />
+
+  <!-- Footer -->
+  <Footer />
+
+  <FloatingWhatsApp />
+  <ExitPopup />
+</Layout>

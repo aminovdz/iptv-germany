@@ -1,0 +1,232 @@
+---
+import { ShieldCheck, Zap, Star, Tv, CheckCircle2, Play, ArrowRight, MessageCircle, Signal, Sparkles, Award } from 'lucide-astro';
+import { currentYear } from '../utils/date';
+
+interface Props {
+  headline?: string;
+  subheadline?: string;
+  cityName?: string;
+}
+
+const {
+  cityName,
+  headline = cityName 
+    ? `IPTV Kaufen in ${cityName} — Premium Streaming in 4K/8K ohne Pufferung` 
+    : "IPTV Kaufen Deutschland — Testsieger Streaming in 4K & 8K ohne Pufferung",
+  subheadline = cityName
+    ? `Erleben Sie bestes deutsches IPTV in ${cityName} mit sofortiger Freischaltung, Anti-Freeze 9.8™ Technologie, allen Bundesliga-Spielen live und 24/7 deutschem WhatsApp Support.`
+    : "Holen Sie sich jetzt den Zugang zu allen deutschen und internationalen Sendern, packendem Live-Sport, aktuellen Blockbustern und Serien. Ultraschnelle Server mit Anti-Freeze 9.8™ Technologie, ohne Vertragsbindung und in nur 2 Minuten aktiviert."
+} = Astro.props;
+
+const whatsappTrialUrl = "https://wa.me/213550592200?text=Hallo%21%20Ich%20m%C3%B6chte%20gerne%20den%20kostenlosen%2024-Stunden%20Test%20f%C3%BCr%20German%20IPTV%20starten.";
+---
+
+<section class="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden" aria-labelledby="hero-title">
+  <!-- Background Grid & Cyber Lighting Accents -->
+  <div class="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
+    <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[850px] h-[420px] bg-gradient-to-b from-[#DC2626]/12 to-transparent rounded-full blur-[140px]"></div>
+    <div class="absolute top-44 right-10 w-96 h-96 bg-[#F59E0B]/08 rounded-full blur-[150px]"></div>
+    <div class="absolute bottom-10 left-10 w-80 h-80 bg-[#2563EB]/06 rounded-full blur-[130px]"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      
+      <!-- Left Column: High Conversion Copy & SEO H1 -->
+      <div class="lg:col-span-7 flex flex-col items-start text-left">
+        
+        <!-- Live Trust Badge -->
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#12141D] border border-[#DC2626]/30 shadow-[0_0_20px_rgba(220,38,38,0.15)] mb-6">
+          <span class="flex h-2.5 w-2.5 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#10B981]"></span>
+          </span>
+          <span class="text-xs font-semibold tracking-wide text-gray-200">
+            Deutsche High-Speed Server 100% Online · DSGVO-konform (99.9% Uptime)
+          </span>
+        </div>
+
+        <!-- Single Page H1 Tag -->
+        <h1 id="hero-title" class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.12] mb-6">
+          {headline.includes('IPTV Kaufen') ? (
+            <>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-100 to-gray-300">
+                {headline.split('IPTV Kaufen')[0]}
+              </span>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] via-[#EF4444] to-[#F59E0B]">
+                IPTV Kaufen
+              </span>
+              <span class="text-white">
+                {headline.split('IPTV Kaufen')[1]}
+              </span>
+            </>
+          ) : (
+            headline
+          )}
+        </h1>
+
+        <!-- Primary Keyword in First 75-100 Words -->
+        <p class="text-base sm:text-lg md:text-xl text-gray-300 font-normal leading-relaxed mb-8 max-w-2xl">
+          {subheadline} Wer heute in Deutschland <strong>IPTV kaufen</strong> möchte, verlangt höchste Stabilität ohne Pufferung: Unser Service bietet Ihnen Ultra HD 4K & 8K Streaming bei 60 FPS, vollständigen EPG TV-Guide, lückenlose Bundesliga-Übertragungen und direkte Kompatibilität mit Smart TV, Fire TV Stick, Apple TV, Android und MAG-Boxen.
+        </p>
+
+        <!-- Bullet Highlights -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8 w-full max-w-xl">
+          <div class="flex items-center gap-2.5 text-sm text-gray-200">
+            <CheckCircle2 class="w-5 h-5 text-[#10B981] shrink-0" />
+            <span>Kristallklares 4K/8K 60FPS ohne Ruckeln</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-sm text-gray-200">
+            <CheckCircle2 class="w-5 h-5 text-[#10B981] shrink-0" />
+            <span>Anti-Freeze 9.8™ CDN Technologie</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-sm text-gray-200">
+            <CheckCircle2 class="w-5 h-5 text-[#10B981] shrink-0" />
+            <span>Sofortige Freischaltung in 2 Minuten</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-sm text-gray-200">
+            <CheckCircle2 class="w-5 h-5 text-[#10B981] shrink-0" />
+            <span>Keine Vertragsbindung (Monatlich kündbar)</span>
+          </div>
+        </div>
+
+        <!-- CTA Action Buttons -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-8">
+          <a
+            href={whatsappTrialUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#B91C1C] text-white font-extrabold text-sm uppercase tracking-wider shadow-[0_0_30px_rgba(220,38,38,0.4)] hover:shadow-[0_0_40px_rgba(220,38,38,0.6)] transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]"
+            aria-label="Kostenlosen 24h IPTV Test über WhatsApp anfordern"
+          >
+            <MessageCircle class="w-5 h-5 text-white" />
+            <span>24h Kostenlos Testen</span>
+          </a>
+
+          <a
+            href="/#pricing"
+            class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-[#12141D] hover:bg-[#1A1E2B] text-white font-bold text-sm uppercase tracking-wider border border-white/10 hover:border-[#DC2626]/50 transition-all duration-200 hover:scale-[1.02]"
+            aria-label="IPTV Pakete ansehen ab 8 Euro"
+          >
+            <span>Preise Ab 8 € Ansehen</span>
+            <ArrowRight class="w-4 h-4 text-[#F59E0B]" />
+          </a>
+        </div>
+
+        <!-- Trust Signals & Ratings -->
+        <div class="flex flex-wrap items-center gap-6 pt-4 border-t border-white/[0.08] w-full max-w-xl">
+          <div class="flex items-center gap-2">
+            <div class="flex text-[#F59E0B]">
+              {[...Array(5)].map(() => (
+                <Star class="w-4 h-4 fill-current" />
+              ))}
+            </div>
+            <span class="text-xs font-semibold text-white">4.9 / 5.0</span>
+            <span class="text-xs text-gray-400">(1.840+ Bewertungen)</span>
+          </div>
+
+          <div class="flex items-center gap-2 text-xs font-medium text-gray-300">
+            <ShieldCheck class="w-4 h-4 text-[#10B981]" />
+            <span>24-Stunden Geld-zurück-Garantie</span>
+          </div>
+
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-[11px] font-bold text-[#F59E0B] uppercase tracking-wide">
+            <Award class="w-3.5 h-3.5" />
+            <span>Testsieger {currentYear}</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Interactive Streaming Showcase Card -->
+      <div class="lg:col-span-5 relative">
+        <div class="relative mx-auto max-w-md lg:max-w-none">
+          
+          <!-- Outer Ambient Glow behind player -->
+          <div class="absolute -inset-1.5 bg-gradient-to-r from-[#DC2626]/40 via-[#F59E0B]/30 to-[#2563EB]/30 rounded-3xl blur-2xl opacity-75"></div>
+
+          <!-- Glassmorphic Player Card -->
+          <div class="relative rounded-3xl bg-[#12141D]/90 border border-white/15 p-5 sm:p-6 shadow-2xl backdrop-blur-xl overflow-hidden">
+            
+            <!-- Window Control Header -->
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.08]">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-[#DC2626]"></span>
+                <span class="w-3 h-3 rounded-full bg-[#F59E0B]"></span>
+                <span class="w-3 h-3 rounded-full bg-[#10B981]"></span>
+                <span class="text-xs font-semibold text-gray-300 ml-2">IPTV Player Pro™ · Live 4K</span>
+              </div>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#10B981]/15 text-[#10B981] text-[11px] font-bold">
+                <Signal class="w-3 h-3 animate-pulse" />
+                60 FPS · 0 ms Delay
+              </span>
+            </div>
+
+            <!-- Simulated Live Sports Stream Screen -->
+            <div class="relative aspect-video rounded-2xl bg-gradient-to-br from-[#06080F] via-[#101320] to-[#181B2C] border border-white/10 flex flex-col justify-between p-4 overflow-hidden group">
+              <!-- Grid overlay -->
+              <div class="absolute inset-0 bg-[radial-gradient(#DC2626_1px,transparent_1px)] [background-size:16px_16px] opacity-15 pointer-events-none"></div>
+
+              <!-- Stream Top Info -->
+              <div class="relative z-10 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="px-2 py-0.5 rounded bg-[#DC2626] text-white text-[10px] font-black tracking-wider uppercase animate-pulse">
+                    LIVE
+                  </span>
+                  <span class="text-xs font-bold text-white tracking-wide drop-shadow">
+                    Bundesliga Spitzenspiel
+                  </span>
+                </div>
+                <div class="px-2 py-0.5 rounded bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-mono text-gray-200">
+                  UHD 3840×2160
+                </div>
+              </div>
+
+              <!-- Center Play / Live Animation -->
+              <div class="relative z-10 flex flex-col items-center justify-center my-auto py-4">
+                <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-[#DC2626] to-[#F59E0B] p-0.5 shadow-[0_0_30px_rgba(220,38,38,0.6)] group-hover:scale-105 transition-transform duration-300">
+                  <div class="w-full h-full rounded-full bg-[#0B0C10] flex items-center justify-center">
+                    <Play class="w-6 h-6 text-white fill-white ml-0.5" />
+                  </div>
+                </div>
+                <div class="mt-3 text-center">
+                  <p class="text-sm font-bold text-white drop-shadow">Anti-Freeze 9.8™ Aktiv</p>
+                  <p class="text-[11px] text-gray-400">Pufferfreies Streaming garantiert</p>
+                </div>
+              </div>
+
+              <!-- Stream Bottom Info -->
+              <div class="relative z-10 flex items-center justify-between pt-2 border-t border-white/10 text-[11px] text-gray-300">
+                <span class="flex items-center gap-1.5">
+                  <Tv class="w-3.5 h-3.5 text-[#F59E0B]" />
+                  Alle deutschen Sender
+                </span>
+                <span class="text-[#10B981] font-semibold">100% Unterbrechungsfrei</span>
+              </div>
+            </div>
+
+            <!-- Value Props List underneath stream -->
+            <div class="mt-4 pt-4 border-t border-white/[0.08] space-y-2.5">
+              <div class="flex items-center justify-between text-xs text-gray-300">
+                <span class="flex items-center gap-2">
+                  <Zap class="w-4 h-4 text-[#F59E0B]" />
+                  12 Monate Testsieger Paket
+                </span>
+                <span class="font-bold text-white">55 € <span class="text-gray-400 line-through text-[10px]">99 €</span></span>
+              </div>
+              <div class="flex items-center justify-between text-xs text-gray-300">
+                <span class="flex items-center gap-2">
+                  <Sparkles class="w-4 h-4 text-[#DC2626]" />
+                  Bonus Vorteil
+                </span>
+                <span class="font-bold text-[#10B981]">Offizielle Player Lizenz</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

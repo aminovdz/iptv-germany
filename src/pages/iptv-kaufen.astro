@@ -1,0 +1,406 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import PricingCard from '../components/PricingCard.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import SupportedDevices from '../components/SupportedDevices.astro';
+import UserReviewsSection from '../components/UserReviewsSection.astro';
+import FAQSection from '../components/FAQSection.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import ExitPopup from '../components/ExitPopup.astro';
+import GroupsPopup from '../components/GroupsPopup.astro';
+import LiveScores from '../components/LiveScores.astro';
+import { ShoppingCart, ShieldCheck, Zap, CreditCard, Lock, CheckCircle2, MessageCircle, Clock, Tv, ListFilter } from 'lucide-astro';
+import { currentYear } from '../utils/date';
+
+const title = `IPTV Kaufen ab 8 € — Deutsches IPTV Abo, M3U Line & PayPal (${currentYear})`;
+const description = `IPTV kaufen & abonnieren: Deutsches IPTV mit PayPal Käuferschutz. 12 Monate für 55 € inkl. gratis Player, M3U & Xtream Codes für Smart TV & Fire Stick. 24h Testline gratis!`;
+const canonical = "https://germaniptv.cloud/iptv-kaufen/";
+
+const keywords = [
+  "iptv kaufen",
+  "iptv abo",
+  "iptv kaufe",
+  "iptv line kaufen",
+  "iptv german",
+  "deutsch iptv kaufen",
+  "deutschland iptv",
+  "smart iptv kaufen",
+  "m3u line germany",
+  "iptv m3u kaufen",
+  `iptv kaufen ${currentYear}`,
+  "iptv kaufen paypal",
+  "best iptv anbieter",
+  "iptv abo kaufen",
+  "smart iptv m3u",
+  "iptv 12 monate",
+  "iptv testline"
+];
+
+const whatsappTrialUrl = "https://wa.me/213550592200?text=Hallo%21%20Ich%20m%C3%B6chte%20gerne%20den%20kostenlosen%2024-Stunden%20Test%20f%C3%BCr%20German%20IPTV%20starten.";
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": `German IPTV Abonnement (${currentYear})`,
+  "image": "https://germaniptv.cloud/images/pages/iptv-kaufen.webp",
+  "description": "Premium IPTV Zugang mit über 24.000 Sendern in 4K/8K, Bundesliga live, Anti-Freeze 9.8™ und PayPal Käuferschutz.",
+  "brand": {
+    "@type": "Brand",
+    "name": "German IPTV"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "1840",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "EUR",
+    "lowPrice": "8.00",
+    "highPrice": "55.00",
+    "offerCount": "4",
+    "availability": "https://schema.org/InStock",
+    "priceValidUntil": `${currentYear}-12-31`
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was ist im Smart IPTV & M3U Line Paket enthalten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Jedes German IPTV Paket enthält eine vollwertige M3U Plus Playlist inklusive 7-Tage-EPG sowie direkte Xtream Codes Zugangsdaten. Sie erhalten Zugriff auf über 24.000 weltweite Sender, deutsche Privatsender in HD/FHD und alle Bundesliga- sowie Champions League Spiele in 4K bei 60 FPS."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie richte ich Smart IPTV auf Samsung TV, LG TV oder Fire Stick ein?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Für Samsung und LG Smart TVs laden Sie einfach Smart IPTV (SIPTV) oder IBO Player aus dem TV App Store und geben die von uns per WhatsApp oder E-Mail gesendete M3U URL ein. Für den Amazon Fire TV Stick empfehlen wir TiviMate oder IPTV Smarters Pro."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann ich IPTV sicher mit PayPal kaufen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, bei German IPTV können Sie bequem und sicher mit offiziellem PayPal Käuferschutz bezahlen. Darüber hinaus stehen SEPA-Überweisung, Kreditkarte und Krypto zur Verfügung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie schnell erhalte ich meine M3U Line nach dem Kauf?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Aktivierung erfolgt per Express-Freischaltung in unter 2 Minuten. Direkt nach dem Kauf erhalten Sie Ihre persönlichen Zugangsdaten (M3U Link und Xtream Codes) via WhatsApp oder E-Mail."
+      }
+    }
+  ]
+};
+---
+
+<Layout 
+  title={title} 
+  description={description} 
+  keywords={keywords} 
+  canonicalURL={canonical} 
+  image="/images/pages/iptv-kaufen.webp"
+  schema={[productSchema, faqSchema]}
+>
+  <StickyHeader />
+
+  <!-- Money Page Hero Header with Instant Checkout Focus -->
+  <section class="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden border-b border-white/5">
+    <div class="absolute inset-0 pointer-events-none -z-10">
+      <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-[#DC2626]/15 via-transparent to-transparent rounded-full blur-[140px]"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#12141D] border border-[#DC2626]/30 text-gray-200 text-xs font-semibold uppercase tracking-wider mb-6 shadow-sm">
+        <ShoppingCart class="w-4 h-4 text-[#DC2626]" />
+        <span>Deutschlands #1 IPTV Bestellportal · Sofortige Freischaltung</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl mx-auto mb-6">
+        IPTV Kaufen — <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] via-[#EF4444] to-[#F59E0B]">Premium Streaming</span> in 2 Minuten aktiviert
+      </h1>
+
+      <p class="text-base sm:text-xl text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed">
+        Wähle dein Wunsch-Paket: Starte mit unserem Testsieger-Paket (12 Monate für 55 € inklusive Premium Player) oder teste erst 24 Stunden völlig kostenlos.
+      </p>
+
+      <!-- Trust Badges Bar -->
+      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-gray-300 mb-10">
+        <div class="flex items-center gap-1.5 bg-white/5 border border-white/10 px-3.5 py-1.5 rounded-lg">
+          <ShieldCheck class="w-4 h-4 text-emerald-400" />
+          <span>PayPal Käuferschutz</span>
+        </div>
+        <div class="flex items-center gap-1.5 bg-white/5 border border-white/10 px-3.5 py-1.5 rounded-lg">
+          <Clock class="w-4 h-4 text-[#F59E0B]" />
+          <span>Aktivierung in &lt; 2 Minuten</span>
+        </div>
+        <div class="flex items-center gap-1.5 bg-white/5 border border-white/10 px-3.5 py-1.5 rounded-lg">
+          <Lock class="w-4 h-4 text-blue-400" />
+          <span>256-Bit SSL Verschlüsselung</span>
+        </div>
+        <div class="flex items-center gap-1.5 bg-white/5 border border-white/10 px-3.5 py-1.5 rounded-lg">
+          <CheckCircle2 class="w-4 h-4 text-purple-400" />
+          <span>Keine Vertragsbindung</span>
+        </div>
+      </div>
+
+      <!-- Visual Buying Banner with Alt -->
+      <div class="max-w-4xl mx-auto mb-10 rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#12141D]">
+        <img
+          src="/images/pages/iptv-kaufen.webp"
+          alt="German IPTV Kaufen — Testsieger 12-Monats-Paket für 55 Euro mit Anti-Freeze 9.8™ und PayPal Käuferschutz"
+          width="1200"
+          height="630"
+          class="w-full h-auto object-cover max-h-[440px]"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a 
+          href="#pricing"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-black text-white bg-gradient-to-r from-[#DC2626] via-[#EF4444] to-[#B91C1C] hover:brightness-110 shadow-lg shadow-red-900/40 transition-all hover:scale-105"
+        >
+          <ShoppingCart class="w-5 h-5" />
+          <span>Pakete ansehen & bestellen</span>
+        </a>
+        <a 
+          href={whatsappTrialUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-bold text-gray-200 bg-[#12141D] hover:bg-white/10 border border-white/15 transition-all"
+        >
+          <MessageCircle class="w-5 h-5 text-emerald-400" />
+          <span>Erst 24h kostenlos testen</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Scores Infinite Loop Carousel -->
+  <LiveScores />
+
+  <!-- Lead with Pricing Section Directly -->
+  <section id="pricing">
+    <PricingCard />
+  </section>
+
+  <!-- Payment Methods Focus (Critical for German Buyers) -->
+  <section class="py-16 bg-[#12141D]/60 border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300 text-xs font-semibold mb-3">
+          <CreditCard class="w-3.5 h-3.5 text-[#F59E0B]" />
+          <span>Sichere & Bequeme Zahlung</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+          Akzeptierte Zahlungsmethoden in Deutschland
+        </h2>
+        <p class="mt-2 text-sm text-gray-400">
+          Wir unterstützen die beliebtesten und sichersten Zahlungsmethoden für maximale Sicherheit und Kundenzufriedenheit.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        <!-- PayPal -->
+        <div class="p-6 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#0070BA]/50 transition-all text-center flex flex-col items-center">
+          <div class="w-12 h-12 rounded-full bg-[#0070BA]/20 border border-[#0070BA]/30 flex items-center justify-center mb-4">
+            <ShieldCheck class="w-6 h-6 text-[#0070BA]" />
+          </div>
+          <h3 class="text-base font-bold text-white mb-1">PayPal</h3>
+          <span class="inline-block px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 text-[10px] font-bold uppercase mb-2">Empfohlen</span>
+          <p class="text-xs text-gray-400">
+            Inklusive offiziellem Käuferschutz. Schnell, sicher und ohne Weitergabe von sensiblen Daten.
+          </p>
+        </div>
+
+        <!-- SEPA & Sofortüberweisung -->
+        <div class="p-6 rounded-xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/50 transition-all text-center flex flex-col items-center">
+          <div class="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center mb-4">
+            <CreditCard class="w-6 h-6 text-emerald-400" />
+          </div>
+          <h3 class="text-base font-bold text-white mb-1">SEPA & Überweisung</h3>
+          <span class="inline-block px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 text-[10px] font-bold uppercase mb-2">Direkt</span>
+          <p class="text-xs text-gray-400">
+            Bequeme Banküberweisung von jedem deutschen, österreichischen oder Schweizer Bankkonto.
+          </p>
+        </div>
+
+        <!-- Kreditkarte & Debitkarte -->
+        <div class="p-6 rounded-xl bg-white/[0.03] border border-white/10 hover:border-amber-500/50 transition-all text-center flex flex-col items-center">
+          <div class="w-12 h-12 rounded-full bg-amber-500/20 border border-amber-500/30 flex items-center justify-center mb-4">
+            <Lock class="w-6 h-6 text-amber-400" />
+          </div>
+          <h3 class="text-base font-bold text-white mb-1">Kreditkarte / Debit</h3>
+          <span class="inline-block px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 text-[10px] font-bold uppercase mb-2">Sofort</span>
+          <p class="text-xs text-gray-400">
+            Visa, Mastercard, American Express mit 3D-Secure 2.0 Authentifizierung für 100% Sicherheit.
+          </p>
+        </div>
+
+        <!-- Krypto -->
+        <div class="p-6 rounded-xl bg-white/[0.03] border border-white/10 hover:border-purple-500/50 transition-all text-center flex flex-col items-center">
+          <div class="w-12 h-12 rounded-full bg-purple-500/20 border border-purple-500/30 flex items-center justify-center mb-4">
+            <Zap class="w-6 h-6 text-purple-400" />
+          </div>
+          <h3 class="text-base font-bold text-white mb-1">Kryptowährung</h3>
+          <span class="inline-block px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 text-[10px] font-bold uppercase mb-2">100% Anonym</span>
+          <p class="text-xs text-gray-400">
+            Bitcoin (BTC), USDT, Ethereum für maximale Privatsphäre ohne persönliche Adressangaben.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Smart IPTV & M3U Line Highlight Section (Directly satisfies 'smart iptv kaufen' & 'm3u line germany') -->
+  <section class="py-16 bg-[#0B0C10] border-b border-white/5 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DC2626]/10 border border-[#DC2626]/30 text-[#DC2626] text-xs font-bold uppercase tracking-wider mb-4">
+          <Tv class="w-3.5 h-3.5" />
+          <span>Smart IPTV & M3U Line Deutschland</span>
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-black text-white tracking-tight">
+          Smart IPTV & M3U Playlist: <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] via-[#EF4444] to-[#F59E0B]">Sofort startklar</span> für Samsung, LG & Fire TV
+        </h2>
+        <p class="mt-3 text-sm sm:text-base text-gray-300 leading-relaxed">
+          Egal welche Player-App Sie bevorzugen – Sie erhalten zu jedem Abonnement sowohl die direkte M3U Plus URL mit 7-Tage-EPG als auch standardisierte Xtream Codes API Zugangsdaten für maximale Flexibilität.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        
+        <!-- M3U Plus Playlist -->
+        <div class="p-6 sm:p-7 rounded-2xl bg-[#12141D] border border-white/10 hover:border-[#DC2626]/40 transition-all shadow-xl">
+          <div class="w-12 h-12 rounded-xl bg-[#DC2626]/20 border border-[#DC2626]/40 flex items-center justify-center text-[#DC2626] mb-5">
+            <ListFilter class="w-6 h-6" />
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">M3U Plus Line (.m3u / .m3u8)</h3>
+          <p class="text-xs sm:text-sm text-gray-400 leading-relaxed mb-4">
+            Komplette M3U Line mit automatischer Kanalsortierung nach Ländern & Kategorien (Deutschland, DACH, Live-Sport, VOD) und integrierter XMLTV EPG-Adresse.
+          </p>
+          <ul class="space-y-2 text-xs text-gray-300">
+            <li class="flex items-center gap-2">
+              <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0" />
+              <span>Kompatibel mit SIPTV (Smart IPTV), VLC, Perfect Player</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0" />
+              <span>Integrierter 7-Tage Elektronischer Programmführer (EPG)</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Xtream Codes API -->
+        <div class="p-6 sm:p-7 rounded-2xl bg-[#12141D] border border-white/10 hover:border-[#F59E0B]/40 transition-all shadow-xl">
+          <div class="w-12 h-12 rounded-xl bg-[#F59E0B]/20 border border-[#F59E0B]/40 flex items-center justify-center text-[#F59E0B] mb-5">
+            <Zap class="w-6 h-6" />
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Xtream Codes API Login</h3>
+          <p class="text-xs sm:text-sm text-gray-400 leading-relaxed mb-4">
+            Bequeme 1-Klick-Anmeldung ohne langes Abtippen kryptischer Links. Geben Sie einfach Server-URL, Benutzername und Passwort in Ihrer bevorzugten TV-App ein.
+          </p>
+          <ul class="space-y-2 text-xs text-gray-300">
+            <li class="flex items-center gap-2">
+              <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0" />
+              <span>Perfekt für TiviMate, IPTV Smarters Pro & XCIPTV</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0" />
+              <span>Getrennte Mediatheken für Live-TV, Filme & Serien</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Smart TV Apps -->
+        <div class="p-6 sm:p-7 rounded-2xl bg-[#12141D] border border-white/10 hover:border-[#10B981]/40 transition-all shadow-xl">
+          <div class="w-12 h-12 rounded-xl bg-[#10B981]/20 border border-[#10B981]/40 flex items-center justify-center text-[#10B981] mb-5">
+            <ShieldCheck class="w-6 h-6" />
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Smart TV & Fire Stick Optimiert</h3>
+          <p class="text-xs sm:text-sm text-gray-400 leading-relaxed mb-4">
+            Keine Zusatzbox erforderlich. Nutzen Sie Ihren Smart TV von Samsung oder LG oder Ihren Amazon Fire TV Stick direkt in gestochen scharfem 4K bei flüssigen 60 FPS.
+          </p>
+          <ul class="space-y-2 text-xs text-gray-300">
+            <li class="flex items-center gap-2">
+              <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0" />
+              <span>IBO Player, Smart IPTV, Nanomid, NET IPTV</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0" />
+              <span>Anti-Freeze 9.8™ Technologie ohne Puffer-Unterbrechung</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Quick Setup Guarantee Banner -->
+      <div class="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-red-950/40 via-[#12141D] to-amber-950/30 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3.5">
+          <div class="w-10 h-10 rounded-xl bg-[#10B981]/20 border border-[#10B981]/40 flex items-center justify-center text-[#10B981] shrink-0">
+            <CheckCircle2 class="w-5 h-5 text-[#10B981]" />
+          </div>
+          <div>
+            <div class="text-sm font-bold text-white">Hilfe bei der Einrichtung Ihrer M3U Line oder App?</div>
+            <div class="text-xs text-gray-400">Unser deutschsprachiger WhatsApp-Kundenservice unterstützt Sie persönlich bei der Aktivierung auf jedem Endgerät.</div>
+          </div>
+        </div>
+        <a
+          href={whatsappTrialUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#10B981] hover:bg-[#059669] text-black font-extrabold text-xs uppercase tracking-wider transition-all shadow-md"
+        >
+          <MessageCircle class="w-4 h-4" />
+          <span>WhatsApp Support</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Feature Grid -->
+  <FeatureGrid />
+
+  <!-- Process Steps -->
+  <ProcessSteps />
+
+  <!-- Devices -->
+  <SupportedDevices />
+
+  <!-- Reviews -->
+  <UserReviewsSection />
+
+  <!-- FAQ Section -->
+  <FAQSection />
+
+  <!-- Bottom Call to Action -->
+  <CTASection />
+
+  <!-- Footer -->
+  <Footer />
+
+  <FloatingWhatsApp />
+  <ExitPopup />
+  <GroupsPopup />
+</Layout>

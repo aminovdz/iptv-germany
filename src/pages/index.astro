@@ -1,0 +1,271 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Hero from '../components/Hero.astro';
+import LiveScores from '../components/LiveScores.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import PricingCard from '../components/PricingCard.astro';
+import ReferralBanner from '../components/ReferralBanner.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import SupportedDevices from '../components/SupportedDevices.astro';
+import CitiesList from '../components/CitiesList.astro';
+import UserReviewsSection from '../components/UserReviewsSection.astro';
+import FAQSection from '../components/FAQSection.astro';
+import ContactForm from '../components/ContactForm.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import ExitPopup from '../components/ExitPopup.astro';
+import GroupsPopup from '../components/GroupsPopup.astro';
+import SocialPopup from '../components/SocialPopup.astro';
+import { ShieldCheck, Lock, Award, CheckCircle2, Sparkles } from 'lucide-astro';
+import { currentYear } from '../utils/date';
+
+const title = `German IPTV & IPTV Deutschland ${currentYear} — Bester Anbieter 4K & 24h Test`;
+const description = `German IPTV & IPTV Deutschland: Über 24.000 deutsche & internationale Sender in 4K/8K, Bundesliga live & Anti-Freeze 9.8™. Jetzt kostenlose 24h Testline anfordern!`;
+const canonical = "https://germaniptv.cloud/";
+
+const keywords = [
+  "german iptv",
+  "iptv german",
+  "deutsch iptv",
+  "germany iptv",
+  "ip tv german",
+  "iptv deutschland",
+  "iptv kaufen",
+  "iptv test",
+  "iptv testline",
+  "bester iptv anbieter",
+  `german iptv ${currentYear}`,
+  `iptv kaufen ${currentYear}`,
+  "bundesliga live streamen",
+  "iptv 4k streaming",
+  "iptv fire tv stick"
+];
+
+const webSiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "German IPTV",
+  "url": "https://germaniptv.cloud/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://germaniptv.cloud/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+---
+
+<Layout title={title} description={description} keywords={keywords} canonicalURL={canonical} image="/images/pages/og-home.webp">
+  <script type="application/ld+json" set:html={JSON.stringify(webSiteSchema)} />
+
+  <!-- Navigation -->
+  <StickyHeader />
+
+  <!-- Hero Section -->
+  <Hero 
+    headline="German IPTV — Alle deutschen Sender und internationale Kanäle in HD, 4K und 8K"
+    subheadline="Premium German IPTV für Deutschland, Österreich und die Schweiz. Erlebe alle Bundesliga-Spiele, Live-Sport, Blockbuster und Serien mit Anti-Freeze 9.8™ Technologie ohne Vertragsbindung."
+  />
+
+  <!-- Football & Bundesliga Live Ticker Hook -->
+  <LiveScores />
+
+  <!-- Visual Showcase Banner -->
+  <section class="py-6 bg-[#0B0C10]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#12141D] group">
+        <img
+          src="/images/pages/og-home.webp"
+          alt="German IPTV — Testsieger Streaming in 4K/8K mit über 24.000 Sendern und Anti-Freeze 9.8™ Technologie"
+          width="1200"
+          height="630"
+          class="w-full h-auto object-cover max-h-[460px] group-hover:scale-[1.01] transition-transform duration-500"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Value Anchor Strip (Price Comparison) -->
+  <section class="py-10 bg-gradient-to-r from-[#DC2626]/10 via-[#12141D] to-[#F59E0B]/10 border-y border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-center md:text-left">
+        <div class="flex items-center gap-4 justify-center md:justify-start">
+          <div class="w-12 h-12 rounded-xl bg-[#DC2626]/20 border border-[#DC2626]/30 flex items-center justify-center shrink-0">
+            <Lock class="w-6 h-6 text-[#DC2626]" />
+          </div>
+          <div>
+            <div class="text-white font-bold text-base">100% Sicher & Anonym</div>
+            <div class="text-gray-400 text-xs">256-Bit SSL · Keine Logs · DSGVO-konform</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 justify-center md:justify-start">
+          <div class="w-12 h-12 rounded-xl bg-[#F59E0B]/20 border border-[#F59E0B]/30 flex items-center justify-center shrink-0">
+            <Award class="w-6 h-6 text-[#F59E0B]" />
+          </div>
+          <div>
+            <div class="text-white font-bold text-base">Testsieger Preis-Leistung</div>
+            <div class="text-gray-400 text-xs">Spart bis zu €95/Monat gegenüber herkömmlichem Pay-TV</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 justify-center md:justify-start">
+          <div class="w-12 h-12 rounded-xl bg-[#10B981]/20 border border-[#10B981]/30 flex items-center justify-center shrink-0">
+            <ShieldCheck class="w-6 h-6 text-[#10B981]" />
+          </div>
+          <div>
+            <div class="text-white font-bold text-base">24h Geld-zurück-Garantie</div>
+            <div class="text-gray-400 text-xs">PayPal Käuferschutz & risikofreier Test</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Features -->
+  <FeatureGrid />
+
+  <!-- Pricing Cards (12M first at €55 + premium player) -->
+  <PricingCard />
+
+  <!-- Referral Promotion Banner -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <ReferralBanner />
+  </div>
+
+  <!-- Easy Setup Guide (3 Steps) -->
+  <ProcessSteps />
+
+  <!-- Device Compatibility -->
+  <SupportedDevices />
+
+  <!-- Why German IPTV - Cord Cutting Breakdown -->
+  <section class="py-20 bg-[#0B0C10]/60 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-gray-300 text-xs font-bold uppercase tracking-wider mb-4">
+          <Sparkles class="w-4 h-4 text-[#F59E0B]" />
+          <span>Direkter Kostenvergleich</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Schluss mit dem teuren Abo-Chaos in Deutschland
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-gray-300">
+          In Deutschland sind Bundesliga und Champions League auf mehrere teure Anbieter aufgeteilt. Bei uns bekommst du das komplette Programm auf einer einzigen stabilen Plattform.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Traditional Cable & Streaming Trap -->
+        <div class="p-8 rounded-2xl bg-[#12141D]/90 border border-red-500/20 shadow-xl relative overflow-hidden">
+          <div class="absolute top-0 right-0 px-4 py-1.5 bg-red-500/20 text-red-400 text-xs font-bold uppercase rounded-bl-xl border-l border-b border-red-500/30">
+            Klassisches Fernsehen & Abos
+          </div>
+          <h3 class="text-xl font-bold text-white mb-6">Herkömmliche Anbieter</h3>
+          <ul class="space-y-4 text-sm text-gray-300 mb-8">
+            <li class="flex items-center justify-between pb-3 border-b border-white/5">
+              <span>Traditionelles Pay-TV Sportpaket</span>
+              <span class="text-red-400 font-semibold">ab 35,00 € / Mo</span>
+            </li>
+            <li class="flex items-center justify-between pb-3 border-b border-white/5">
+              <span>Monatliche Streaming-Einzelabos</span>
+              <span class="text-red-400 font-semibold">44,99 € / Mo</span>
+            </li>
+            <li class="flex items-center justify-between pb-3 border-b border-white/5">
+              <span>Kabelanschluss / HD-Option</span>
+              <span class="text-red-400 font-semibold">ab 15,00 € / Mo</span>
+            </li>
+            <li class="flex items-center justify-between pb-3 border-b border-white/5">
+              <span>Vertragslaufzeit & Kündigungsfristen</span>
+              <span class="text-red-400 font-semibold">12-24 Monate Knebel</span>
+            </li>
+            <li class="flex items-center justify-between pt-2">
+              <span class="font-bold text-white text-base">Gesamtkosten pro Jahr:</span>
+              <span class="text-red-500 font-black text-xl">ca. 1.139 € / Jahr</span>
+            </li>
+          </ul>
+          <div class="p-4 rounded-xl bg-red-950/20 border border-red-800/30 text-xs text-red-300 leading-relaxed">
+            Teure Einzelabos, unübersichtliche Apps, automatische Vertragsverlängerungen und ständige Preiserhöhungen.
+          </div>
+        </div>
+
+        <!-- German IPTV Solution -->
+        <div class="p-8 rounded-2xl bg-gradient-to-b from-[#1E2333] to-[#12141D] border-2 border-[#F59E0B]/40 shadow-2xl relative overflow-hidden">
+          <div class="absolute top-0 right-0 px-4 py-1.5 bg-gradient-to-r from-[#DC2626] to-[#F59E0B] text-white text-xs font-bold uppercase rounded-bl-xl shadow-md">
+            Testsieger {currentYear}
+          </div>
+          <h3 class="text-xl font-bold text-white mb-6">German IPTV Jahres-Paket</h3>
+          <ul class="space-y-4 text-sm text-gray-200 mb-8">
+            <li class="flex items-center justify-between pb-3 border-b border-white/10">
+              <span class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-[#10B981]" />
+                Alle deutschen öffentlich-rechtlichen & privaten Sender
+              </span>
+              <span class="text-emerald-400 font-semibold">Inklusive</span>
+            </li>
+            <li class="flex items-center justify-between pb-3 border-b border-white/10">
+              <span class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-[#10B981]" />
+                Komplette Bundesliga, Champions League & Sport live
+              </span>
+              <span class="text-emerald-400 font-semibold">Inklusive</span>
+            </li>
+            <li class="flex items-center justify-between pb-3 border-b border-white/10">
+              <span class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-[#10B981]" />
+                Premium Player App (IBO / TiviMate optimiert)
+              </span>
+              <span class="text-emerald-400 font-semibold">Kostenlos dabei</span>
+            </li>
+            <li class="flex items-center justify-between pb-3 border-b border-white/10">
+              <span class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-[#10B981]" />
+                Keine Vertragsbindung & kein Abo-Knebel
+              </span>
+              <span class="text-emerald-400 font-semibold">100% Flexibel</span>
+            </li>
+            <li class="flex items-center justify-between pt-2">
+              <span class="font-bold text-white text-base">Gesamtkosten für 12 Monate:</span>
+              <span class="text-[#F59E0B] font-black text-2xl">Nur 55,00 €</span>
+            </li>
+          </ul>
+          <a
+            href="https://wa.me/213550592200?text=Hallo%21%20Ich%20m%C3%B6chte%20das%2012-Monats-Paket%20f%C3%BCr%2055%20Euro%20mit%20Premium%20Player%20bestellen."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block w-full text-center py-3.5 px-6 rounded-xl font-black text-white bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#EF4444] hover:to-[#DC2626] shadow-lg shadow-red-900/30 transition-all hover:scale-[1.02]"
+          >
+            Jetzt für nur 55 € sichern &gt;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- German Cities Local SEO Grid -->
+  <CitiesList />
+
+  <!-- Verified Customer Reviews & Trust Signals -->
+  <UserReviewsSection />
+
+  <!-- Frequently Asked Questions -->
+  <FAQSection />
+
+  <!-- Support & Callback Contact Form -->
+  <ContactForm />
+
+  <!-- Bottom CTA -->
+  <CTASection />
+
+  <!-- Footer -->
+  <Footer />
+
+  <!-- Conversion & Floating Popups -->
+  <FloatingWhatsApp />
+  <ExitPopup />
+  <GroupsPopup />
+  <SocialPopup />
+</Layout>

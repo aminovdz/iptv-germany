@@ -1,0 +1,91 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { FileText } from 'lucide-astro';
+import { currentYear } from '../utils/date';
+
+const title = "Allgemeine Geschäftsbedingungen (AGB) — German IPTV";
+const description = "Nutzungsbedingungen und AGB von German IPTV. Klare Regeln, keine Vertragsbindung und transparente Laufzeiten.";
+---
+
+<Layout title={title} description={description}>
+  <StickyHeader />
+
+  <main class="py-16 md:py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Header -->
+    <div class="mb-12 text-center sm:text-left border-b border-white/10 pb-8">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/10 text-gray-300 text-xs font-bold uppercase tracking-wider mb-4">
+        <FileText class="w-4 h-4 text-[#DC2626]" />
+        <span>Rechtliche Vereinbarung</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+        Allgemeine Geschäftsbedingungen (AGB)
+      </h1>
+      <p class="text-sm text-gray-400">
+        Gültig ab: Januar {currentYear} · Bitte lesen Sie diese Geschäftsbedingungen sorgfältig durch, bevor Sie ein Abonnement über unsere Plattform erwerben.
+      </p>
+    </div>
+
+    <div class="space-y-8 text-gray-300 text-sm leading-relaxed">
+      
+      <!-- Section 1 -->
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white">1. Vertragsgegenstand</h2>
+        <p>
+          German IPTV stellt dem Kunden einen zeitlich befristeten, digitalen Zugang zu internetbasierten Streaming-Diensten (IPTV) bereit. Die Übermittlung erfolgt in Form von M3U-Playlists, EPG-URLs oder API-Zugangsdaten (Xtream Codes), welche mit kompatibler Hardware und Software genutzt werden können.
+        </p>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white">2. Laufzeiten & Keine automatische Verlängerung</h2>
+        <p>
+          Bei German IPTV existieren <strong>keine Knebelverträge und keine 24-Monats-Bindungen</strong>:
+        </p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li>Die Abonnements (1 Monat, 3 Monate, 6 Monate oder 12 Monate) stellen Einmalzahlungen für den gewählten Nutzungszeitraum dar.</li>
+          <li>Es findet <strong>keine automatische Verlängerung</strong> und kein automatischer Einzug von Folgegebühren statt. Nach Ablauf der Periode endet der Zugriff automatisch, sofern der Kunde nicht aktiv eine Verlängerung beauftragt.</li>
+        </ul>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white">3. Aktivierung & Lieferung</h2>
+        <p>
+          Die Bereitstellung der Zugangsdaten erfolgt unverzüglich nach bestätigtem Zahlungseingang (im Regelfall innerhalb von 2 bis 15 Minuten) auf digitalem Weg über WhatsApp oder E-Mail. Ein Versand physischer Datenträger findet nicht statt.
+        </p>
+      </section>
+
+      <!-- Section 4 -->
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white">4. Widerrufsrecht & 24-Stunden-Garantie</h2>
+        <p>
+          Da es sich um digitale Inhalte handelt, die unmittelbar nach Bereitstellung genutzt werden können, gewähren wir eine freiwillige und vollständige <strong>24-Stunden-Geld-zurück-Garantie</strong> ab dem Moment der Bereitstellung. Einzelheiten regelt unsere gesonderte <a href="/refund/" class="text-[#DC2626] underline">Erstattungsrichtlinie</a>. Nach Ablauf der 24 Stunden ist ein Widerruf ausgeschlossen.
+        </p>
+      </section>
+
+      <!-- Section 5 -->
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white">5. Nutzungsbeschränkungen</h2>
+        <p>
+          Die Zugangsdaten sind für die persönliche Nutzung des Kunden bestimmt. Das Weiterverkaufen, Re-Streaming oder Teilen der Zugangsdaten mit nicht autorisierten Dritten führt zur sofortigen Sperrung des Accounts ohne Erstattungsanspruch.
+        </p>
+      </section>
+
+      <!-- Section 6 -->
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white">6. Kontakt & Streitbeilegung</h2>
+        <p>
+          Für Fragen zu diesen AGB oder bei Unstimmigkeiten steht Ihnen unser Support jederzeit per E-Mail unter <a href="mailto:contact@germaniptv.cloud" class="text-[#DC2626] underline">contact@germaniptv.cloud</a> und <a href="mailto:support@castvera.com" class="text-[#DC2626] underline">support@castvera.com</a> sowie via WhatsApp zur Verfügung.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

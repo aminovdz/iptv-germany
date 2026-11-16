@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { ShieldCheck } from 'lucide-astro';
+
+const title = "Impressum (§ 5 TMG) — German IPTV";
+const description = "Gesetzliche Anbieterkennzeichnung und Impressum gemäß § 5 Telemediengesetz (TMG) für German IPTV.";
+---
+
+<Layout title={title} description={description}>
+  <StickyHeader />
+
+  <main class="py-16 md:py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="mb-12 text-center sm:text-left border-b border-white/10 pb-8">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/10 text-gray-300 text-xs font-bold uppercase tracking-wider mb-4">
+        <ShieldCheck class="w-4 h-4 text-[#10B981]" />
+        <span>Gesetzliche Anbieterkennzeichnung</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+        Impressum
+      </h1>
+      <p class="text-sm text-gray-400">
+        Angaben gemäß § 5 Telemediengesetz (TMG) und Verantwortlichkeit für das Angebot von German IPTV.
+      </p>
+    </div>
+
+    <div class="space-y-8 text-gray-300 text-sm leading-relaxed">
+      
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white">Anbieter dieser Webpräsenz</h2>
+        <div class="p-4 rounded-xl bg-black/40 border border-white/5 space-y-1">
+          <p class="font-bold text-white text-base">German IPTV Digital Media Group</p>
+          <p>Online Streaming Operations Europe</p>
+          <p>Offizielle Website: <a href="https://germaniptv.cloud" class="text-[#DC2626] underline">https://germaniptv.cloud</a></p>
+        </div>
+      </section>
+
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white">Kontaktmöglichkeiten</h2>
+        <div class="p-4 rounded-xl bg-black/40 border border-white/5 space-y-2">
+          <p><strong>E-Mail Support:</strong> <a href="mailto:support@castvera.com" class="text-[#DC2626] underline">support@castvera.com</a></p>
+          <p><strong>E-Mail Allgemein:</strong> <a href="mailto:contact@germaniptv.cloud" class="text-[#DC2626] underline">contact@germaniptv.cloud</a></p>
+          <p><strong>WhatsApp Kundendienst:</strong> <a href="https://wa.me/213550592200" class="text-[#10B981] underline">+213 550 59 22 00</a></p>
+          <p><strong>Telegram:</strong> <a href="https://t.me/castvera_com" class="text-sky-400 underline">t.me/castvera_com</a></p>
+        </div>
+      </section>
+
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white">EU-Streitschlichtung</h2>
+        <p>
+          Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: 
+          <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" class="text-[#DC2626] underline">https://ec.europa.eu/consumers/odr</a>.<br>
+          Unsere E-Mail-Adresse finden Sie oben im Impressum.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

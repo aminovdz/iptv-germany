@@ -1,0 +1,263 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import ExitPopup from '../components/ExitPopup.astro';
+import { Tv, Search, Trophy, MessageCircle } from 'lucide-astro';
+import { currentYear } from '../utils/date';
+
+const title = `German IPTV Senderliste Deutschland ${currentYear} — Alle Sender & Live-Sport in 4K`;
+const description = `Entdecke die vollständige IPTV Senderliste für Deutschland ${currentYear}: Alle Vollprogramme, Bundesliga live, Motorsport, DACH-Kanäle & VOD in 4K bei 60 FPS.`;
+const canonical = "https://germaniptv.cloud/sender/";
+
+const keywords = [
+  "iptv senderliste",
+  "iptv senderliste deutschland",
+  `iptv senderliste ${currentYear}`,
+  "iptv kanalliste",
+  "iptv deutsche sender",
+  "iptv sport sender",
+  "m3u senderliste deutschland",
+  "iptv bundesliga sender",
+  "iptv sender 4k"
+];
+
+const whatsappTrialUrl = "https://wa.me/213550592200?text=Hallo%21%20Ich%20habe%20die%20Senderliste%20gesehen%20und%20m%C3%B6chte%20gerne%20einen%20kostenlosen%2024h%20Test%20starten.";
+
+const channelCategories = [
+  {
+    name: "Live-Sport & Bundesliga",
+    icon: "Trophy",
+    badge: "Top Beliebt",
+    channels: [
+      { name: "Deutsche Bundesliga Live 1 (4K / 60 FPS)", quality: "4K UHD", cat: "sport" },
+      { name: "Deutsche Bundesliga Live 2-10 (Konferenz & Einzelspiele)", quality: "FHD", cat: "sport" },
+      { name: "Freitags- & Sonntagsspiele Live HD (60 FPS)", quality: "FHD", cat: "sport" },
+      { name: "Europäische Königsklasse & Champions Feeds (4K)", quality: "4K UHD", cat: "sport" },
+      { name: "Internationale Spitzenligen Live HD", quality: "FHD", cat: "sport" },
+      { name: "Motorsport & Formel 1 Live Feed (4K / 60 FPS)", quality: "4K UHD", cat: "sport" },
+      { name: "Deutsches Sport-Top-Event HD", quality: "FHD", cat: "sport" },
+      { name: "Tennis World Tour & Golf Masters HD", quality: "FHD", cat: "sport" },
+      { name: "Deutscher Free-Sport & eSports HD", quality: "FHD", cat: "sport" },
+      { name: "Europäische Motorsport & Radsport Feeds HD", quality: "FHD", cat: "sport" },
+      { name: "Internationaler Fußball 24/7 Live HD", quality: "FHD", cat: "sport" },
+      { name: "Motorvision & Rennsport Magazin HD", quality: "FHD", cat: "sport" }
+    ]
+  },
+  {
+    name: "Öffentlich-Rechtliche Vollprogramme",
+    icon: "Tv",
+    badge: "Gebührenfrei",
+    channels: [
+      { name: "Deutsches Hauptprogramm 1 HD / 4K", quality: "FHD / 4K", cat: "public" },
+      { name: "Deutsches Hauptprogramm 2 HD / 4K", quality: "FHD / 4K", cat: "public" },
+      { name: "Europäischer Kulturkanal HD", quality: "FHD", cat: "public" },
+      { name: "Drei-Länder Kultur & Information HD", quality: "FHD", cat: "public" },
+      { name: "Politik, Debatten & Ereignisse HD", quality: "FHD", cat: "public" },
+      { name: "Regionales Vollprogramm West HD", quality: "FHD", cat: "public" },
+      { name: "Regionales Vollprogramm Bayern HD", quality: "FHD", cat: "public" },
+      { name: "Regionales Vollprogramm Nord HD", quality: "FHD", cat: "public" },
+      { name: "Regionales Vollprogramm Südwest HD", quality: "FHD", cat: "public" },
+      { name: "Regionales Vollprogramm Mitteldeutschland HD", quality: "FHD", cat: "public" },
+      { name: "Regionales Vollprogramm Hessen & Berlin HD", quality: "FHD", cat: "public" },
+      { name: "Hauptstadtfernsehen Berlin & Brandenburg HD", quality: "FHD", cat: "public" },
+      { name: "24-Stunden Nachrichten & Eilmeldungen HD", quality: "FHD", cat: "public" },
+      { name: "Wissen, Dokumentation & Reportagen HD", quality: "FHD", cat: "public" },
+      { name: "Deutscher Kinder- & Familienkanal HD", quality: "FHD", cat: "public" }
+    ]
+  },
+  {
+    name: "Private Unterhaltungssender (HD & UHD)",
+    icon: "Film",
+    badge: "Ohne Zusatzgebühr",
+    channels: [
+      { name: "Deutsches Unterhaltungsnetzwerk 1 (4K UHD)", quality: "4K UHD", cat: "private" },
+      { name: "Spielfilm & Unterhaltung 2 (4K UHD)", quality: "4K UHD", cat: "private" },
+      { name: "Deutsches Vollprogramm 3 HD", quality: "FHD", cat: "private" },
+      { name: "Lifestyle, Kochshows & Reality HD", quality: "FHD", cat: "private" },
+      { name: "Klassiker, Action & Spielfilme HD", quality: "FHD", cat: "private" },
+      { name: "Action, Crime & Männersender HD", quality: "FHD", cat: "private" },
+      { name: "Jugend, Comedy & Doku-Soap HD", quality: "FHD", cat: "private" },
+      { name: "Frauenmagazin, Mystery & Serien HD", quality: "FHD", cat: "private" },
+      { name: "Anime, Action & Extremsport HD", quality: "FHD", cat: "private" },
+      { name: "Serienklassiker & Nostalgie Gold HD", quality: "FHD", cat: "private" },
+      { name: "Familien-Cartoons & Kinderprogramm HD", quality: "FHD", cat: "private" },
+      { name: "Sci-Fi, Mystery & Spielfilmsparte HD", quality: "FHD", cat: "private" },
+      { name: "Live-Nachrichten & Finanzberichte HD", quality: "FHD", cat: "private" }
+    ]
+  },
+  {
+    name: "DACH Region (Österreich & Schweiz)",
+    icon: "Globe",
+    badge: "Kein Geoblocking",
+    channels: [
+      { name: "Österreich Hauptprogramm 1 HD (4K Streams)", quality: "FHD", cat: "dach" },
+      { name: "Österreich Bundesländer-Kanal 2 HD", quality: "FHD", cat: "dach" },
+      { name: "Österreich Sport-Sparte & Wintersport HD", quality: "FHD", cat: "dach" },
+      { name: "Alpenländer Motorsport & Freitags-Live HD", quality: "FHD", cat: "dach" },
+      { name: "Österreichisches Privates Hauptprogramm HD", quality: "FHD", cat: "dach" },
+      { name: "Österreichisches Info- & Talkformat HD", quality: "FHD", cat: "dach" },
+      { name: "Schweizer Nationalfernsehen 1 HD", quality: "FHD", cat: "dach" },
+      { name: "Schweizer Sportfernsehen Live HD", quality: "FHD", cat: "dach" },
+      { name: "Schweizer Kultur- & Regionalübertragung HD", quality: "FHD", cat: "dach" }
+    ]
+  }
+];
+---
+
+<Layout title={title} description={description} canonicalURL={canonical} keywords={keywords} image="/images/pages/iptv-senderliste.webp">
+  <StickyHeader />
+
+  <!-- Hero Header -->
+  <section class="relative pt-12 pb-16 md:pt-20 md:pb-20 overflow-hidden border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#12141D] border border-[#DC2626]/30 text-red-300 text-xs font-semibold uppercase tracking-wider mb-6">
+        <Tv class="w-4 h-4 text-[#DC2626]" />
+        <span>Vollständige Senderübersicht {currentYear}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight max-w-4xl mx-auto mb-6">
+        IPTV Sender — <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] via-[#EF4444] to-[#F59E0B]">Alle Deutschen & Sportkanäle</span> auf einen Blick
+      </h1>
+
+      <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed">
+        Erlebe das komplette deutsche Fernsehen, die gesamte Bundesliga, europäische Spitzenwettbewerbe, Motorsport sowie DACH-Sender aus Österreich und der Schweiz in brillanter 4K/60FPS Qualität.
+      </p>
+
+      <!-- Instant WhatsApp Trial CTA -->
+      <div class="mb-10">
+        <a
+          href={whatsappTrialUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl font-bold text-white bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:brightness-110 shadow-lg shadow-red-900/30 transition-all hover:scale-105"
+        >
+          <MessageCircle class="w-5 h-5 text-emerald-400" />
+          <span>Senderliste 24h kostenlos testen</span>
+        </a>
+      </div>
+
+      <!-- Visual Channel List Banner with Alt -->
+      <div class="max-w-4xl mx-auto rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#12141D]">
+        <img
+          src="/images/pages/iptv-senderliste.webp"
+          alt="German IPTV Senderliste — Über 24.000 Fernsehsender, Live-Sport und EPG in kristallklarem 4K Ultra HD"
+          width="1200"
+          height="630"
+          class="w-full h-auto object-cover max-h-[440px]"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Search & Channel Catalog -->
+  <section class="py-16 bg-[#0B0C10]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Search Input -->
+      <div class="max-w-xl mx-auto mb-12 relative">
+        <div class="relative">
+          <input 
+            type="text" 
+            id="channelSearch"
+            placeholder="Sender suchen (z.B. Bundesliga 4K, Sport, Doku, Filme)..."
+            class="w-full bg-[#12141D] border border-white/10 rounded-2xl py-3.5 pl-12 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#DC2626] focus:ring-1 focus:ring-[#DC2626] transition-all text-sm"
+          />
+          <Search class="w-5 h-5 text-gray-400 absolute left-4 top-3.5" />
+        </div>
+        <p class="text-xs text-gray-500 text-center mt-2">Filtere live nach Sendernamen oder Kategorien</p>
+      </div>
+
+      <!-- Categories Display -->
+      <div class="space-y-12" id="channelCategoriesWrapper">
+        {channelCategories.map((category) => (
+          <div class="category-block bg-[#12141D] border border-white/5 rounded-2xl p-6 sm:p-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/5 mb-6">
+              <div>
+                <h2 class="text-xl sm:text-2xl font-bold text-white flex items-center gap-3">
+                  {category.name}
+                </h2>
+                <p class="text-xs text-gray-400 mt-1">Inklusive 7-Tage EPG Programmführer und Catch-Up Replay</p>
+              </div>
+              <span class="inline-flex items-center self-start sm:self-auto px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-[#F59E0B]">
+                {category.badge}
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {category.channels.map((ch) => (
+                <div class="channel-card flex items-center justify-between p-3.5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/20 transition-all">
+                  <span class="channel-title text-sm font-medium text-gray-200">{ch.name}</span>
+                  <span class={`text-[10px] font-bold px-2 py-0.5 rounded ${
+                    ch.quality.includes('4K') ? 'bg-[#DC2626]/20 text-red-300 border border-[#DC2626]/30' : 'bg-white/10 text-gray-300'
+                  }`}>
+                    {ch.quality}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Live Search Filter Script -->
+      <script>
+        const searchInput = document.getElementById('channelSearch') as HTMLInputElement | null;
+        if (searchInput) {
+          searchInput.addEventListener('input', (e) => {
+            const query = (e.target as HTMLInputElement).value.toLowerCase().trim();
+            const channelCards = document.querySelectorAll('.channel-card');
+            const categoryBlocks = document.querySelectorAll('.category-block');
+
+            channelCards.forEach((card) => {
+              const titleEl = card.querySelector('.channel-title');
+              const text = titleEl ? (titleEl.textContent || '').toLowerCase() : '';
+              if (text.includes(query)) {
+                (card as HTMLElement).style.display = 'flex';
+              } else {
+                (card as HTMLElement).style.display = 'none';
+              }
+            });
+
+            // Hide empty category blocks
+            categoryBlocks.forEach((block) => {
+              const visibleCards = block.querySelectorAll('.channel-card[style*="display: flex"], .channel-card:not([style*="display: none"])');
+              if (visibleCards.length === 0 && query !== '') {
+                (block as HTMLElement).style.display = 'none';
+              } else {
+                (block as HTMLElement).style.display = 'block';
+              }
+            });
+          });
+        }
+      </script>
+    </div>
+  </section>
+
+  <!-- Football Rights & Cord Cutting Explainer -->
+  <section class="py-16 bg-[#12141D]/50 border-t border-white/5">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="p-8 rounded-2xl bg-[#0B0C10] border border-amber-500/30">
+        <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+          <Trophy class="w-5 h-5 text-[#F59E0B]" />
+          Bundesliga-Rechte in Deutschland einfach gelöst
+        </h3>
+        <p class="text-sm text-gray-300 leading-relaxed mb-4">
+          Weil die Bundesliga-Übertragungsrechte in Deutschland aufgeteilt sind, verlangen herkömmliche Anbieter für Freitag, Samstag und Sonntag getrennte teure Verträge — Gesamtkosten von bis zu 95 € pro Monat.
+        </p>
+        <p class="text-sm text-gray-300 leading-relaxed">
+          Mit German IPTV empfängst du <strong>alle Spiele, Konferenzen und Einzelpartien</strong> gebündelt in einem einzigen Abonnement ohne Ruckeln für nur 55 € im ganzen Jahr.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <Footer />
+
+  <FloatingWhatsApp />
+  <ExitPopup />
+</Layout>

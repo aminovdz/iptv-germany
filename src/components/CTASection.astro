@@ -1,0 +1,112 @@
+---
+import { MessageCircle, Send, Sparkles, ShieldCheck, Zap, ArrowRight, CheckCircle2 } from 'lucide-astro';
+import { currentYear } from '../utils/date';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = "Bereit für das beste IPTV-Streaming in Deutschland?",
+  subtitle = "Schließen Sie sich über 12.000 begeisterten Nutzern in Deutschland, Österreich und der Schweiz an. Genießen Sie alle Sender in 4K/8K, ohne 24-Monats-Vertragsfalle und zu einem Bruchteil herkömmlicher Kosten."
+} = Astro.props;
+
+const whatsappUrl = "https://wa.me/213550592200?text=Hallo%21%20Ich%20m%C3%B6chte%20gerne%20das%20IPTV%20Aktionsangebot%20%2812%20Monate%20f%C3%BCr%2055%20%E2%82%AC%20inkl.%20Player%29%20nutzen.";
+const telegramUrl = "https://t.me/castvera_com";
+---
+
+<section class="py-20 md:py-28 relative overflow-hidden bg-gradient-to-b from-[#0B0C10] via-[#10121A] to-[#0B0C10]" aria-labelledby="cta-heading">
+  <!-- Glowing Background Accents -->
+  <div class="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[360px] bg-gradient-to-r from-[#DC2626]/20 via-[#F59E0B]/20 to-[#DC2626]/20 rounded-full blur-[140px]"></div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative rounded-3xl bg-gradient-to-br from-[#161824] via-[#12141D] to-[#0E1017] border border-[#DC2626]/30 p-8 sm:p-12 md:p-16 shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden text-center">
+      
+      <!-- Top Promo Pill -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#DC2626]/15 border border-[#DC2626]/40 text-[#DC2626] text-xs font-bold uppercase tracking-wider mb-6">
+        <Sparkles class="w-4 h-4 text-[#F59E0B]" />
+        <span>Sonderaktion {currentYear} · Sofortige Freischaltung</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h2 id="cta-heading" class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight max-w-3xl mx-auto mb-6 leading-tight">
+        {title}
+      </h2>
+
+      <!-- Subtitle -->
+      <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+        {subtitle} Sofortige Bereitstellung Ihrer Zugangsdaten in weniger als 2 Minuten, persönliche deutschsprachige Betreuung und 24h Geld-zurück-Garantie.
+      </p>
+
+      <!-- Value Props Checkpoints -->
+      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mb-10 text-sm font-medium text-gray-200">
+        <div class="flex items-center gap-2">
+          <CheckCircle2 class="w-4 h-4 text-[#10B981]" />
+          <span>Keine Vertragsbindung (Monatlich kündbar)</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <CheckCircle2 class="w-4 h-4 text-[#10B981]" />
+          <span>Kompatibel mit Fire TV, Smart TV & Smartphone</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <CheckCircle2 class="w-4 h-4 text-[#10B981]" />
+          <span>24-Stunden Geld-zurück-Garantie</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-xl mx-auto mb-10">
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-4 rounded-2xl bg-gradient-to-r from-[#DC2626] via-[#E11D48] to-[#B91C1C] text-white font-extrabold text-sm uppercase tracking-wider shadow-[0_0_30px_rgba(220,38,38,0.4)] hover:shadow-[0_0_40px_rgba(220,38,38,0.6)] transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]"
+          aria-label="German IPTV Angebot auf WhatsApp aktivieren"
+        >
+          <MessageCircle class="w-5 h-5 text-white" />
+          <span>Per WhatsApp Starten</span>
+        </a>
+
+        <a
+          href="/#pricing"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-white/[0.06] hover:bg-white/[0.1] text-white font-bold text-sm uppercase tracking-wider border border-white/10 hover:border-white/20 transition-all duration-200 hover:scale-[1.02]"
+          aria-label="Preise und Pakete ansehen ab 8 Euro"
+        >
+          <span>Pakete Ab 8 €</span>
+          <ArrowRight class="w-4 h-4 text-[#F59E0B]" />
+        </a>
+
+        <a
+          href={telegramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-[#2563EB]/15 hover:bg-[#2563EB]/25 text-sky-400 font-bold text-sm uppercase tracking-wider border border-[#2563EB]/30 transition-all duration-200 hover:scale-[1.02]"
+          aria-label="Telegram Kanal beitreten"
+        >
+          <Send class="w-4 h-4" />
+          <span>Telegram</span>
+        </a>
+      </div>
+
+      <!-- Live Support Strip -->
+      <div class="pt-8 border-t border-white/[0.08] flex flex-wrap items-center justify-center gap-6 text-xs text-gray-400">
+        <span class="flex items-center gap-2">
+          <ShieldCheck class="w-4 h-4 text-[#10B981]" />
+          SSL 256-Bit Verschlüsselt
+        </span>
+        <span class="flex items-center gap-2">
+          <Zap class="w-4 h-4 text-[#F59E0B]" />
+          Aktivierung in unter 2 Minuten
+        </span>
+        <span class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#10B981] animate-ping"></span>
+          Support aktuell online
+        </span>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,262 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StickyHeader from '../../components/StickyHeader.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
+import ExitPopup from '../../components/ExitPopup.astro';
+import { 
+  Tv, Zap, ShieldCheck, CheckCircle2, MessageCircle, Clock, 
+  HelpCircle, ArrowRight, Sparkles, Send, Smartphone, Trophy, Star
+} from 'lucide-astro';
+import { currentYear } from '../../utils/date';
+
+const title = `IPTV Satın Al Almanya ${currentYear} — Donmasız 4K/8K Türk & Alman Kanalları`;
+const description = `Almanya'da IPTV satın al: Süper Lig maçları, Bein Sports, Exxen, Alman Sky/DAZN ve 24.000+ canlı kanal. Donmasız Anti-Freeze 9.8™ altyapısı ve 24 saat ücretsiz test!`;
+const canonical = "https://germaniptv.cloud/tr/iptv-satin-al/";
+
+const keywords = [
+  "iptv satın al",
+  "almanya iptv satin al",
+  "türk iptv almanya",
+  "iptv satin al",
+  "iptv süper lig almanya",
+  `iptv satın al ${currentYear}`,
+  "donmasız iptv satın al",
+  "iptv test türkçe",
+  "almanya türk kanalları iptv"
+];
+
+const whatsappTrUrl = "https://wa.me/213550592200?text=Merhaba!%20IPTV%2024%20saatlik%20ücretsiz%20test%20yayınını%20denemek%20istiyorum.";
+
+const packages = [
+  {
+    name: "1 Ay Deneme",
+    duration: "1 Aylık Paket",
+    price: "15 €",
+    period: "Aylık",
+    desc: "Hizmeti denemek ve kalitemizi görmek için ideal başlangıç paketi.",
+    features: [
+      "24.000+ Türk & Dünya Kanalı",
+      "Süper Lig, Şampiyonlar Ligi, DAZN",
+      "4K, FHD & HD Yayın Seçenekleri",
+      "Anti-Freeze 9.8™ Donmasız Sunucu",
+      "7/24 WhatsApp Desteği"
+    ],
+    popular: false
+  },
+  {
+    name: "12 Ay Süper Avantaj",
+    duration: "1 Yıllık Paket",
+    price: "55 €",
+    period: "Yıllık (Sadece 4.58 €/ay)",
+    desc: "En çok tercih edilen paket! 1 yıl boyunca kesintisiz canlı maç ve dizi keyfi.",
+    features: [
+      "Tüm Türk & Alman Kanalları",
+      "Süper Lig, Bundesliga, Premier League",
+      "Exxen, Bein, S Sport, Tivibu",
+      "50.000+ Güncel Film & Dizi (VOD)",
+      "Smart TV & Fire TV Kurulum Desteği",
+      "Ücretsiz Premium Player Desteği"
+    ],
+    popular: true
+  },
+  {
+    name: "24 Ay VIP",
+    duration: "2 Yıllık Paket",
+    price: "85 €",
+    period: "2 Yıl (En Düşük Fiyat)",
+    desc: "Fiyat artışlarından etkilenmeden 2 tam yıl sınırsız eğlence.",
+    features: [
+      "Tüm Kanallar & VIP Sunucu",
+      "Öncelikli 7/24 VIP Destek",
+      "Yüksek Hızlı CDN Altyapısı",
+      "Tüm Cihazlarla %100 Uyum",
+      "Anında Otomatik Aktivasyon"
+    ],
+    popular: false
+  }
+];
+
+const faqTr = [
+  {
+    q: "Yayınlarda donma veya takılma yaşanır mı?",
+    a: "Hayır. Özel Anti-Freeze 9.8™ teknolojimiz ve Avrupa merkezli yüksek hızlı CDN sunucularımız sayesinde Süper Lig derbileri ve yoğun maç günlerinde bile yayınlarınız takılmadan, 60 FPS akıcı hızda çalışır."
+  },
+  {
+    q: "Hangi cihazlarda izleyebilirim?",
+    a: "Samsung ve LG Smart TV (Smart One IPTV, IBO Player, Net IPTV), Amazon Fire TV Stick, Android TV, Apple TV, iPhone, Android telefonlar, tabletler ve bilgisayarlarda sorunsuz çalışır."
+  },
+  {
+    q: "Satın almadan önce test edebilir miyim?",
+    a: "Evet! WhatsApp hattımız üzerinden bize mesaj atarak 24 saatlik tamamen ücretsiz ve taahhütsüz test yayınımızı anında talep edebilirsiniz."
+  },
+  {
+    q: "Ödemeyi nasıl yapabilirim?",
+    a: "Güvenli PayPal, Kredi Kartı ve Kripto para yöntemleriyle kolayca ödeme yapabilirsiniz. Siparişiniz onaylandıktan hemen sonra kurulum bilgileriniz WhatsApp veya e-posta ile iletilir."
+  }
+];
+---
+
+<Layout title={title} description={description} keywords={keywords} canonicalURL={canonical} lang="tr">
+  <StickyHeader currentPath="/tr/iptv-satin-al/" />
+
+  <!-- Turkish Top Bar Notification -->
+  <div class="bg-gradient-to-r from-red-600/20 via-amber-500/20 to-red-600/20 border-b border-red-500/20 py-2 px-4 text-center text-xs text-gray-200">
+    <div class="max-w-7xl mx-auto flex items-center justify-center gap-2 flex-wrap">
+      <span class="bg-red-600 text-white font-bold px-1.5 py-0.5 rounded text-[10px] uppercase">Almanya & DACH</span>
+      <span>Almanya ve Avrupa'daki gurbetçilerimiz için özel optimize edilmiş Türk & Alman yayınları!</span>
+      <a href={whatsappTrUrl} target="_blank" rel="noopener noreferrer" class="text-amber-300 font-bold hover:underline ml-1">
+        24 Saat Ücretsiz Dene &rarr;
+      </a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden bg-gradient-to-b from-[#0F111A] via-[#0B0C10] to-[#07080D]">
+    <div class="absolute inset-0 pointer-events-none -z-10">
+      <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-red-600/15 rounded-full blur-[140px]"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1A1D2B] border border-red-500/30 text-amber-300 text-xs font-semibold mb-6">
+        <Trophy class="w-4 h-4 text-amber-400" />
+        <span>Süper Lig &bull; Şampiyonlar Ligi &bull; Bundesliga &bull; Exxen &bull; 4K Canlı</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl mx-auto mb-6">
+        Almanya'da Kesintisiz <br class="hidden sm:inline" />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-amber-400">
+          IPTV Satın Al & 24 Saat Ücretsiz Dene
+        </span>
+      </h1>
+
+      <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed">
+        Donma ve takılma derdine son! Almanya'da yaşayan gurbetçilerimiz için özel Avrupa sunucuları: 
+        <strong>Tüm Türk kanalları, Süper Lig maçları, Alman Sky & DAZN</strong> tek bir pakette.
+      </p>
+
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
+        <a 
+          href={whatsappTrUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-bold text-white bg-emerald-600 hover:bg-emerald-500 shadow-lg shadow-emerald-900/40 hover:scale-105 transition-all"
+        >
+          <MessageCircle class="w-5 h-5" />
+          <span>24 Saatlik Ücretsiz Test İste</span>
+        </a>
+        <a 
+          href="#fiyatlar"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-bold text-white bg-[#1A1D2B] hover:bg-[#25293d] border border-white/10 transition-all"
+        >
+          Paketleri ve Fiyatları İncele
+        </a>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto text-xs text-gray-300">
+        <div class="bg-[#12141D] border border-white/5 p-3 rounded-lg flex items-center justify-center gap-2">
+          <ShieldCheck class="w-4 h-4 text-emerald-400" />
+          <span>Anti-Freeze 9.8™</span>
+        </div>
+        <div class="bg-[#12141D] border border-white/5 p-3 rounded-lg flex items-center justify-center gap-2">
+          <Zap class="w-4 h-4 text-amber-400" />
+          <span>Anında Aktivasyon</span>
+        </div>
+        <div class="bg-[#12141D] border border-white/5 p-3 rounded-lg flex items-center justify-center gap-2">
+          <Tv class="w-4 h-4 text-blue-400" />
+          <span>4K / FHD 60 FPS</span>
+        </div>
+        <div class="bg-[#12141D] border border-white/5 p-3 rounded-lg flex items-center justify-center gap-2">
+          <MessageCircle class="w-4 h-4 text-purple-400" />
+          <span>Türkçe Destek Ekibi</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Table -->
+  <section id="fiyatlar" class="py-16 bg-[#0B0C10] border-t border-b border-white/[0.06]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">En Popüler IPTV Paketlerimiz</h2>
+        <p class="text-gray-400 text-sm">Taahhüt yok, gizli ücret yok. İhtiyacınıza uygun paketi seçin.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {packages.map((pkg) => (
+          <div class={`rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-all relative ${
+            pkg.popular 
+              ? 'bg-[#151824] border-2 border-red-500 shadow-[0_0_35px_rgba(239,68,68,0.25)] scale-105 z-10' 
+              : 'bg-[#12141D] border border-white/10 hover:border-white/20'
+          }`}>
+            {pkg.popular && (
+              <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-red-600 to-amber-500 text-white font-black text-xs px-4 py-1 rounded-full uppercase tracking-wider shadow">
+                En Çok Tercih Edilen
+              </span>
+            )}
+            <div>
+              <h3 class="text-xl font-bold text-white mb-1">{pkg.name}</h3>
+              <p class="text-xs text-gray-400 mb-4">{pkg.desc}</p>
+              
+              <div class="mb-6">
+                <span class="text-4xl font-black text-white">{pkg.price}</span>
+                <span class="text-xs text-gray-400 ml-2">/ {pkg.period}</span>
+              </div>
+
+              <ul class="space-y-3 mb-8 text-xs sm:text-sm text-gray-300">
+                {pkg.features.map((feat) => (
+                  <li class="flex items-center gap-2">
+                    <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>{feat}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <a 
+              href={`https://wa.me/213550592200?text=Merhaba!%20${encodeURIComponent(pkg.name)}%20paketini%20satın%20almak%20istiyorum.`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={`w-full py-3.5 rounded-xl font-bold text-center text-sm transition-all ${
+                pkg.popular 
+                  ? 'bg-red-600 hover:bg-red-500 text-white shadow-lg' 
+                  : 'bg-[#1E2235] hover:bg-[#282d45] text-white border border-white/10'
+              }`}
+            >
+              Hemen Satın Al
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Turkish FAQ -->
+  <section class="py-16 bg-[#0E1017]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">Sıkça Sorulan Sorular</h2>
+        <p class="text-gray-400 text-sm">Almanya IPTV aboneliği hakkında merak edilenler</p>
+      </div>
+
+      <div class="space-y-4">
+        {faqTr.map((item) => (
+          <details class="group bg-[#12141D] border border-white/[0.08] rounded-xl p-5 open:border-red-500/40 transition-all">
+            <summary class="flex justify-between items-center font-bold text-white text-base cursor-pointer list-none">
+              <span>{item.q}</span>
+              <span class="text-red-500 transition-transform duration-200 group-open:rotate-180">▼</span>
+            </summary>
+            <p class="mt-3 text-sm text-gray-300 leading-relaxed border-t border-white/5 pt-3">
+              {item.a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+  <FloatingWhatsApp />
+  <ExitPopup />
+</Layout>

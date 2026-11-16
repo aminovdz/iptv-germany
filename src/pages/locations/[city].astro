@@ -1,0 +1,337 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StickyHeader from '../../components/StickyHeader.astro';
+import Hero from '../../components/Hero.astro';
+import PricingCard from '../../components/PricingCard.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import SupportedDevices from '../../components/SupportedDevices.astro';
+import UserReviewsSection from '../../components/UserReviewsSection.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
+import ExitPopup from '../../components/ExitPopup.astro';
+import GroupsPopup from '../../components/GroupsPopup.astro';
+import { MapPin, Wifi, ShieldCheck, Zap, CheckCircle2, ChevronRight } from 'lucide-astro';
+import { currentYear } from '../../utils/date';
+
+export async function getStaticPaths() {
+  const cities = [
+    {
+      slug: 'berlin',
+      name: 'Berlin',
+      state: 'Berlin',
+      clubs: '1. FC Union Berlin & Hertha BSC',
+      isp: 'Telekom, Vodafone Kabel & PYUR',
+      latency: '11ms',
+      population: '3.750.000'
+    },
+    {
+      slug: 'muenchen',
+      name: 'München',
+      state: 'Bayern',
+      clubs: 'FC Bayern München & TSV 1860 München',
+      isp: 'M-net, Telekom Glasfaser & Vodafone',
+      latency: '9ms',
+      population: '1.500.000'
+    },
+    {
+      slug: 'hamburg',
+      name: 'Hamburg',
+      state: 'Hamburg',
+      clubs: 'Hamburger SV & FC St. Pauli',
+      isp: 'willy.tel, wilhelm.tel & Vodafone',
+      latency: '12ms',
+      population: '1.900.000'
+    },
+    {
+      slug: 'koeln',
+      name: 'Köln',
+      state: 'Nordrhein-Westfalen',
+      clubs: '1. FC Köln & Fortuna Köln',
+      isp: 'NetCologne, Telekom & Vodafone',
+      latency: '10ms',
+      population: '1.080.000'
+    },
+    {
+      slug: 'frankfurt',
+      name: 'Frankfurt am Main',
+      state: 'Hessen',
+      clubs: 'Eintracht Frankfurt & FSV Frankfurt',
+      isp: 'DE-CIX Direktanbindung, Telekom & Vodafone',
+      latency: '4ms',
+      population: '760.000'
+    },
+    {
+      slug: 'stuttgart',
+      name: 'Stuttgart',
+      state: 'Baden-Württemberg',
+      clubs: 'VfB Stuttgart & Stuttgarter Kickers',
+      isp: 'Telekom, Vodafone & NetCom BW',
+      latency: '8ms',
+      population: '630.000'
+    },
+    {
+      slug: 'duesseldorf',
+      name: 'Düsseldorf',
+      state: 'Nordrhein-Westfalen',
+      clubs: 'Fortuna Düsseldorf',
+      isp: 'Vodafone, Telekom Glasfaser & 1&1',
+      latency: '10ms',
+      population: '620.000'
+    },
+    {
+      slug: 'leipzig',
+      name: 'Leipzig',
+      state: 'Sachsen',
+      clubs: 'RB Leipzig & Chemie Leipzig',
+      isp: 'Telekom Glasfaser & Vodafone',
+      latency: '13ms',
+      population: '600.000'
+    },
+    {
+      slug: 'dortmund',
+      name: 'Dortmund',
+      state: 'Nordrhein-Westfalen',
+      clubs: 'Borussia Dortmund (BVB)',
+      isp: 'DOKOM21, Vodafone & Telekom',
+      latency: '11ms',
+      population: '590.000'
+    },
+    {
+      slug: 'essen',
+      name: 'Essen',
+      state: 'Nordrhein-Westfalen',
+      clubs: 'Rot-Weiss Essen',
+      isp: 'Vodafone & Telekom Glasfaser',
+      latency: '11ms',
+      population: '580.000'
+    },
+    {
+      slug: 'bremen',
+      name: 'Bremen',
+      state: 'Bremen',
+      clubs: 'SV Werder Bremen',
+      isp: 'EWE TEL, Vodafone & Telekom',
+      latency: '13ms',
+      population: '570.000'
+    },
+    {
+      slug: 'dresden',
+      name: 'Dresden',
+      state: 'Sachsen',
+      clubs: 'SG Dynamo Dresden',
+      isp: 'Telekom, Vodafone & SachsenGigaBit',
+      latency: '14ms',
+      population: '560.000'
+    },
+    {
+      slug: 'hannover',
+      name: 'Hannover',
+      state: 'Niedersachsen',
+      clubs: 'Hannover 96',
+      isp: 'htp, Vodafone & Telekom',
+      latency: '12ms',
+      population: '540.000'
+    },
+    {
+      slug: 'nuernberg',
+      name: 'Nürnberg',
+      state: 'Bayern',
+      clubs: '1. FC Nürnberg (Der Club)',
+      isp: 'Telekom, Vodafone & M-net',
+      latency: '9ms',
+      population: '520.000'
+    },
+    {
+      slug: 'duisburg',
+      name: 'Duisburg',
+      state: 'Nordrhein-Westfalen',
+      clubs: 'MSV Duisburg',
+      isp: 'Vodafone & Telekom',
+      latency: '11ms',
+      population: '500.000'
+    }
+  ];
+
+  return cities.map((c) => ({
+    params: { city: c.slug },
+    props: { cityData: c }
+  }));
+}
+
+const { cityData } = Astro.props;
+
+const title = `IPTV Kaufen in ${cityData.name} — Bester IPTV Anbieter ${cityData.name} (${currentYear})`;
+const description = `Erlebe bestes IPTV in ${cityData.name} (${cityData.state}) ${currentYear}: Alle Bundesliga-Spiele von ${cityData.clubs} live in 4K. Optimiert für ${cityData.isp} mit nur ${cityData.latency} Ping. Jetzt 24h testen!`;
+const canonical = `https://germaniptv.cloud/locations/${cityData.slug}/`;
+const cityImage = `/images/locations/city-${cityData.slug}.webp`;
+const cityImageAlt = `IPTV Kaufen in ${cityData.name} (${cityData.state}) — Ultraschnelles 4K Streaming mit ${cityData.latency} Ping`;
+
+const keywords = [
+  `iptv kaufen ${cityData.name.toLowerCase()}`,
+  `iptv anbieter ${cityData.name.toLowerCase()}`,
+  `iptv ${cityData.name.toLowerCase()}`,
+  `bester iptv anbieter ${cityData.name.toLowerCase()}`,
+  `fernsehen über internet ${cityData.name.toLowerCase()}`,
+  `bundesliga streaming ${cityData.name.toLowerCase()}`,
+  "german iptv",
+  "iptv kaufen"
+];
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": `German IPTV — High-Speed Streaming in ${cityData.name}`,
+  "serviceType": "IPTV Streaming Service",
+  "image": `https://germaniptv.cloud${cityImage}`,
+  "provider": {
+    "@type": "Organization",
+    "name": "German IPTV",
+    "url": "https://germaniptv.cloud"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": cityData.name,
+    "containedInPlace": {
+      "@type": "AdministrativeArea",
+      "name": cityData.state
+    }
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "55.00",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "priceValidUntil": `${currentYear}-12-31`
+  }
+};
+---
+
+<Layout title={title} description={description} canonicalURL={canonical} keywords={keywords} image={cityImage} schema={localBusinessSchema}>
+  <StickyHeader />
+
+  <!-- Breadcrumb Bar -->
+  <div class="bg-[#12141D] border-b border-white/5 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 text-xs text-gray-400">
+      <a href="/" class="hover:text-white transition-colors">Startseite</a>
+      <ChevronRight class="w-3.5 h-3.5" />
+      <span>Standorte</span>
+      <ChevronRight class="w-3.5 h-3.5" />
+      <span class="text-white font-medium">{cityData.name}</span>
+    </div>
+  </div>
+
+  <!-- Localized Hero Component -->
+  <Hero
+    cityName={cityData.name}
+    headline={`IPTV Kaufen in ${cityData.name} — Premium Streaming in 4K/8K ohne Pufferung`}
+    subheadline={`Erlebe bestes deutsches Fernsehen in ${cityData.name} mit sofortiger Freischaltung, Anti-Freeze 9.8™ Technologie, allen Spielen von ${cityData.clubs} und persönlichem deutschem WhatsApp-Support.`}
+  />
+
+  <!-- Local Performance & Network Benchmark Card -->
+  <section class="py-12 bg-[#12141D]/60 border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-red-500/20 flex items-center justify-center shrink-0">
+            <MapPin class="w-6 h-6 text-[#DC2626]" />
+          </div>
+          <div>
+            <div class="text-xs text-gray-400 font-medium">Standort</div>
+            <div class="text-white font-bold text-base">{cityData.name}</div>
+            <div class="text-[11px] text-gray-400">{cityData.state} ({cityData.population} Einw.)</div>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0">
+            <Zap class="w-6 h-6 text-emerald-400" />
+          </div>
+          <div>
+            <div class="text-xs text-gray-400 font-medium">Latenz zum CDN-Hub</div>
+            <div class="text-emerald-400 font-bold text-base">nur {cityData.latency}</div>
+            <div class="text-[11px] text-gray-400">Direktanbindung via DE-CIX</div>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center shrink-0">
+            <Wifi class="w-6 h-6 text-blue-400" />
+          </div>
+          <div>
+            <div class="text-xs text-gray-400 font-medium">Getestete Internetanbieter</div>
+            <div class="text-white font-bold text-xs">{cityData.isp}</div>
+            <div class="text-[11px] text-emerald-400">100% kompatibel</div>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center shrink-0">
+            <ShieldCheck class="w-6 h-6 text-[#F59E0B]" />
+          </div>
+          <div>
+            <div class="text-xs text-gray-400 font-medium">Käuferschutz</div>
+            <div class="text-white font-bold text-base">PayPal & 24h Garantie</div>
+            <div class="text-[11px] text-gray-400">Keine Vertragsbindung</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Localized Football / Sports Content -->
+  <section class="py-16 bg-[#0B0C10]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <!-- City Banner Graphic with Descriptive Alt -->
+      <div class="mb-10 rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#12141D]">
+        <img
+          src={cityImage}
+          alt={cityImageAlt}
+          width="1200"
+          height="630"
+          class="w-full h-auto object-cover max-h-[460px]"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-4">
+        Alle Spiele von {cityData.clubs} live in {cityData.name} streamen
+      </h2>
+      <p class="text-sm sm:text-base text-gray-300 leading-relaxed mb-6">
+        Ob im Wohnzimmer in {cityData.name} oder unterwegs auf dem Tablet: Verpasse kein Tor deiner Heimmannschaft. Mit German IPTV hast du Zugriff auf alle Einzelspiele der 1. und 2. Bundesliga, DFB-Pokal und die UEFA Champions League — ohne teure Zusatzabos.
+      </p>
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs text-gray-300">
+        <CheckCircle2 class="w-4 h-4 text-emerald-400" />
+        <span>Optimiert für ruckelfreies Streaming über VDSL, Glasfaser und 5G in {cityData.name}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Cards -->
+  <PricingCard />
+
+  <!-- Features & Technology -->
+  <FeatureGrid />
+
+  <!-- Devices -->
+  <SupportedDevices />
+
+  <!-- Reviews -->
+  <UserReviewsSection />
+
+  <!-- FAQ -->
+  <FAQSection />
+
+  <!-- Bottom CTA -->
+  <CTASection />
+
+  <!-- Footer -->
+  <Footer />
+
+  <FloatingWhatsApp />
+  <ExitPopup />
+  <GroupsPopup />
+</Layout>

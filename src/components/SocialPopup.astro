@@ -1,0 +1,80 @@
+---
+import { CheckCircle2, Tv } from 'lucide-astro';
+---
+
+<!-- Social Proof Live Activity Toast Widget -->
+<div
+  id="social-toast"
+  class="fixed bottom-6 left-6 z-40 hidden sm:flex items-center gap-3.5 p-3.5 pr-5 rounded-2xl bg-[#12141D]/95 border border-[#DC2626]/40 shadow-[0_10px_30px_rgba(0,0,0,0.6)] backdrop-blur-xl transition-all duration-500 transform translate-y-20 opacity-0 pointer-events-none max-w-sm"
+  aria-live="polite"
+>
+  <div class="relative w-11 h-11 rounded-xl bg-gradient-to-br from-[#DC2626] to-[#991B1B] flex items-center justify-center text-white font-black text-sm shrink-0 shadow-md">
+    <Tv class="w-5 h-5 text-white" />
+    <span class="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-[#10B981] ring-2 ring-[#12141D] animate-ping"></span>
+  </div>
+
+  <div class="space-y-0.5">
+    <div class="flex items-center gap-1.5 text-xs font-bold text-white">
+      <span id="toast-name">Lukas W.</span>
+      <span class="text-gray-400 font-normal">aus</span>
+      <span id="toast-city" class="text-amber-400 font-semibold">Berlin</span>
+    </div>
+    <p id="toast-action" class="text-[11px] text-gray-300 font-medium">
+      Hat soeben das 12 Monate Testsieger Paket aktiviert
+    </p>
+    <div class="flex items-center gap-1 text-[10px] text-gray-500 font-medium pt-0.5">
+      <CheckCircle2 class="w-3 h-3 text-[#10B981]" />
+      <span id="toast-time">Vor 2 Minuten</span>
+      <span>•</span>
+      <span class="text-gray-400">PayPal Käuferschutz</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const recentPurchases = [
+    { name: "Lukas W.", city: "Berlin", action: "Hat soeben das 12 Monate Testsieger Paket aktiviert", time: "Vor 2 Minuten" },
+    { name: "Maximilian B.", city: "München", action: "Hat den kostenlosen 24h Test gestartet", time: "Vor 4 Minuten" },
+    { name: "Florian S.", city: "Hamburg", action: "Hat das 12-Monate-Paket + Premium Player gewählt", time: "Vor 7 Minuten" },
+    { name: "Stefan K.", city: "Frankfurt am Main", action: "Hat sein Abonnement per PayPal verlängert", time: "Vor 11 Minuten" },
+    { name: "Alexander R.", city: "Köln", action: "Hat das 6 Monate Halbjahres-Paket bestellt", time: "Vor 15 Minuten" },
+    { name: "Tobias M.", city: "Stuttgart", action: "Streamt Bundesliga live auf Apple TV 4K", time: "Vor 18 Minuten" },
+    { name: "Christian Z.", city: "Wien (Österreich)", action: "Aktivierte German IPTV auf Samsung Smart TV", time: "Vor 22 Minuten" },
+    { name: "Matthias H.", city: "Düsseldorf", action: "Installierte TiviMate auf Fire TV Stick 4K", time: "Vor 26 Minuten" }
+  ];
+
+  let currentIndex = 0;
+  const toast = document.getElementById('social-toast');
+  const nameEl = document.getElementById('toast-name');
+  const cityEl = document.getElementById('toast-city');
+  const actionEl = document.getElementById('toast-action');
+  const timeEl = document.getElementById('toast-time');
+
+  function showNextNotification() {
+    if (!toast || !nameEl || !cityEl || !actionEl || !timeEl) return;
+
+    const data = recentPurchases[currentIndex];
+    nameEl.textContent = data.name;
+    cityEl.textContent = data.city;
+    actionEl.textContent = data.action;
+    timeEl.textContent = data.time;
+
+    // Fade in
+    toast.classList.remove('translate-y-20', 'opacity-0');
+    toast.classList.add('translate-y-0', 'opacity-100');
+
+    // Hide after 5 seconds
+    setTimeout(() => {
+      toast.classList.remove('translate-y-0', 'opacity-100');
+      toast.classList.add('translate-y-20', 'opacity-0');
+    }, 5000);
+
+    currentIndex = (currentIndex + 1) % recentPurchases.length;
+  }
+
+  // Start rotation after 7 seconds, repeat every 18 seconds
+  setTimeout(() => {
+    showNextNotification();
+    setInterval(showNextNotification, 18000);
+  }, 7000);
+</script>

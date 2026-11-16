@@ -1,0 +1,401 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StickyHeader from '../../components/StickyHeader.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
+import ExitPopup from '../../components/ExitPopup.astro';
+import { 
+  ShieldCheck, Zap, Globe, CheckCircle2, 
+  Clock, MessageCircle, ChevronRight
+} from 'lucide-astro';
+import { currentYear } from '../../utils/date';
+
+const title = `German IPTV ${currentYear} — 24,000+ German & World Channels in 4K`;
+const description = `Looking for premium German IPTV? Stream all German channels, live Bundesliga football, Champions League, Formula 1, and UK/US entertainment in 4K (${currentYear}).`;
+const canonical = "https://germaniptv.cloud/en/";
+
+const keywords = [
+  "german iptv",
+  "best iptv germany",
+  "iptv germany",
+  `iptv germany ${currentYear}`,
+  "buy iptv germany",
+  "english iptv germany",
+  "bundesliga iptv english",
+  "german tv streaming expats",
+  "iptv subscription germany"
+];
+
+const whatsappEnUrl = "https://wa.me/213550592200?text=Hello%21%20I%20am%20interested%20in%20the%20free%2024-hour%20trial%20for%20German%20IPTV.";
+---
+
+<Layout title={title} description={description} canonicalURL={canonical} lang="en" keywords={keywords} image="/images/pages/iptv-germany-hub.webp">
+  <StickyHeader />
+
+  <!-- Language Switcher Strip -->
+  <div class="bg-[#12141D] border-b border-white/5 py-2 px-4 text-center text-xs text-gray-400">
+    Looking for the German version? <a href="/" class="text-[#DC2626] font-semibold hover:underline ml-1">Hier auf Deutsch ansehen &rarr;</a>
+  </div>
+
+  <!-- English Hero -->
+  <section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none -z-10">
+      <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-[#DC2626]/15 via-transparent to-transparent rounded-full blur-[140px]"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#12141D] border border-blue-500/30 text-blue-300 text-xs font-semibold uppercase tracking-wider mb-6">
+        <Globe class="w-4 h-4 text-blue-400" />
+        <span>#1 English-Friendly IPTV Service in Germany & Europe</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl mx-auto mb-6">
+        German IPTV — Watch <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] via-[#EF4444] to-[#F59E0B]">German & International TV</span> Anywhere in 4K
+      </h1>
+
+      <p class="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
+        The complete streaming solution for expats, military families, and international viewers living in Germany. Stream Bundesliga, Champions League, Formula 1, Premier League, plus complete UK, US, and German live channels.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+        <a 
+          href={whatsappEnUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto px-8 py-4 rounded-xl font-black text-white bg-gradient-to-r from-[#DC2626] to-[#EF4444] hover:shadow-[0_0_30px_rgba(220,38,38,0.4)] transition-all flex items-center justify-center gap-2 text-base"
+        >
+          <MessageCircle class="w-5 h-5 text-white" />
+          <span>Get Instant 24h Free Trial</span>
+        </a>
+        <a 
+          href="/iptv-kaufen/"
+          class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-gray-200 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all flex items-center justify-center gap-2 text-base"
+        >
+          <span>View Plans & Pricing</span>
+          <ChevronRight class="w-4 h-4" />
+        </a>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="flex flex-wrap items-center justify-center gap-6 text-xs text-gray-400">
+        <div class="flex items-center gap-1.5">
+          <ShieldCheck class="w-4 h-4 text-[#10B981]" />
+          <span>AntiFreeze 9.8™ Zero Buffering</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <Clock class="w-4 h-4 text-[#F59E0B]" />
+          <span>Activation under 3 Minutes</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <Zap class="w-4 h-4 text-[#3B82F6]" />
+          <span>English & German WhatsApp Support</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero Visual Banner -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 mb-16">
+    <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#12141D]">
+      <img 
+        src="/images/pages/iptv-germany-hub.webp" 
+        alt="German IPTV Expats International Channels" 
+        width="1200" 
+        height="630" 
+        class="w-full h-auto object-cover"
+        loading="eager"
+      />
+    </div>
+  </section>
+
+  <!-- Key Advantages for Expats -->
+  <section class="py-16 bg-[#0E1017] border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <h2 class="text-2xl sm:text-4xl font-black text-white mb-4">
+          Why Expats & International Viewers Choose <span class="text-[#DC2626]">German IPTV</span>
+        </h2>
+        <p class="text-gray-400 text-sm sm:text-base">
+          No cable contracts, no GEZ satellite headaches. Just instant plug-and-play streaming on your favorite devices.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-[#12141D] border border-white/10 p-6 rounded-2xl">
+          <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-[#DC2626] font-bold mb-4">
+            DE
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Complete German TV</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            All German public & private channels (ARD, ZDF, RTL, ProSieben, Sky Sport, DAZN) in 1080p FHD and 4K UHD.
+          </p>
+        </div>
+
+        <div class="bg-[#12141D] border border-white/10 p-6 rounded-2xl">
+          <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold mb-4">
+            UK/US
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">UK, US & World Channels</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            BBC, ITV, Sky Sports UK, TNT Sports, CNN, HBO, NBC, and live Premier League streaming with original English commentary.
+          </p>
+        </div>
+
+        <div class="bg-[#12141D] border border-white/10 p-6 rounded-2xl">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-[#10B981] font-bold mb-4">
+            4K
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">AntiFreeze 9.8™ Technology</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Frankfurt DE-CIX backbone routing with 99.9% uptime. Zero lag during live Der Klassiker or Champions League matches.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Channel Lineup Overview -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-[#12141D] border border-white/10 rounded-3xl p-8 sm:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <span class="text-xs font-semibold text-[#DC2626] uppercase tracking-wider">Broadcasting Package</span>
+            <h2 class="text-2xl sm:text-4xl font-black text-white mt-2 mb-4">
+              What's Included in Your Subscription
+            </h2>
+            <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+              Our servers provide over 24,000 live channels and a massive Video-on-Demand (VOD) catalog updated daily with new movies and series.
+            </p>
+
+            <ul class="space-y-3 text-sm text-gray-300">
+              <li class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0" />
+                <span><strong>German Live TV:</strong> Sky Deutschland, DAZN, MagentaSport, RTL+, Sat.1</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0" />
+                <span><strong>UK & US TV:</strong> Sky Sports Main Event, TNT Sports 1-4, BBC One/Two, USA Network</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0" />
+                <span><strong>International Packs:</strong> Turkey, Poland, Balkans, Italy, Spain, France, Arabic</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0" />
+                <span><strong>7-Day Catch-Up:</strong> Never miss a Bundesliga match or Formula 1 race</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0" />
+                <span><strong>Electronic Program Guide (EPG):</strong> Real-time German and UK TV schedule</span>
+              </li>
+            </ul>
+
+            <div class="mt-8">
+              <a 
+                href={whatsappEnUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#10B981] hover:bg-emerald-600 font-bold text-white text-sm transition-all shadow-lg shadow-emerald-900/30"
+              >
+                <MessageCircle class="w-4 h-4" />
+                <span>Ask for Channel List on WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="bg-[#0B0C10] border border-white/10 rounded-2xl p-6">
+            <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <Globe class="w-5 h-5 text-[#DC2626]" />
+              <span>Supported Devices</span>
+            </h3>
+            <div class="grid grid-cols-2 gap-3 text-xs text-gray-300">
+              <div class="p-3 rounded-xl bg-white/5 border border-white/5">
+                <span class="font-bold text-white block">Amazon Fire TV</span>
+                <span>Stick 4K / Max / Cube</span>
+              </div>
+              <div class="p-3 rounded-xl bg-white/5 border border-white/5">
+                <span class="font-bold text-white block">Smart TVs</span>
+                <span>Samsung, LG, Sony, Philips</span>
+              </div>
+              <div class="p-3 rounded-xl bg-white/5 border border-white/5">
+                <span class="font-bold text-white block">Apple Devices</span>
+                <span>Apple TV 4K, iPad, iPhone, Mac</span>
+              </div>
+              <div class="p-3 rounded-xl bg-white/5 border border-white/5">
+                <span class="font-bold text-white block">Android</span>
+                <span>NVIDIA Shield, Google TV, Phones</span>
+              </div>
+              <div class="p-3 rounded-xl bg-white/5 border border-white/5">
+                <span class="font-bold text-white block">MAG & Formuler</span>
+                <span>Z8, Z10, Z11, Stalker Portal</span>
+              </div>
+              <div class="p-3 rounded-xl bg-white/5 border border-white/5">
+                <span class="font-bold text-white block">Windows & Web</span>
+                <span>VLC, IPTV Smarters, Browser</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Cards (English) -->
+  <section class="py-16 bg-[#0E1017] border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="text-xs font-semibold text-[#DC2626] uppercase tracking-wider">Simple & Transparent</span>
+      <h2 class="text-3xl sm:text-5xl font-black text-white mt-2 mb-4">
+        Choose Your Subscription
+      </h2>
+      <p class="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto mb-12">
+        Instant activation. PayPal Buyer Protection & credit card accepted. No recurring automatic charges.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-left">
+        <!-- 12 Months (Best Value) -->
+        <div class="bg-gradient-to-b from-[#1C1F2E] to-[#12141D] border-2 border-[#DC2626] rounded-2xl p-6 relative shadow-2xl shadow-red-950/30 flex flex-col justify-between order-first md:order-none">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#DC2626] text-white text-[10px] font-black uppercase tracking-wider">
+            Most Popular · Best Value
+          </div>
+          <div>
+            <div class="text-sm font-bold text-gray-300 mb-1">12 Months Plan</div>
+            <div class="flex items-baseline gap-1 mb-4">
+              <span class="text-4xl font-black text-white">55 €</span>
+              <span class="text-xs text-gray-400">/ year (4.58 €/mo)</span>
+            </div>
+            <ul class="space-y-2 text-xs text-gray-300 mb-6">
+              <li class="flex items-center gap-1.5"><CheckCircle2 class="w-3.5 h-3.5 text-[#10B981]" /> All 24,000+ Channels in 4K/FHD</li>
+              <li class="flex items-center gap-1.5"><CheckCircle2 class="w-3.5 h-3.5 text-[#10B981]" /> Bundesliga, CL, F1, Premier League</li>
+              <li class="flex items-center gap-1.5"><CheckCircle2 class="w-3.5 h-3.5 text-[#10B981]" /> Free Premium Player License</li>
+              <li class="flex items-center gap-1.5"><CheckCircle2 class="w-3.5 h-3.5 text-[#10B981]" /> 24/7 Priority Support</li>
+            </ul>
+          </div>
+          <a 
+            href="https://wa.me/213550592200?text=Hello%21%20I%20want%20to%20order%20the%2012-Month%20Plan%20for%2055%20Euro%20with%20free%20player."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full py-3 rounded-xl bg-gradient-to-r from-[#DC2626] to-[#EF4444] font-bold text-white text-xs text-center block hover:opacity-95 transition-opacity"
+          >
+            Order 12 Months Now
+          </a>
+        </div>
+
+        <!-- 6 Months -->
+        <div class="bg-[#12141D] border border-white/10 rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="text-sm font-bold text-gray-300 mb-1">6 Months Plan</div>
+            <div class="flex items-baseline gap-1 mb-4">
+              <span class="text-4xl font-black text-white">30 €</span>
+              <span class="text-xs text-gray-400">/ 6 mo (5.00 €/mo)</span>
+            </div>
+            <ul class="space-y-2 text-xs text-gray-300 mb-6">
+              <li class="flex items-center gap-1.5"><CheckCircle2 class="w-3.5 h-3.5 text-[#10B981]" /> All 24,000+ Channels</li>
+              <li class="flex items-center gap-1.5"><CheckCircle2 class="w-3.5 h-3.5 text-[#10B981]" /> AntiFreeze 9.8™ Streaming</li>
+              <li class="flex items-center gap-1.5"><CheckCircle2 class="w-3.5 h-3.5 text-[#10B981]" /> Instant Activation</li>
+            </ul>
+          </div>
+          <a 
+            href="https://wa.me/213550592200?text=Hello%21%20I%20want%20to%20order%20the%206-Month%20Plan%20for%2030%20Euro."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full py-3 rounded-xl bg-white/10 hover:bg-white/20 font-bold text-white text-xs text-center block transition-all"
+          >
+            Order 6 Months
+          </a>
+        </div>
+
+        <!-- 3 Months -->
+        <div class="bg-[#12141D] border border-white/10 rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="text-sm font-bold text-gray-300 mb-1">3 Months Plan</div>
+            <div class="flex items-baseline gap-1 mb-4">
+              <span class="text-4xl font-black text-white">20 €</span>
+              <span class="text-xs text-gray-400">/ 3 mo (6.67 €/mo)</span>
+            </div>
+            <ul class="space-y-2 text-xs text-gray-300 mb-6">
+              <li class="flex items-center gap-1.5"><CheckCircle2 class="w-3.5 h-3.5 text-[#10B981]" /> All Live Channels & VOD</li>
+              <li class="flex items-center gap-1.5"><CheckCircle2 class="w-3.5 h-3.5 text-[#10B981]" /> EPG Electronic Program Guide</li>
+              <li class="flex items-center gap-1.5"><CheckCircle2 class="w-3.5 h-3.5 text-[#10B981]" /> WhatsApp Support</li>
+            </ul>
+          </div>
+          <a 
+            href="https://wa.me/213550592200?text=Hello%21%20I%20want%20to%20order%20the%203-Month%20Plan%20for%2020%20Euro."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full py-3 rounded-xl bg-white/10 hover:bg-white/20 font-bold text-white text-xs text-center block transition-all"
+          >
+            Order 3 Months
+          </a>
+        </div>
+
+        <!-- 1 Month -->
+        <div class="bg-[#12141D] border border-white/10 rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="text-sm font-bold text-gray-300 mb-1">1 Month Plan</div>
+            <div class="flex items-baseline gap-1 mb-4">
+              <span class="text-4xl font-black text-white">8 €</span>
+              <span class="text-xs text-gray-400">/ month</span>
+            </div>
+            <ul class="space-y-2 text-xs text-gray-300 mb-6">
+              <li class="flex items-center gap-1.5"><CheckCircle2 class="w-3.5 h-3.5 text-[#10B981]" /> Full Access to All Channels</li>
+              <li class="flex items-center gap-1.5"><CheckCircle2 class="w-3.5 h-3.5 text-[#10B981]" /> Perfect for Testing</li>
+              <li class="flex items-center gap-1.5"><CheckCircle2 class="w-3.5 h-3.5 text-[#10B981]" /> No Auto-Renewal</li>
+            </ul>
+          </div>
+          <a 
+            href="https://wa.me/213550592200?text=Hello%21%20I%20want%20to%20order%20the%201-Month%20Plan%20for%208%20Euro."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full py-3 rounded-xl bg-white/10 hover:bg-white/20 font-bold text-white text-xs text-center block transition-all"
+          >
+            Order 1 Month
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section (English) -->
+  <section class="py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl sm:text-4xl font-black text-white text-center mb-10">
+        Frequently Asked Questions
+      </h2>
+
+      <div class="space-y-4">
+        <div class="bg-[#12141D] border border-white/10 rounded-2xl p-6">
+          <h3 class="text-base font-bold text-white mb-2">Can I watch Premier League & Champions League in English?</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">
+            Yes, our subscription includes Sky Sports UK, TNT Sports, and US channels broadcasting with original English audio, alongside German Sky Sport and DAZN feeds.
+          </p>
+        </div>
+
+        <div class="bg-[#12141D] border border-white/10 rounded-2xl p-6">
+          <h3 class="text-base font-bold text-white mb-2">How fast do I receive my credentials?</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">
+            Your login details (M3U playlist link and Xtream Codes API username/password) are sent directly via WhatsApp or email within 3 minutes after payment confirmation.
+          </p>
+        </div>
+
+        <div class="bg-[#12141D] border border-white/10 rounded-2xl p-6">
+          <h3 class="text-base font-bold text-white mb-2">Do I need a VPN to use German IPTV in Germany?</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">
+            No VPN is required because our streaming connections are secured with 256-bit SSL encryption. However, our servers are 100% VPN-compatible if you prefer extra privacy.
+          </p>
+        </div>
+
+        <div class="bg-[#12141D] border border-white/10 rounded-2xl p-6">
+          <h3 class="text-base font-bold text-white mb-2">Can I test before paying?</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">
+            Absolutely! Contact our English support team on WhatsApp anytime to receive an instant, free 24-hour test account with zero obligations.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+  <FloatingWhatsApp />
+  <ExitPopup />
+</Layout>

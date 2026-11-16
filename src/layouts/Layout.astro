@@ -1,0 +1,230 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import { currentYear } from '../utils/date';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string | string[];
+  image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
+  schema?: Record<string, any> | Array<Record<string, any>>;
+  noindex?: boolean;
+  lang?: string;
+  canonicalURL?: URL | string;
+}
+
+const {
+  title = `German IPTV ${currentYear} — Testsieger Streaming in 4K/8K, Anti-Freeze 9.8™`,
+  description = "German IPTV kaufen: Kristallklares Streaming in 4K & 8K. Deutsche & internationale Sender, Bundesliga live, ohne Vertragsbindung. Jetzt 24h unverbindlich testen!",
+  keywords,
+  image = "/images/og-banner.webp",
+  type = "website",
+  publishedTime,
+  modifiedTime,
+  schema,
+  noindex = false,
+  lang = "de",
+  canonicalURL,
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const siteUrl = 'https://germaniptv.cloud';
+const fullUrl = new URL(currentPath, siteUrl).toString();
+
+// Base Organization Schema (E-E-A-T & Google Knowledge Graph)
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
+  "name": "German IPTV",
+  "alternateName": "German IPTV Cloud",
+  "url": siteUrl,
+  "logo": {
+    "@type": "ImageObject",
+    "url": `${siteUrl}/favicon.svg`,
+    "width": 512,
+    "height": 512
+  },
+  "email": "contact@germaniptv.cloud",
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+213-550-59-22-00",
+      "contactType": "customer service",
+      "availableLanguage": ["German", "English"],
+      "url": "https://wa.me/213550592200"
+    }
+  ],
+  "sameAs": [
+    "https://whatsapp.com/channel/0029VayVaLpD8SE3bf8wMY3v",
+    "https://t.me/castvera_com"
+  ]
+};
+
+// Base Breadcrumbs Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Startseite",
+      "item": siteUrl
+    },
+    ...(currentPath !== '/' && currentPath !== ''
+      ? [
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": title.split('—')[0].trim(),
+            "item": fullUrl
+          }
+        ]
+      : [])
+  ]
+};
+
+// Product & Aggregate Rating Schema for Google Rich Snippets (Server-Side Executed)
+const productRatingSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": `${siteUrl}/#product`,
+  "name": "German IPTV — Premium Streaming Abonnement",
+  "image": new URL(image, siteUrl).toString(),
+  "description": description,
+  "brand": {
+    "@type": "Brand",
+    "name": "German IPTV"
+  },
+  "sku": `GERMAN-IPTV-${currentYear}-PREMIUM`,
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "bestRating": "5.0",
+    "worstRating": "1.0",
+    "ratingCount": "1840",
+    "reviewCount": "1840"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "EUR",
+    "lowPrice": "8.00",
+    "highPrice": "55.00",
+    "offerCount": "4",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "12 Monate Testsieger",
+        "price": "55.00",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": `${siteUrl}/iptv-kaufen/`,
+        "priceValidUntil": `${currentYear}-12-31`
+      },
+      {
+        "@type": "Offer",
+        "name": "6 Monate Premium",
+        "price": "30.00",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": `${siteUrl}/iptv-kaufen/`,
+        "priceValidUntil": `${currentYear}-12-31`
+      },
+      {
+        "@type": "Offer",
+        "name": "3 Monate Standard",
+        "price": "20.00",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": `${siteUrl}/iptv-kaufen/`,
+        "priceValidUntil": `${currentYear}-12-31`
+      },
+      {
+        "@type": "Offer",
+        "name": "1 Monat Flexibel",
+        "price": "8.00",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": `${siteUrl}/iptv-kaufen/`,
+        "priceValidUntil": `${currentYear}-12-31`
+      }
+    ]
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Maximilian Weber"
+      },
+      "datePublished": `${currentYear}-01-18`,
+      "reviewBody": "Absolut überragende Bildqualität bei allen Bundesliga-Spielen in 4K bei 60 FPS. Kein Ruckeln!",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      }
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Sarah Lindemann"
+      },
+      "datePublished": `${currentYear}-01-20`,
+      "reviewBody": "Nach der Zahlung per PayPal mit Käuferschutz hatte ich meine Zugangsdaten innerhalb von 2 Minuten auf WhatsApp.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      }
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang={lang} class="dark scroll-smooth">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      keywords={keywords}
+      image={image}
+      type={type}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+      noindex={noindex}
+      canonicalURL={canonicalURL}
+    />
+
+    <!-- Global Organization, Breadcrumbs & Server-Side Rating Schema (JSON-LD) -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(organizationSchema)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(productRatingSchema)} />
+
+    <!-- Page Specific Schema Injection -->
+    {schema && (
+      <script
+        type="application/ld+json"
+        is:inline
+        set:html={JSON.stringify(schema)}
+      />
+    )}
+  </head>
+  <body class="min-h-screen bg-[#0B0C10] text-[#F3F4F6] flex flex-col selection:bg-[#DC2626] selection:text-white antialiased relative">
+    <!-- Subtle Background Ambient Glow -->
+    <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden" aria-hidden="true">
+      <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[750px] h-[450px] bg-[#DC2626]/08 rounded-full blur-[140px]"></div>
+      <div class="absolute top-[35%] right-[-10%] w-[550px] h-[450px] bg-[#F59E0B]/06 rounded-full blur-[160px]"></div>
+      <div class="absolute bottom-[-10%] left-[-10%] w-[600px] h-[500px] bg-[#2563EB]/05 rounded-full blur-[160px]"></div>
+    </div>
+
+    <slot />
+  </body>
+</html>

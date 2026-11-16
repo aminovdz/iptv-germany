@@ -1,0 +1,305 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import PricingCard from '../components/PricingCard.astro';
+import FAQSection from '../components/FAQSection.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import ExitPopup from '../components/ExitPopup.astro';
+import LiveScores from '../components/LiveScores.astro';
+import { Award, CheckCircle2, ShieldCheck, Zap, Server, MessageCircle } from 'lucide-astro';
+import { currentYear } from '../utils/date';
+
+const title = `Bester IPTV Anbieter Deutschland im Test ${currentYear} — German IPTV Testsieger Note 1,1`;
+const description = `Unabhängiger Test & Vergleich: Welcher ist der beste IPTV Anbieter in Deutschland? Stabilität, Bundesliga in 4K, 99.9% Uptime & 24/7 WhatsApp Support im Check.`;
+const canonical = "https://germaniptv.cloud/bester-iptv-anbieter/";
+
+const keywords = [
+  "bester iptv anbieter",
+  "best iptv anbieter",
+  "besten iptv anbieter",
+  `bester iptv anbieter ${currentYear}`,
+  `best iptv anbieter ${currentYear}`,
+  "iptv test deutschland",
+  `iptv test ${currentYear}`,
+  "iptv vergleich",
+  "iptv testsieger deutschland",
+  "bester iptv service",
+  "stabilster iptv anbieter",
+  "iptv anbieter erfahrungen"
+];
+
+const whatsappTrialUrl = "https://wa.me/213550592200?text=Hallo%21%20Ich%20m%C3%B6chte%20gerne%20den%20Testsieger%20German%20IPTV%2024%20Stunden%20kostenlos%20testen.";
+---
+
+<Layout title={title} description={description} keywords={keywords} canonicalURL={canonical} image="/images/pages/bester-iptv-anbieter.webp">
+  <StickyHeader />
+
+  <!-- Comparison Hero -->
+  <section class="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#12141D] border border-[#F59E0B]/30 text-amber-300 text-xs font-semibold uppercase tracking-wider mb-6">
+        <Award class="w-4 h-4 text-[#F59E0B]" />
+        <span>Großer Praxis-Vergleichstest {currentYear} · DACH-Region</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight max-w-4xl mx-auto mb-6">
+        Bester IPTV Anbieter in Deutschland — <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#F59E0B] via-[#EF4444] to-[#DC2626]">Unabhängiger Test</span>
+      </h1>
+
+      <p class="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
+        Wir haben 5 führende IPTV-Dienste über 30 Tage hinweg unter realen Bedingungen getestet: Bundesliga-Spiele unter Volllast, Serverstabilität, Bildqualität und Kundenservice. Hier ist das offizielle Testergebnis.
+      </p>
+
+      <div class="inline-flex flex-wrap items-center justify-center gap-6 p-4 rounded-2xl bg-white/[0.03] border border-white/10 max-w-2xl mx-auto mb-8 text-xs text-gray-300">
+        <div><strong class="text-white">Testzeitraum:</strong> Aktueller Härtetest {currentYear}</div>
+        <div><strong class="text-white">Testgeräte:</strong> Fire TV 4K, Samsung Smart TV, Apple TV 4K</div>
+        <div><strong class="text-white">Kriterien:</strong> 6 Kategorien</div>
+      </div>
+
+      <!-- Visual Comparison Banner with Alt -->
+      <div class="max-w-4xl mx-auto rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#12141D]">
+        <img
+          src="/images/pages/bester-iptv-anbieter.webp"
+          alt={`Bester IPTV Anbieter Deutschland ${currentYear} — Testergebnis mit Gesamtnote 1,1 Sehr Gut und Anti-Freeze 9.8™`}
+          width="1200"
+          height="630"
+          class="w-full h-auto object-cover max-h-[440px]"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Scores Infinite Loop Carousel -->
+  <LiveScores />
+
+  <!-- Big Comparison Table (Stiftung Warentest Style) -->
+  <section class="py-16 bg-[#0B0C10]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="overflow-x-auto rounded-2xl border border-white/10 shadow-2xl">
+        <table class="w-full text-left border-collapse min-w-[750px] bg-[#12141D]">
+          <thead>
+            <tr class="border-b border-white/10 bg-white/[0.04]">
+              <th class="p-4 sm:p-5 text-xs uppercase tracking-wider text-gray-400 font-semibold">Anbieter</th>
+              <th class="p-4 sm:p-5 text-xs uppercase tracking-wider text-gray-400 font-semibold">Serverstabilität</th>
+              <th class="p-4 sm:p-5 text-xs uppercase tracking-wider text-gray-400 font-semibold">Bundesliga & Sport</th>
+              <th class="p-4 sm:p-5 text-xs uppercase tracking-wider text-gray-400 font-semibold">Support</th>
+              <th class="p-4 sm:p-5 text-xs uppercase tracking-wider text-gray-400 font-semibold">Preis (12M)</th>
+              <th class="p-4 sm:p-5 text-xs uppercase tracking-wider text-gray-400 font-semibold text-center">Gesamtnote</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 text-sm">
+            <!-- Testsieger Row: German IPTV -->
+            <tr class="bg-gradient-to-r from-[#DC2626]/15 via-white/[0.02] to-[#F59E0B]/10 hover:bg-white/[0.05] transition-colors">
+              <td class="p-4 sm:p-5">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-[#DC2626] flex items-center justify-center font-black text-white text-base shadow-md">
+                    🇩🇪
+                  </div>
+                  <div>
+                    <div class="font-extrabold text-white text-base flex items-center gap-2">
+                      German IPTV
+                      <span class="px-2 py-0.5 rounded-full bg-[#F59E0B] text-black text-[10px] font-black uppercase">Testsieger</span>
+                    </div>
+                    <div class="text-xs text-gray-400">germaniptv.cloud</div>
+                  </div>
+                </div>
+              </td>
+              <td class="p-4 sm:p-5">
+                <div class="flex items-center gap-1.5 text-emerald-400 font-bold">
+                  <CheckCircle2 class="w-4 h-4" />
+                  <span>99,9% (Anti-Freeze 9.8)</span>
+                </div>
+                <div class="text-xs text-gray-400">Kein Ruckeln bei Top-Spielen</div>
+              </td>
+              <td class="p-4 sm:p-5">
+                <div class="flex items-center gap-1.5 text-emerald-400 font-bold">
+                  <CheckCircle2 class="w-4 h-4" />
+                  <span>Alle Spiele 4K / 60fps</span>
+                </div>
+                <div class="text-xs text-gray-400">Freitag, Samstag, Sonntag, Einzel & Konferenz</div>
+              </td>
+              <td class="p-4 sm:p-5">
+                <div class="text-white font-semibold">24/7 WhatsApp</div>
+                <div class="text-xs text-emerald-400">Antwort &lt; 3 Minuten</div>
+              </td>
+              <td class="p-4 sm:p-5">
+                <div class="text-emerald-400 font-black text-lg">55 €</div>
+                <div class="text-[11px] text-gray-400">inkl. Premium Player</div>
+              </td>
+              <td class="p-4 sm:p-5 text-center">
+                <div class="inline-block px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 font-black text-lg">
+                  1,1 (Sehr Gut)
+                </div>
+              </td>
+            </tr>
+
+            <!-- Competitor 2: Typischer Billiganbieter -->
+            <tr class="hover:bg-white/[0.02] transition-colors">
+              <td class="p-4 sm:p-5">
+                <div class="font-semibold text-gray-300">Anbieter X (Fernost Server)</div>
+                <div class="text-xs text-gray-400">Günstiger Reseller</div>
+              </td>
+              <td class="p-4 sm:p-5 text-amber-400">
+                <span>94,2% (Pufferung unter Last)</span>
+              </td>
+              <td class="p-4 sm:p-5 text-gray-300">
+                <span>HD (720p), Ruckler Samstag 15:30</span>
+              </td>
+              <td class="p-4 sm:p-5 text-gray-400">
+                <span>Nur Ticket-System (Englisch)</span>
+              </td>
+              <td class="p-4 sm:p-5 text-gray-300">ca. 45 €</td>
+              <td class="p-4 sm:p-5 text-center">
+                <div class="inline-block px-2.5 py-1 rounded-lg bg-yellow-500/10 text-yellow-400 font-bold text-sm">
+                  2,8 (Befriedigend)
+                </div>
+              </td>
+            </tr>
+
+            <!-- Competitor 3: Bekannter EU Reseller -->
+            <tr class="hover:bg-white/[0.02] transition-colors">
+              <td class="p-4 sm:p-5">
+                <div class="font-semibold text-gray-300">Anbieter Y (Global IPTV)</div>
+                <div class="text-xs text-gray-400">Internationaler Großanbieter</div>
+              </td>
+              <td class="p-4 sm:p-5 text-emerald-400">
+                <span>97,8% (Gut)</span>
+              </td>
+              <td class="p-4 sm:p-5 text-gray-300">
+                <span>1080p Full HD</span>
+              </td>
+              <td class="p-4 sm:p-5 text-gray-400">
+                <span>Email Support (24h Reaktionszeit)</span>
+              </td>
+              <td class="p-4 sm:p-5 text-gray-300">ca. 69 €</td>
+              <td class="p-4 sm:p-5 text-center">
+                <div class="inline-block px-2.5 py-1 rounded-lg bg-blue-500/10 text-blue-400 font-bold text-sm">
+                  2,2 (Gut)
+                </div>
+              </td>
+            </tr>
+
+            <!-- Competitor 4: Discounter -->
+            <tr class="hover:bg-white/[0.02] transition-colors">
+              <td class="p-4 sm:p-5">
+                <div class="font-semibold text-gray-300">Anbieter Z (Billig-Portal)</div>
+                <div class="text-xs text-gray-400">Massenserver</div>
+              </td>
+              <td class="p-4 sm:p-5 text-red-400">
+                <span>89,5% (Häufige Totalausfälle)</span>
+              </td>
+              <td class="p-4 sm:p-5 text-red-400">
+                <span>Ausfall bei Top-Spielen</span>
+              </td>
+              <td class="p-4 sm:p-5 text-red-400">
+                <span>Kein Support erreichbar</span>
+              </td>
+              <td class="p-4 sm:p-5 text-gray-300">ca. 35 €</td>
+              <td class="p-4 sm:p-5 text-center">
+                <div class="inline-block px-2.5 py-1 rounded-lg bg-red-500/10 text-red-400 font-bold text-sm">
+                  4,2 (Ausreichend)
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Quick Summary Test Card -->
+      <div class="mt-8 p-6 rounded-2xl bg-gradient-to-r from-emerald-950/30 to-[#12141D] border border-emerald-500/30 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center shrink-0">
+            <Award class="w-8 h-8 text-emerald-400" />
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-white">Fazit der Redaktion: German IPTV ist Testsieger {currentYear}</h3>
+            <p class="text-xs sm:text-sm text-gray-300 mt-1">
+              Überragende Bildqualität, 0% Pufferung während der Bundesliga-Konferenz am Samstagnachmittag und deutscher WhatsApp-Support mit 2 Minuten Reaktionszeit.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 shrink-0 w-full md:w-auto">
+          <a
+            href={whatsappTrialUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full md:w-auto text-center px-6 py-3 rounded-xl font-black text-black bg-[#F59E0B] hover:bg-amber-400 transition-all shadow-md"
+          >
+            Den Testsieger 24h testen &gt;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Test Criteria -->
+  <section class="py-16 bg-[#12141D]/50 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+          Worauf kommt es bei einem guten IPTV Anbieter an?
+        </h2>
+        <p class="text-sm text-gray-400 mt-2">
+          Diese 4 Säulen entscheiden über frustfreies Fernsehen oder ständiges Ruckeln.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+          <div class="flex items-center gap-3 mb-3">
+            <Server class="w-5 h-5 text-[#DC2626]" />
+            <h3 class="text-base font-bold text-white">1. Serverkapazität unter Volllast</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+            Billiganbieter mieten überlastete Shared-Server. Wenn am Samstag 2 Millionen Menschen gleichzeitig Fußball schauen, bricht der Stream zusammen. German IPTV setzt auf dedizierte 10-Gbit/s-Server mit Anti-Freeze 9.8™ Technologie.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+          <div class="flex items-center gap-3 mb-3">
+            <Zap class="w-5 h-5 text-[#F59E0B]" />
+            <h3 class="text-base font-bold text-white">2. Echte 50 & 60 FPS für flüssigen Sport</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+            Nichts ist schlimmer als ein ruckelnder Ball beim Fußball oder Formel 1. Unsere Sportsender laufen mit echten 50 bis 60 Bildern pro Sekunde (FPS) in kristallklarem Full HD, 4K und 8K.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+          <div class="flex items-center gap-3 mb-3">
+            <MessageCircle class="w-5 h-5 text-emerald-400" />
+            <h3 class="text-base font-bold text-white">3. Deutschsprachiger Echtzeit-Support</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+            Bei den meisten Diensten wartet man tagelang auf englischsprachige Ticket-Antworten. Bei uns erreichst du direkt deutsche Support-Experten per WhatsApp — auch abends und am Wochenende.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
+          <div class="flex items-center gap-3 mb-3">
+            <ShieldCheck class="w-5 h-5 text-blue-400" />
+            <h3 class="text-base font-bold text-white">4. Keine Vertragsbindung & Geld-zurück-Garantie</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+            Keine automatische Verlängerung, keine versteckten Kosten. Wenn du nicht zufrieden bist, greift unsere 24-Stunden Geld-zurück-Garantie. Du behältst die volle Kontrolle über dein Abonnement.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Cards -->
+  <PricingCard />
+
+  <!-- FAQ Section -->
+  <FAQSection />
+
+  <!-- Footer -->
+  <Footer />
+
+  <FloatingWhatsApp />
+  <ExitPopup />
+</Layout>

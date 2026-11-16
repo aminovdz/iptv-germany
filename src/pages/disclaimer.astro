@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { AlertTriangle } from 'lucide-astro';
+
+const title = "Haftungsausschluss (Disclaimer) — German IPTV";
+const description = "Rechtlicher Haftungsausschluss von German IPTV bezüglich technischer Dienstleistungen, Richtigkeit der Informationen und externer Verweise.";
+---
+
+<Layout title={title} description={description}>
+  <StickyHeader />
+
+  <main class="py-16 md:py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Header -->
+    <div class="mb-12 text-center sm:text-left border-b border-white/10 pb-8">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/10 text-gray-300 text-xs font-bold uppercase tracking-wider mb-4">
+        <AlertTriangle class="w-4 h-4 text-[#F59E0B]" />
+        <span>Rechtlicher Hinweis</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+        Haftungsausschluss (Disclaimer)
+      </h1>
+      <p class="text-sm text-gray-400">
+        Rechtliche Klarstellung bezüglich der Nutzung unseres Informationsangebots und der bereitgestellten digitalen Dienste.
+      </p>
+    </div>
+
+    <div class="space-y-8 text-gray-300 text-sm leading-relaxed">
+      
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white">1. Haftung für Inhalte</h2>
+        <p>
+          Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Wir sind jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt.
+        </p>
+      </section>
+
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white">2. Haftung für Links</h2>
+        <p>
+          Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+        </p>
+      </section>
+
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white">3. Keine Rechtsberatung</h2>
+        <p>
+          Die auf dieser Website veröffentlichten Ratgeber, FAQs und Artikel (z.B. bezüglich der rechtlichen Einstufung von IPTV in Deutschland) dienen ausschließlich der allgemeinen Information und Orientierung. Sie stellen zu keinem Zeitpunkt eine verbindliche Rechtsberatung dar und können eine individuelle Konsultation eines qualifizierten Rechtsanwalts nicht ersetzen.
+        </p>
+      </section>
+
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white">4. Kontakt</h2>
+        <p>
+          Bei rechtlichen Fragen oder Anmerkungen erreichen Sie uns unter <a href="mailto:contact@germaniptv.cloud" class="text-[#DC2626] underline">contact@germaniptv.cloud</a> und <a href="mailto:support@castvera.com" class="text-[#DC2626] underline">support@castvera.com</a>.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

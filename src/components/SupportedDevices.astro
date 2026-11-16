@@ -1,0 +1,122 @@
+---
+import { Tv, Smartphone, Laptop, Tablet, Cast, HardDrive, Sparkles, CheckCircle2 } from 'lucide-astro';
+
+const devices = [
+  {
+    icon: Tv,
+    name: "Amazon Fire TV Stick & Cube",
+    description: "Die beliebteste Lösung in Deutschland. Optimiert für 4K Max & Fire TV Cube mit TiviMate oder IPTV Smarters.",
+    apps: ["TiviMate", "IPTV Smarters Pro", "XCIPTV", "IBO Player"],
+    badge: "Empfehlung #1"
+  },
+  {
+    icon: Cast,
+    name: "Smart TVs (Samsung & LG)",
+    description: "Direkt über den integrierten App Store auf Samsung Tizen und LG webOS ohne zusätzliche TV-Box.",
+    apps: ["IBO Player", "Smart IPTV (SIPTV)", "Nanomid", "SET IPTV"],
+    badge: "Keine Box nötig"
+  },
+  {
+    icon: HardDrive,
+    name: "Android TV & MAG Boxen",
+    description: "Volle Unterstützung für Nvidia Shield, Xiaomi TV Box, Google Chromecast TV und klassische MAG Stalker Portale.",
+    apps: ["TiviMate", "Stalker Portal", "MAG 250/322/520", "OTT Navigator"],
+    badge: "High Performance"
+  },
+  {
+    icon: Smartphone,
+    name: "Apple TV, iPhone & iPad",
+    description: "Flüssiges Streaming über iOS und tvOS mit nativer AirPlay 2 Unterstützung und moderner Benutzeroberfläche.",
+    apps: ["IPTVX", "GSE Smart IPTV", "Smarters Player Lite", "Snappier IPTV"],
+    badge: "iOS / Apple TV"
+  },
+  {
+    icon: Laptop,
+    name: "Windows PC & Mac",
+    description: "Schauen Sie Live-TV und Sport direkt im Browser oder über spezialisierte Desktop-Player auf Laptop und PC.",
+    apps: ["VLC Media Player", "IPTV Smarters Web", "MyIPTV Player", "Kodi"],
+    badge: "Desktop & Web"
+  },
+  {
+    icon: Tablet,
+    name: "Android Smartphones & Tablets",
+    description: "Unterwegs in der Bahn, im Urlaub oder im Garten: Alle Sender mobil in HD & 4K auf jedem Android-Gerät.",
+    apps: ["IPTV Smarters Pro", "Televizo", "XCIPTV", "TPlayer"],
+    badge: "Mobile Streaming"
+  }
+];
+---
+
+<section id="devices" class="py-20 md:py-28 relative bg-[#0B0C10]" aria-labelledby="devices-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DC2626]/10 border border-[#DC2626]/30 text-[#DC2626] text-xs font-bold uppercase tracking-wider mb-4">
+        <Sparkles class="w-3.5 h-3.5 text-[#F59E0B]" />
+        <span>100% Kompatibilität</span>
+      </div>
+
+      <h2 id="devices-heading" class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-6">
+        Kompatibel mit <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] to-[#F59E0B]">allen Ihren Geräten</span>
+      </h2>
+
+      <p class="text-base sm:text-lg text-gray-400 font-normal leading-relaxed">
+        Genießen Sie maximale Flexibilität: Ein Zugang funktioniert auf Ihrem Fernseher im Wohnzimmer, unterwegs auf dem Smartphone oder auf dem Laptop im Arbeitszimmer.
+      </p>
+    </div>
+
+    <!-- Devices Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {devices.map((device) => {
+        const IconComponent = device.icon;
+        return (
+          <div class="rounded-2xl bg-[#12141D] border border-white/[0.08] hover:border-[#DC2626]/40 p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1A1D2B] to-[#0B0C10] border border-[#DC2626]/30 flex items-center justify-center text-[#DC2626] group-hover:scale-110 transition-transform">
+                  <IconComponent class="w-6 h-6" />
+                </div>
+                <span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-white/[0.05] border border-white/10 text-[#F59E0B]">
+                  {device.badge}
+                </span>
+              </div>
+
+              <h3 class="text-lg font-bold text-white mb-2 group-hover:text-amber-100 transition-colors">
+                {device.name}
+              </h3>
+
+              <p class="text-xs sm:text-sm text-gray-400 leading-relaxed mb-5">
+                {device.description}
+              </p>
+            </div>
+
+            <!-- Recommended Apps Tags -->
+            <div class="pt-4 border-t border-white/[0.06]">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-gray-400 block mb-2">
+                Empfohlene Player:
+              </span>
+              <div class="flex flex-wrap gap-1.5">
+                {device.apps.map((app) => (
+                  <span class="px-2 py-0.5 rounded bg-black/40 border border-white/[0.06] text-[11px] text-gray-300">
+                    {app}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Devices Bottom Banner -->
+    <div class="mt-12 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#12141D] border border-white/10 text-xs text-gray-300">
+        <CheckCircle2 class="w-4 h-4 text-[#10B981]" />
+        <span>M3U-Playlist-Link, Xtream Codes API und EPG URL werden automatisch bereitgestellt.</span>
+      </div>
+    </div>
+
+  </div>
+</section>

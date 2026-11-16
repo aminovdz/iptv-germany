@@ -1,0 +1,150 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import PricingCard from '../components/PricingCard.astro';
+import FAQSection from '../components/FAQSection.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import ExitPopup from '../components/ExitPopup.astro';
+import { PiggyBank, ArrowRight, MessageCircle } from 'lucide-astro';
+import { currentYear } from '../utils/date';
+
+const title = `German IPTV Spar-Rechner ${currentYear} — Spare über 1.000 € pro Jahr beim Streaming`;
+const description = `Streaming-Kostenanalyse ${currentYear}: Vergleiche German IPTV direkt mit Pay-TV Einzelabos. Spare bis zu 1.084 € im Jahr bei bester Senderauswahl in 4K (55 €/Jahr).`;
+const canonical = "https://germaniptv.cloud/landing-v3/";
+
+const keywords = [
+  "german iptv kosten",
+  "iptv vergleich kosten",
+  "streaming kosten sparen",
+  `iptv spar rechner ${currentYear}`,
+  "iptv vs kabelfernsehen",
+  "pay tv kosten sparen",
+  "günstig fernsehen streamen",
+  "iptv 55 euro jahr"
+];
+
+const whatsappTrialUrl = "https://wa.me/213550592200?text=Hallo%21%20Ich%20m%C3%B6chte%20gerne%20den%20kostenlosen%2024-Stunden%20Test%20f%C3%BCr%20German%20IPTV%20starten.";
+---
+
+<Layout title={title} description={description} canonicalURL={canonical} keywords={keywords} image="/images/pages/landing-devices.webp">
+  <StickyHeader />
+
+  <!-- Hero Section -->
+  <section class="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#12141D] border border-emerald-500/30 text-emerald-300 text-xs font-semibold uppercase tracking-wider mb-6">
+        <PiggyBank class="w-4 h-4 text-emerald-400" />
+        <span>Streaming-Kostenanalyse Deutschland {currentYear}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl mx-auto mb-6">
+        Spare über <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-[#F59E0B]">1.000 € jedes Jahr</span> beim Fernsehen
+      </h1>
+
+      <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed">
+        Vergleiche die realen Kosten herkömmlicher Pay-TV Anbieter in Deutschland mit unserem Jahres-Abonnement. Mehr Sender, alle Sport-Events und gestochen scharfes 4K für nur 55 € im Jahr.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+        <a
+          href="#pricing"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-black text-white bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:brightness-110 shadow-lg shadow-red-900/30 transition-all hover:scale-105"
+        >
+          <span>Spar-Pakete ansehen (ab 8 €)</span>
+          <ArrowRight class="w-5 h-5" />
+        </a>
+        <a
+          href={whatsappTrialUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-gray-200 bg-[#12141D] hover:bg-white/10 border border-white/15 transition-all"
+        >
+          <MessageCircle class="w-5 h-5 text-emerald-400" />
+          <span>24h Test Starten</span>
+        </a>
+      </div>
+
+      <!-- Visual Hardware & Multi-Device Banner with Alt -->
+      <div class="max-w-4xl mx-auto rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#12141D]">
+        <img
+          src="/images/pages/landing-devices.webp"
+          alt="German IPTV Kompatibilität für Smart TV, Fire TV Stick, Apple TV, iOS und Android mit Anti-Freeze 9.8™"
+          width="1200"
+          height="630"
+          class="w-full h-auto object-cover max-h-[440px]"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Big Comparison Table -->
+  <section class="py-16 bg-[#0B0C10]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="overflow-x-auto rounded-2xl border border-white/10 shadow-2xl">
+        <table class="w-full text-left border-collapse min-w-[600px] bg-[#12141D]">
+          <thead>
+            <tr class="border-b border-white/10 bg-white/[0.04] text-xs uppercase tracking-wider text-gray-400">
+              <th class="p-4 sm:p-5">Leistung & Sender</th>
+              <th class="p-4 sm:p-5 text-red-400">Herkömmliche Pay-TV & Streaming-Abos</th>
+              <th class="p-4 sm:p-5 text-emerald-400 bg-emerald-500/10">German IPTV</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 text-sm">
+            <tr>
+              <td class="p-4 sm:p-5 font-medium text-white">Monatliche Kosten</td>
+              <td class="p-4 sm:p-5 text-red-400 font-semibold">ab 79,99 € – 94,99 € / Mo</td>
+              <td class="p-4 sm:p-5 text-emerald-400 font-bold bg-emerald-500/10">ab 4,58 € / Mo (55 € / Jahr)</td>
+            </tr>
+            <tr>
+              <td class="p-4 sm:p-5 font-medium text-white">Jährliche Gesamtkosten</td>
+              <td class="p-4 sm:p-5 text-red-500 font-black text-base">ca. 1.139,00 €</td>
+              <td class="p-4 sm:p-5 text-emerald-400 font-black text-xl bg-emerald-500/10">55,00 € (Einmalig)</td>
+            </tr>
+            <tr>
+              <td class="p-4 sm:p-5 font-medium text-white">Bundesliga Freitag & Sonntag</td>
+              <td class="p-4 sm:p-5 text-gray-300">Teures separates Sport-Streamingabo</td>
+              <td class="p-4 sm:p-5 text-emerald-400 font-bold bg-emerald-500/10">Inklusive in 4K</td>
+            </tr>
+            <tr>
+              <td class="p-4 sm:p-5 font-medium text-white">Bundesliga Samstag (Einzel & Konferenz)</td>
+              <td class="p-4 sm:p-5 text-gray-300">Klassisches Pay-TV Pflichtpaket</td>
+              <td class="p-4 sm:p-5 text-emerald-400 font-bold bg-emerald-500/10">Inklusive in 4K</td>
+            </tr>
+            <tr>
+              <td class="p-4 sm:p-5 font-medium text-white">Formel 1 & Europapokal</td>
+              <td class="p-4 sm:p-5 text-gray-300">Auf mehrere teure Abos verteilt</td>
+              <td class="p-4 sm:p-5 text-emerald-400 font-bold bg-emerald-500/10">Alles auf einem Kanal</td>
+            </tr>
+            <tr>
+              <td class="p-4 sm:p-5 font-medium text-white">Vertragslaufzeit</td>
+              <td class="p-4 sm:p-5 text-red-400 font-medium">12 Monate mit Kündigungsfrist</td>
+              <td class="p-4 sm:p-5 text-emerald-400 font-bold bg-emerald-500/10">Keine Verlängerung / Kündbar</td>
+            </tr>
+            <tr>
+              <td class="p-4 sm:p-5 font-medium text-white">Ersparnis pro Jahr</td>
+              <td class="p-4 sm:p-5 text-gray-500">—</td>
+              <td class="p-4 sm:p-5 text-[#F59E0B] font-black text-lg bg-emerald-500/10">+ 1.084,00 € Ersparnis</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Cards Section -->
+  <section id="pricing">
+    <PricingCard />
+  </section>
+
+  <!-- FAQ -->
+  <FAQSection />
+
+  <!-- Footer -->
+  <Footer />
+
+  <FloatingWhatsApp />
+  <ExitPopup />
+</Layout>

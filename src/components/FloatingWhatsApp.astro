@@ -1,0 +1,55 @@
+---
+import { MessageCircle, X } from 'lucide-astro';
+
+const whatsappUrl = "https://wa.me/213550592200?text=Hallo%2C%20ich%20m%C3%B6chte%20gerne%20mit%20dem%20Kundensupport%20von%20German%20IPTV%20sprechen.";
+---
+
+<!-- Floating WhatsApp Widget -->
+<div class="fixed bottom-6 right-6 z-50 flex items-center group">
+  
+  <!-- Tooltip Message Bubble -->
+  <div
+    id="wa-tooltip"
+    class="hidden md:flex items-center gap-2 mr-3 px-4 py-2.5 rounded-2xl bg-[#12141D] border border-[#10B981]/40 shadow-[0_10px_25px_rgba(0,0,0,0.5)] text-xs text-white backdrop-blur-md animate-bounce select-none"
+  >
+    <span class="w-2 h-2 rounded-full bg-[#10B981] animate-ping"></span>
+    <span>Deutscher 24/7 Support Online</span>
+    <button
+      id="close-wa-tooltip"
+      type="button"
+      class="text-gray-400 hover:text-white ml-1 p-0.5"
+      aria-label="Hilfe-Nachricht schließen"
+    >
+      <X class="w-3.5 h-3.5" />
+    </button>
+  </div>
+
+  <!-- Main Floating Action Button -->
+  <a
+    href={whatsappUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="relative w-14 h-14 rounded-full bg-gradient-to-br from-[#10B981] to-[#059669] flex items-center justify-center text-black shadow-[0_0_25px_rgba(16,185,129,0.5)] hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[#10B981]/40"
+    aria-label="Kundenservice auf WhatsApp kontaktieren"
+  >
+    <!-- Ripple Pulse Rings -->
+    <span class="absolute inset-0 rounded-full bg-[#10B981] animate-ping opacity-30 pointer-events-none"></span>
+    
+    <MessageCircle class="w-7 h-7 text-black fill-current" />
+    
+    <!-- Online Green Status Badge -->
+    <span class="absolute top-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-[#0B0C10]"></span>
+  </a>
+</div>
+
+<script>
+  const closeTooltip = document.getElementById('close-wa-tooltip');
+  const tooltip = document.getElementById('wa-tooltip');
+
+  if (closeTooltip && tooltip) {
+    closeTooltip.addEventListener('click', (e) => {
+      e.stopPropagation();
+      tooltip.style.display = 'none';
+    });
+  }
+</script>

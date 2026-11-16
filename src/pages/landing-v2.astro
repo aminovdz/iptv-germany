@@ -1,0 +1,152 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import LiveScores from '../components/LiveScores.astro';
+import PricingCard from '../components/PricingCard.astro';
+import FAQSection from '../components/FAQSection.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import ExitPopup from '../components/ExitPopup.astro';
+import { Trophy, ShieldCheck, Zap, MessageCircle, Flame } from 'lucide-astro';
+import { currentYear, currentSeason } from '../utils/date';
+
+const title = `German IPTV Live-Sport ${currentYear} — Alle Spiele in 4K Ultra HD`;
+const description = `Erlebe alle Bundesliga-Spiele, Europapokal & Motorsport live in 4K/60FPS ohne Unterbrechung (${currentYear}). 12 Monate für 55 € inkl. Premium Player. 24h kostenlos testen!`;
+const canonical = "https://germaniptv.cloud/landing-v2/";
+
+const keywords = [
+  "german iptv sport",
+  "bundesliga iptv",
+  "live sport streaming 4k",
+  `bundesliga ${currentYear}`,
+  "bundesliga ohne sky dazn",
+  "iptv fussball live",
+  "champions league iptv",
+  "formel 1 iptv",
+  "iptv sport abo",
+  "fussball live stream deutschland"
+];
+
+const whatsappTrialUrl = "https://wa.me/213550592200?text=Hallo%21%20Ich%20m%C3%B6chte%20gerne%20den%20kostenlosen%2024-Stunden%20Test%20f%C3%BCr%20das%20German%20IPTV%20Bundesliga-Sportpaket%20starten.";
+---
+
+<Layout title={title} description={description} canonicalURL={canonical} keywords={keywords} image="/images/pages/landing-sport.webp">
+  <StickyHeader />
+
+  <!-- High-Energy Sports Hero -->
+  <section class="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden border-b border-white/5">
+    <div class="absolute inset-0 pointer-events-none -z-10">
+      <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[380px] bg-gradient-to-b from-[#DC2626]/20 via-[#F59E0B]/10 to-transparent rounded-full blur-[140px]"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#12141D] border border-red-500/40 text-red-400 text-xs font-bold uppercase tracking-wider mb-6">
+        <Flame class="w-4 h-4 text-[#DC2626]" />
+        <span>Saison {currentSeason} &middot; Alle Spiele & Konferenzen live</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl mx-auto mb-6">
+        Alle Bundesliga-Spiele Live — <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] via-[#EF4444] to-[#F59E0B]">Ein Anbieter, Ein Preis</span>
+      </h1>
+
+      <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed">
+        Schluss mit 95 € monatlich für aufgeteilte Einzelverträge. Genieße alle Top-Klubs, 2. Bundesliga, Europapokal und Motorsport in kristallklarem 4K bei 60 FPS ohne Ruckeln.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+        <a
+          href="https://wa.me/213550592200?text=Hallo%21%20Ich%20m%C3%B6chte%20das%2012-Monats-Paket%20f%C3%BCr%2055%20Euro%20mit%20Premium%20Player%20bestellen."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-black text-white bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:brightness-110 shadow-lg shadow-red-900/40 transition-all hover:scale-105"
+        >
+          <Trophy class="w-5 h-5 text-amber-300" />
+          <span>Jahrespaket für 55 € sichern &gt;</span>
+        </a>
+        <a
+          href={whatsappTrialUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-gray-200 bg-[#12141D] hover:bg-white/10 border border-white/15 transition-all"
+        >
+          <MessageCircle class="w-5 h-5 text-emerald-400" />
+          <span>24h Kostenlos Testen</span>
+        </a>
+      </div>
+
+      <!-- Visual Sport Banner with Alt -->
+      <div class="max-w-4xl mx-auto rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#12141D]">
+        <img
+          src="/images/pages/landing-sport.webp"
+          alt="German IPTV Live Sport Streaming in 4K UHD 60FPS: Bundesliga, Motorsport und europäische Top-Wettbewerbe"
+          width="1200"
+          height="630"
+          class="w-full h-auto object-cover max-h-[440px]"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Sports Live Ticker Infinite Carousel -->
+  <LiveScores />
+
+  <!-- Sports Technology: Anti-Freeze 9.8™ Details -->
+  <section class="py-16 bg-[#0B0C10]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+          Warum echte Fußballfans German IPTV wählen
+        </h2>
+        <p class="text-gray-400 text-sm mt-2">
+          Entwickelt für die extremen Anforderungen von Live-Sportübertragungen.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl bg-[#12141D] border border-white/10 text-center">
+          <div class="w-12 h-12 rounded-xl bg-red-500/20 border border-red-500/30 flex items-center justify-center mx-auto mb-4">
+            <Zap class="w-6 h-6 text-[#DC2626]" />
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Echte 60 FPS Übertragung</h3>
+          <p class="text-xs text-gray-400">
+            Flüssige Ballbewegungen und scharfe Spielszenen ohne Ghosting oder Bildunschärfe auf großen 4K/8K TVs.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[#12141D] border border-white/10 text-center">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center mx-auto mb-4">
+            <Trophy class="w-6 h-6 text-[#F59E0B]" />
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Alle Wettbewerbe inklusive</h3>
+          <p class="text-xs text-gray-400">
+            1. & 2. Bundesliga, DFB-Pokal, Champions League, Europa League, Conference League, Formel 1 und Premier League.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[#12141D] border border-white/10 text-center">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center mx-auto mb-4">
+            <ShieldCheck class="w-6 h-6 text-emerald-400" />
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Anti-Freeze 9.8™ Garantie</h3>
+          <p class="text-xs text-gray-400">
+            Dynamisches Server-Switching bei Hochlastspielen (z.B. Bayern vs. Dortmund), damit der Stream niemals stockt.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Cards -->
+  <PricingCard />
+
+  <!-- FAQ -->
+  <FAQSection />
+
+  <!-- Footer -->
+  <Footer />
+
+  <FloatingWhatsApp />
+  <ExitPopup />
+</Layout>

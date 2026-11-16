@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { Lock, ShieldCheck, Database, EyeOff } from 'lucide-astro';
+import { currentYear } from '../utils/date';
+
+const title = "Datenschutzerklärung (DSGVO) — German IPTV";
+const description = "Offizielle Datenschutzerklärung nach der Datenschutz-Grundverordnung (DSGVO). Höchster Schutz Ihrer persönlichen Daten und strikte Zero-Logs-Policy bei German IPTV.";
+---
+
+<Layout title={title} description={description}>
+  <StickyHeader />
+
+  <main class="py-16 md:py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Header -->
+    <div class="mb-12 text-center sm:text-left border-b border-white/10 pb-8">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981] text-xs font-bold uppercase tracking-wider mb-4">
+        <ShieldCheck class="w-4 h-4" />
+        <span>DSGVO Konformität</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+        Datenschutzerklärung
+      </h1>
+      <p class="text-sm text-gray-400">
+        Stand: {currentYear} · Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Nachfolgend informieren wir Sie über die Art, den Umfang und den Zweck der Erhebung und Verwendung personenbezogener Daten.
+      </p>
+    </div>
+
+    <div class="space-y-8 text-gray-300 text-sm leading-relaxed">
+      
+      <!-- Section 1 -->
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white flex items-center gap-2.5">
+          <Database class="w-5 h-5 text-[#DC2626]" />
+          1. Verantwortliche Stelle
+        </h2>
+        <p>
+          Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) und anderer nationaler Datenschutzgesetze der Mitgliedsstaaten ist:
+        </p>
+        <div class="p-4 rounded-xl bg-black/40 border border-white/5 space-y-1 text-gray-300">
+          <p class="font-bold text-white">German IPTV Operations</p>
+          <p>Offizieller E-Mail Kontakt: <a href="mailto:contact@germaniptv.cloud" class="text-[#DC2626] underline">contact@germaniptv.cloud</a></p>
+          <p>Technischer Datenschutz: <a href="mailto:support@castvera.com" class="text-[#DC2626] underline">support@castvera.com</a></p>
+          <p>WhatsApp Datenschutz-Anfragen: <a href="https://wa.me/213550592200" class="text-[#10B981] underline">+213 550 59 22 00</a></p>
+        </div>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white flex items-center gap-2.5">
+          <EyeOff class="w-5 h-5 text-[#10B981]" />
+          2. Zero-Logs Policy & Streaming-Verschlüsselung
+        </h2>
+        <p>
+          Der Schutz Ihrer Privatsphäre ist das Fundament unserer Architektur:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-gray-300">
+          <li><strong>Keine Protokollierung von Sehgewohnheiten:</strong> Wir protokollieren, überwachen oder speichern zu keinem Zeitpunkt, welche Kanäle, Sendungen oder Streams Sie abrufen.</li>
+          <li><strong>Keine IP-Verbindungsprotokolle:</strong> Ihre IP-Adresse wird nicht mit Ihren Sehaktivitäten verknüpft oder in dauerhaften Logs gespeichert.</li>
+          <li><strong>Vollständige SSL 256-Bit Verschlüsselung:</strong> Sämtliche Datenübertragungen zwischen Ihrem Endgerät und unseren CDN-Servern erfolgen über gesicherte TLS/SSL-Tunnel.</li>
+        </ul>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white flex items-center gap-2.5">
+          <Lock class="w-5 h-5 text-[#F59E0B]" />
+          3. Erfassung von Bestelldaten & Zahlungsabwicklung
+        </h2>
+        <p>
+          Zur Bereitstellung und Aktivierung Ihres Abonnements verarbeiten wir ausschließlich die minimal erforderlichen Daten:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-gray-300">
+          <li>E-Mail-Adresse (zur Zustellung Ihrer M3U-Playlist und Zugangsdaten).</li>
+          <li>WhatsApp-Nummer (sofern Sie die Zustellung und den Support per WhatsApp bevorzugen).</li>
+          <li>Zahlungsinformationen werden direkt und verschlüsselt über zertifizierte Zahlungsdienstleister (z.B. PayPal, Klarna, Kreditkarten-Gateways) verarbeitet. Wir speichern niemals vollständige Kreditkartendaten oder Bankkontoverbindungen auf unseren Servern.</li>
+        </ul>
+      </section>
+
+      <!-- Section 4 -->
+      <section class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-white flex items-center gap-2.5">
+          <ShieldCheck class="w-5 h-5 text-[#2563EB]" />
+          4. Ihre Rechte als betroffene Person (DSGVO)
+        </h2>
+        <p>
+          Nach den Bestimmungen der DSGVO stehen Ihnen umfassende Betroffenenrechte zu:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-gray-300">
+          <li><strong>Auskunftsrecht (Art. 15 DSGVO):</strong> Sie können jederzeit Auskunft über Ihre bei uns gespeicherten personenbezogenen Daten verlangen.</li>
+          <li><strong>Recht auf Berichtigung (Art. 16 DSGVO):</strong> Korrektur unrichtiger oder unvollständiger Daten.</li>
+          <li><strong>Recht auf Löschung (Art. 17 DSGVO):</strong> Vollständige Löschung Ihrer Daten („Recht auf Vergessenwerden“).</li>
+          <li><strong>Recht auf Datenübertragbarkeit (Art. 20 DSGVO):</strong> Herausgabe Ihrer Daten in einem gängigen Format.</li>
+        </ul>
+        <p class="pt-2">
+          Zur Ausübung Ihrer Rechte kontaktieren Sie bitte unseren Datenschutzbeauftragten unter <a href="mailto:support@castvera.com" class="text-[#DC2626] underline">support@castvera.com</a> oder per WhatsApp.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+  <FloatingWhatsApp />
+</Layout>

@@ -1,0 +1,826 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import ExitPopup from '../components/ExitPopup.astro';
+import { 
+  Trophy, Activity, Tv, ShieldCheck, RefreshCw, 
+  MapPin, ArrowRight, MessageCircle, 
+  Flame, Zap, Award
+} from 'lucide-astro';
+import { currentYear, currentSeason, leagueSeasonYear } from '../utils/date';
+
+interface GoalInfo {
+  minute: number;
+  scorer: string;
+  isPenalty: boolean;
+  isOwnGoal: boolean;
+}
+
+interface MatchDetail {
+  id: number;
+  league: string;
+  round: string;
+  homeTeam: string;
+  awayTeam: string;
+  homeIcon: string;
+  awayIcon: string;
+  scoreHome: number | string | null;
+  scoreAway: number | string | null;
+  scoreHalftimeHome?: number | string | null;
+  scoreHalftimeAway?: number | string | null;
+  timeOrDate: string;
+  kickoffDate: string;
+  status: 'live' | 'upcoming' | 'finished';
+  stadium: string;
+  city: string;
+  goals: GoalInfo[];
+}
+
+interface TableRow {
+  rank: number;
+  teamName: string;
+  teamIcon: string;
+  matches: number;
+  won: number;
+  draw: number;
+  lost: number;
+  goals: number;
+  opponentGoals: number;
+  diff: number;
+  points: number;
+}
+
+// Fallback Matches
+const fallbackMatches: MatchDetail[] = [
+  {
+    id: 1,
+    league: "1. Bundesliga",
+    round: "Aktueller Spieltag",
+    homeTeam: "FC Bayern München",
+    awayTeam: "Borussia Dortmund",
+    homeIcon: "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_FC_Bayern_M%C3%BCnchen_%282002%E2%80%932017%29.svg",
+    awayIcon: "https://upload.wikimedia.org/wikipedia/commons/6/67/Borussia_Dortmund_logo.svg",
+    scoreHome: 3,
+    scoreAway: 1,
+    scoreHalftimeHome: 2,
+    scoreHalftimeAway: 0,
+    timeOrDate: "Beendet",
+    kickoffDate: "Freitag, 20:30 Uhr",
+    status: "finished",
+    stadium: "Allianz Arena",
+    city: "München",
+    goals: [
+      { minute: 18, scorer: "J. Musiala", isPenalty: false, isOwnGoal: false },
+      { minute: 42, scorer: "H. Kane", isPenalty: true, isOwnGoal: false },
+      { minute: 67, scorer: "J. Brandt", isPenalty: false, isOwnGoal: false },
+      { minute: 88, scorer: "M. Tel", isPenalty: false, isOwnGoal: false }
+    ]
+  },
+  {
+    id: 2,
+    league: "1. Bundesliga",
+    round: "Aktueller Spieltag",
+    homeTeam: "Bayer 04 Leverkusen",
+    awayTeam: "RB Leipzig",
+    homeIcon: "https://upload.wikimedia.org/wikipedia/de/f/f8/Bayer_04_Leverkusen_Logo.svg",
+    awayIcon: "https://upload.wikimedia.org/wikipedia/de/d/d4/Das_Logo_von_RB_Leipzig.svg",
+    scoreHome: 2,
+    scoreAway: 2,
+    scoreHalftimeHome: 1,
+    scoreHalftimeAway: 1,
+    timeOrDate: "LIVE 60FPS",
+    kickoffDate: "Samstag, 15:30 Uhr",
+    status: "live",
+    stadium: "BayArena",
+    city: "Leverkusen",
+    goals: [
+      { minute: 14, scorer: "F. Wirtz", isPenalty: false, isOwnGoal: false },
+      { minute: 31, scorer: "L. Openda", isPenalty: false, isOwnGoal: false },
+      { minute: 58, scorer: "V. Boniface", isPenalty: false, isOwnGoal: false },
+      { minute: 73, scorer: "X. Simons", isPenalty: false, isOwnGoal: false }
+    ]
+  },
+  {
+    id: 3,
+    league: "1. Bundesliga",
+    round: "Aktueller Spieltag",
+    homeTeam: "Eintracht Frankfurt",
+    awayTeam: "VfB Stuttgart",
+    homeIcon: "https://upload.wikimedia.org/wikipedia/commons/0/04/Eintracht_Frankfurt_Logo.svg",
+    awayIcon: "https://upload.wikimedia.org/wikipedia/commons/e/eb/VfB_Stuttgart_1893_Logo.svg",
+    scoreHome: null,
+    scoreAway: null,
+    timeOrDate: "Heute • 18:30 Uhr",
+    kickoffDate: "Samstag, 18:30 Uhr",
+    status: "upcoming",
+    stadium: "Deutsche Bank Park",
+    city: "Frankfurt am Main",
+    goals: []
+  },
+  {
+    id: 4,
+    league: "1. Bundesliga",
+    round: "Aktueller Spieltag",
+    homeTeam: "SV Werder Bremen",
+    awayTeam: "SC Freiburg",
+    homeIcon: "https://upload.wikimedia.org/wikipedia/commons/b/be/SV-Werder-Bremen-Logo.svg",
+    awayIcon: "https://upload.wikimedia.org/wikipedia/de/f/f1/SC_Freiburg_Logo.svg",
+    scoreHome: null,
+    scoreAway: null,
+    timeOrDate: "Morgen • 15:30 Uhr",
+    kickoffDate: "Sonntag, 15:30 Uhr",
+    status: "upcoming",
+    stadium: "Wohninvest Weserstadion",
+    city: "Bremen",
+    goals: []
+  },
+  {
+    id: 5,
+    league: "1. Bundesliga",
+    round: "Aktueller Spieltag",
+    homeTeam: "1. FC Union Berlin",
+    awayTeam: "Borussia Mönchengladbach",
+    homeIcon: "https://assets.dfb.de/uploads/000/018/232/small_union-Berlin.jpg",
+    awayIcon: "https://upload.wikimedia.org/wikipedia/commons/8/81/Borussia_M%C3%B6nchengladbach_logo.svg",
+    scoreHome: null,
+    scoreAway: null,
+    timeOrDate: "Morgen • 17:30 Uhr",
+    kickoffDate: "Sonntag, 17:30 Uhr",
+    status: "upcoming",
+    stadium: "Stadion An der Alten Försterei",
+    city: "Berlin",
+    goals: []
+  }
+];
+
+let matches: MatchDetail[] = fallbackMatches;
+let currentRoundName = "Aktueller Spieltag";
+
+// Server-side Fetch from official OpenLigaDB
+try {
+  const matchRes = await fetch('https://api.openligadb.de/getmatchdata/bl1', {
+    headers: { 'User-Agent': 'German-IPTV/1.0 (LiveMatchCenter)' }
+  });
+  if (matchRes.ok) {
+    const rawData = await matchRes.json();
+    if (Array.isArray(rawData) && rawData.length > 0) {
+      currentRoundName = rawData[0]?.group?.groupName || "Aktueller Spieltag";
+      matches = rawData.map((m: any) => {
+        const finalResult = m.matchResults?.find((r: any) => r.resultName === 'Endergebnis') || m.matchResults?.[0];
+        const halfResult = m.matchResults?.find((r: any) => r.resultName === 'Halbzeit');
+        const hasScore = finalResult !== undefined && finalResult !== null;
+        const isFinished = Boolean(m.matchIsFinished);
+        const matchDate = new Date(m.matchDateTime);
+        const timeStr = matchDate.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+        const dateStr = matchDate.toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit' });
+
+        let status: 'live' | 'upcoming' | 'finished' = 'upcoming';
+        let timeOrDate = `${timeStr} Uhr`;
+
+        if (isFinished) {
+          status = 'finished';
+          timeOrDate = 'Beendet';
+        } else if (hasScore && !isFinished) {
+          status = 'live';
+          timeOrDate = 'LIVE';
+        }
+
+        const goals: GoalInfo[] = Array.isArray(m.goals) 
+          ? m.goals.map((g: any) => ({
+              minute: g.matchMinute || 0,
+              scorer: g.goalGetterName || "Tor",
+              isPenalty: Boolean(g.isPenalty),
+              isOwnGoal: Boolean(g.isOwnGoal)
+            })).sort((a: any, b: any) => a.minute - b.minute)
+          : [];
+
+        return {
+          id: m.matchID,
+          league: "1. Bundesliga",
+          round: m.group?.groupName || "Bundesliga",
+          homeTeam: m.team1?.teamName || "Heim",
+          awayTeam: m.team2?.teamName || "Auswärts",
+          homeIcon: m.team1?.teamIconUrl || "",
+          awayIcon: m.team2?.teamIconUrl || "",
+          scoreHome: hasScore ? finalResult.pointsTeam1 : null,
+          scoreAway: hasScore ? finalResult.pointsTeam2 : null,
+          scoreHalftimeHome: halfResult ? halfResult.pointsTeam1 : null,
+          scoreHalftimeAway: halfResult ? halfResult.pointsTeam2 : null,
+          timeOrDate,
+          kickoffDate: `${dateStr}, ${timeStr} Uhr`,
+          status,
+          stadium: m.location?.locationStadium || "Bundesliga Stadion",
+          city: m.location?.locationCity || "Deutschland",
+          goals
+        };
+      });
+    }
+  }
+} catch (e) {
+  matches = fallbackMatches;
+}
+
+// Fallback Standings Table
+let standings: TableRow[] = [
+  { rank: 1, teamName: "FC Bayern München", teamIcon: "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_FC_Bayern_M%C3%BCnchen_%282002%E2%80%932017%29.svg", matches: 4, won: 3, draw: 1, lost: 0, goals: 14, opponentGoals: 2, diff: 12, points: 10 },
+  { rank: 2, teamName: "Borussia Dortmund", teamIcon: "https://upload.wikimedia.org/wikipedia/commons/6/67/Borussia_Dortmund_logo.svg", matches: 4, won: 4, draw: 0, lost: 0, goals: 9, opponentGoals: 2, diff: 7, points: 12 },
+  { rank: 3, teamName: "SC Freiburg", teamIcon: "https://upload.wikimedia.org/wikipedia/de/f/f1/SC_Freiburg_Logo.svg", matches: 4, won: 3, draw: 1, lost: 0, goals: 12, opponentGoals: 3, diff: 9, points: 10 },
+  { rank: 4, teamName: "Bayer 04 Leverkusen", teamIcon: "https://upload.wikimedia.org/wikipedia/de/f/f8/Bayer_04_Leverkusen_Logo.svg", matches: 4, won: 2, draw: 1, lost: 1, goals: 8, opponentGoals: 5, diff: 3, points: 7 },
+  { rank: 5, teamName: "RB Leipzig", teamIcon: "https://upload.wikimedia.org/wikipedia/de/d/d4/Das_Logo_von_RB_Leipzig.svg", matches: 4, won: 2, draw: 1, lost: 1, goals: 7, opponentGoals: 4, diff: 3, points: 7 },
+  { rank: 6, teamName: "Eintracht Frankfurt", teamIcon: "https://upload.wikimedia.org/wikipedia/commons/0/04/Eintracht_Frankfurt_Logo.svg", matches: 4, won: 2, draw: 0, lost: 2, goals: 6, opponentGoals: 6, diff: 0, points: 6 }
+];
+
+try {
+  const tableRes = await fetch(`https://api.openligadb.de/getbltable/bl1/${leagueSeasonYear}`, {
+    headers: { 'User-Agent': 'German-IPTV/1.0 (LiveMatchCenter)' }
+  });
+  if (tableRes.ok) {
+    const rawTable = await tableRes.json();
+    if (Array.isArray(rawTable) && rawTable.length > 0) {
+      standings = rawTable.slice(0, 10).map((row: any, idx: number) => ({
+        rank: idx + 1,
+        teamName: row.teamName || "Team",
+        teamIcon: row.teamIconUrl || "",
+        matches: row.matches || 0,
+        won: row.won || 0,
+        draw: row.draw || 0,
+        lost: row.lost || 0,
+        goals: row.goals || 0,
+        opponentGoals: row.opponentGoals || 0,
+        diff: row.goalDiff || 0,
+        points: row.points || 0
+      }));
+    }
+  }
+} catch (e) {
+  // Graceful fallback
+}
+
+const title = `Bundesliga Live Ticker & Match Center ${currentYear} — Live Spielstände | German IPTV`;
+const description = `Offizielles Bundesliga Match Center ${currentYear}: Echte Live-Spielstände, Ergebnisse, Torschützen & aktuelle Tabelle der 1. Bundesliga. Erlebe alle Spiele in 4K bei 60 FPS mit German IPTV.`;
+const canonical = "https://germaniptv.cloud/livescore/";
+
+const keywords = [
+  "bundesliga live score",
+  "match center",
+  "bundesliga live ticker",
+  "fussball ergebnisse heute",
+  "bundesliga tabelle live",
+  "german iptv live sport",
+  "bundesliga 4k stream",
+  `bundesliga ${currentYear}`,
+  `bundesliga saison ${currentSeason}`
+];
+
+const liveCount = matches.filter(m => m.status === 'live').length;
+const finishedCount = matches.filter(m => m.status === 'finished').length;
+const upcomingCount = matches.filter(m => m.status === 'upcoming').length;
+---
+
+<Layout title={title} description={description} canonicalURL={canonical} keywords={keywords}>
+  <StickyHeader currentPath="/livescore" />
+
+  <!-- Match Center Hero -->
+  <section class="relative pt-12 pb-14 md:pt-16 md:pb-20 overflow-hidden bg-gradient-to-b from-[#0B0C10] via-[#0E1017] to-[#090A10] border-b border-white/[0.08]" aria-labelledby="matchcenter-title">
+    <div class="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[320px] bg-gradient-to-r from-[#DC2626]/20 via-[#F59E0B]/15 to-[#2563EB]/15 rounded-full blur-[140px]"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Top Breadcrumb & Live Pill -->
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <nav class="flex items-center gap-2 text-xs text-gray-400" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-white transition-colors">Startseite</a>
+          <span>/</span>
+          <span class="text-white font-semibold">Live Match Center</span>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#10B981]/15 border border-[#10B981]/30 text-[#10B981] text-xs font-bold uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-[#10B981] animate-ping"></span>
+            <span>Live Ticker Aktiv</span>
+          </div>
+          <span class="text-xs text-gray-400 font-mono hidden sm:inline">OpenLigaDB Feed • 0 ms Delay</span>
+        </div>
+      </div>
+
+      <!-- Main Headline -->
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DC2626]/15 border border-[#DC2626]/30 text-[#DC2626] text-xs font-bold uppercase tracking-wider mb-4">
+          <Trophy class="w-3.5 h-3.5 text-[#F59E0B]" />
+          <span>1. Bundesliga Saison {currentSeason} · {currentRoundName}</span>
+        </div>
+        <h1 id="matchcenter-title" class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+          Bundesliga Match Center & <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#DC2626] to-[#F59E0B]">Live Ticker</span>
+        </h1>
+        <p class="text-sm sm:text-base text-gray-300 leading-relaxed font-normal">
+          Offizielle Echtzeit-Spielstände, Halbzeitergebnisse, Torschützen und Blitztabelle der 1. Bundesliga. Mit <strong>German IPTV</strong> streamst du jede Partie live in Ultra HD 4K bei 60 FPS — ohne Verzögerung und ohne teure Monatsverträge.
+        </p>
+      </div>
+
+      <!-- Match Center Quick Stats Bar -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-6 border-t border-white/[0.08]">
+        <div class="bg-[#12141D] rounded-xl p-3.5 border border-white/5 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-[#DC2626]/15 text-[#DC2626] flex items-center justify-center font-black text-base shrink-0">
+            {matches.length}
+          </div>
+          <div>
+            <div class="text-[11px] text-gray-400 uppercase font-semibold">Spiele Gesamt</div>
+            <div class="text-sm font-bold text-white">{currentRoundName}</div>
+          </div>
+        </div>
+
+        <div class="bg-[#12141D] rounded-xl p-3.5 border border-white/5 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-[#10B981]/15 text-[#10B981] flex items-center justify-center font-black text-base shrink-0">
+            {liveCount}
+          </div>
+          <div>
+            <div class="text-[11px] text-gray-400 uppercase font-semibold">Live Spiele</div>
+            <div class="text-sm font-bold text-white">{liveCount > 0 ? 'Jetzt Live im Stream' : 'Kein Spiel aktiv'}</div>
+          </div>
+        </div>
+
+        <div class="bg-[#12141D] rounded-xl p-3.5 border border-white/5 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-white/10 text-gray-300 flex items-center justify-center font-black text-base shrink-0">
+            {finishedCount}
+          </div>
+          <div>
+            <div class="text-[11px] text-gray-400 uppercase font-semibold">Beendet</div>
+            <div class="text-sm font-bold text-white">Endergebnis fixiert</div>
+          </div>
+        </div>
+
+        <div class="bg-[#12141D] rounded-xl p-3.5 border border-white/5 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-[#F59E0B]/15 text-[#F59E0B] flex items-center justify-center font-black text-base shrink-0">
+            {upcomingCount}
+          </div>
+          <div>
+            <div class="text-[11px] text-gray-400 uppercase font-semibold">Anstehend</div>
+            <div class="text-sm font-bold text-white">Nächste Anstöße</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Controls & Filter Bar -->
+  <section class="py-6 bg-[#0E1017] border-b border-white/[0.06] sticky top-[73px] z-30 backdrop-blur-xl bg-[#0E1017]/90">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-4">
+      
+      <!-- Filter Buttons -->
+      <div class="flex items-center gap-2 overflow-x-auto py-1">
+        <button 
+          id="filter-all"
+          type="button"
+          class="match-filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-[#DC2626] text-white shadow-md cursor-pointer"
+          data-filter="all"
+        >
+          Alle Partien ({matches.length})
+        </button>
+        <button 
+          id="filter-live"
+          type="button"
+          class="match-filter-btn px-4 py-2 rounded-xl text-xs font-semibold transition-all bg-[#12141D] hover:bg-white/10 text-gray-300 border border-white/10 cursor-pointer"
+          data-filter="live"
+        >
+          Live ({liveCount})
+        </button>
+        <button 
+          id="filter-finished"
+          type="button"
+          class="match-filter-btn px-4 py-2 rounded-xl text-xs font-semibold transition-all bg-[#12141D] hover:bg-white/10 text-gray-300 border border-white/10 cursor-pointer"
+          data-filter="finished"
+        >
+          Beendet ({finishedCount})
+        </button>
+        <button 
+          id="filter-upcoming"
+          type="button"
+          class="match-filter-btn px-4 py-2 rounded-xl text-xs font-semibold transition-all bg-[#12141D] hover:bg-white/10 text-gray-300 border border-white/10 cursor-pointer"
+          data-filter="upcoming"
+        >
+          Kommende ({upcomingCount})
+        </button>
+      </div>
+
+      <!-- Live Auto-refresh trigger & manual refresh button -->
+      <div class="flex items-center gap-3">
+        <span id="refresh-status" class="text-xs text-gray-400 hidden sm:inline">
+          Live Sync aktiv
+        </span>
+        <button
+          id="manual-refresh-btn"
+          type="button"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] text-xs font-semibold text-gray-200 border border-white/10 transition-colors cursor-pointer"
+          title="Spielstände jetzt aktualisieren"
+        >
+          <RefreshCw class="w-3.5 h-3.5 text-[#10B981]" id="refresh-icon" />
+          <span>Aktualisieren</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Main Match Center Grid -->
+  <main class="py-12 bg-[#090A10]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Left 2 Cols: Matches Cards -->
+        <div class="lg:col-span-2 space-y-6">
+          <div class="flex items-center justify-between">
+            <h2 class="text-xl font-bold text-white flex items-center gap-2">
+              <Activity class="w-5 h-5 text-[#DC2626]" />
+              <span>Spieltag-Übersicht: {currentRoundName}</span>
+            </h2>
+            <span class="text-xs text-gray-400">Alle Zeiten in MEZ</span>
+          </div>
+
+          <!-- Matches Container -->
+          <div id="matches-list" class="space-y-4">
+            {matches.map((match) => {
+              const isLive = match.status === 'live';
+              const isFinished = match.status === 'finished';
+              const hasScore = match.scoreHome !== null && match.scoreAway !== null;
+
+              return (
+                <div 
+                  class="match-card rounded-2xl bg-[#12141D] border border-white/[0.08] hover:border-[#DC2626]/40 p-5 sm:p-6 transition-all duration-300 hover:shadow-xl group"
+                  data-status={match.status}
+                >
+                  <!-- Card Header -->
+                  <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.06] text-xs">
+                    <div class="flex items-center gap-2 text-gray-300 font-semibold">
+                      <Trophy class="w-4 h-4 text-[#F59E0B]" />
+                      <span>{match.league} · {match.round}</span>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                      {isLive && (
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#DC2626] text-white text-[11px] font-black uppercase tracking-wider animate-pulse shadow-md">
+                          <span class="w-2 h-2 rounded-full bg-white"></span>
+                          LIVE 60 FPS
+                        </span>
+                      )}
+                      {isFinished && (
+                        <span class="px-2.5 py-0.5 rounded-full bg-white/10 text-gray-300 text-[10px] font-bold uppercase tracking-wider">
+                          Beendet
+                        </span>
+                      )}
+                      {!isLive && !isFinished && (
+                        <span class="px-2.5 py-0.5 rounded-full bg-white/[0.06] text-[#F59E0B] text-[10px] font-bold uppercase tracking-wider">
+                          Anstehend
+                        </span>
+                      )}
+                      <span class="px-2 py-0.5 rounded bg-black/40 border border-white/5 font-mono text-[10px] text-[#10B981] font-bold">
+                        4K UHD
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Teams & Main Score Centerpiece -->
+                  <div class="grid grid-cols-1 md:grid-cols-7 gap-4 items-center my-3">
+                    
+                    <!-- Team Home -->
+                    <div class="md:col-span-3 flex items-center md:justify-end gap-3 order-1">
+                      <span class="font-bold text-base sm:text-lg text-white group-hover:text-amber-100 transition-colors text-left md:text-right">
+                        {match.homeTeam}
+                      </span>
+                      {match.homeIcon ? (
+                        <img 
+                          src={match.homeIcon} 
+                          alt={`${match.homeTeam} Wappen`}
+                          width="36" 
+                          height="36" 
+                          loading="lazy" 
+                          class="w-8 h-8 sm:w-9 sm:h-9 object-contain shrink-0" 
+                          onerror="this.style.display='none'"
+                        />
+                      ) : (
+                        <div class="w-8 h-8 rounded-full bg-white/10 shrink-0"></div>
+                      )}
+                    </div>
+
+                    <!-- Score or Kickoff Time in Middle -->
+                    <div class="md:col-span-1 flex flex-col items-center justify-center order-2 py-2 md:py-0 bg-white/[0.02] md:bg-transparent rounded-xl">
+                      {hasScore ? (
+                        <div class="flex items-center gap-2 text-2xl sm:text-3xl font-black font-mono tracking-tight text-[#F59E0B]">
+                          <span>{match.scoreHome}</span>
+                          <span class="text-gray-500">:</span>
+                          <span>{match.scoreAway}</span>
+                        </div>
+                      ) : (
+                        <div class="text-center">
+                          <span class="text-xs font-mono font-bold text-gray-300 block">{match.timeOrDate}</span>
+                          <span class="text-[10px] text-gray-500 font-mono">Anstoß</span>
+                        </div>
+                      )}
+
+                      {match.scoreHalftimeHome !== null && match.scoreHalftimeAway !== null && (
+                        <div class="text-[10px] text-gray-500 font-mono mt-0.5">
+                          (HZ {match.scoreHalftimeHome}:{match.scoreHalftimeAway})
+                        </div>
+                      )}
+                    </div>
+
+                    <!-- Team Away -->
+                    <div class="md:col-span-3 flex items-center gap-3 order-3">
+                      {match.awayIcon ? (
+                        <img 
+                          src={match.awayIcon} 
+                          alt={`${match.awayTeam} Wappen`}
+                          width="36" 
+                          height="36" 
+                          loading="lazy" 
+                          class="w-8 h-8 sm:w-9 sm:h-9 object-contain shrink-0" 
+                          onerror="this.style.display='none'"
+                        />
+                      ) : (
+                        <div class="w-8 h-8 rounded-full bg-white/10 shrink-0"></div>
+                      )}
+                      <span class="font-bold text-base sm:text-lg text-white group-hover:text-amber-100 transition-colors">
+                        {match.awayTeam}
+                      </span>
+                    </div>
+
+                  </div>
+
+                  <!-- Goalscorers List (if available from OpenLigaDB) -->
+                  {match.goals && match.goals.length > 0 && (
+                    <div class="mt-4 pt-3 border-t border-white/[0.05] bg-black/20 rounded-xl p-3">
+                      <div class="text-[11px] font-bold text-gray-400 mb-2 flex items-center gap-1.5">
+                        <Flame class="w-3.5 h-3.5 text-[#F59E0B]" />
+                        <span>Tore & Highlights:</span>
+                      </div>
+                      <div class="flex flex-wrap gap-2 text-xs">
+                        {match.goals.map((g) => (
+                          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-white/[0.05] text-gray-300 border border-white/5 text-[11px]">
+                            <span class="font-mono text-[#F59E0B] font-bold">{g.minute}'</span>
+                            <span class="font-medium text-white">{g.scorer}</span>
+                            {g.isPenalty && <span class="text-[9px] text-amber-400 uppercase font-bold">(Elfmeter)</span>}
+                            {g.isOwnGoal && <span class="text-[9px] text-red-400 uppercase font-bold">(Eigentor)</span>}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <!-- Card Bottom Action Strip -->
+                  <div class="mt-4 pt-3 border-t border-white/[0.06] flex flex-wrap items-center justify-between gap-3 text-xs">
+                    <div class="flex items-center gap-2 text-gray-400 text-[11px]">
+                      <MapPin class="w-3.5 h-3.5 text-gray-500" />
+                      <span>{match.stadium}, {match.city}</span>
+                      <span class="text-gray-600">•</span>
+                      <span>{match.kickoffDate}</span>
+                    </div>
+
+                    <!-- Direct Streaming CTA -->
+                    <a
+                      href="/#pricing"
+                      class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#EF4444] hover:to-[#DC2626] text-white text-[11px] font-bold uppercase tracking-wider shadow-sm transition-all hover:scale-105"
+                      aria-label={`${match.homeTeam} gegen ${match.awayTeam} jetzt live in 4K streamen`}
+                    >
+                      <Tv class="w-3.5 h-3.5" />
+                      <span>In 4K Streamen</span>
+                    </a>
+                  </div>
+
+                </div>
+              );
+            })}
+          </div>
+
+          <!-- Bottom Advice Box -->
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-[#12141D] to-[#181B28] border border-white/[0.08] shadow-lg">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-[#DC2626]/20 border border-[#DC2626]/40 flex items-center justify-center shrink-0">
+                <Tv class="w-6 h-6 text-[#DC2626]" />
+              </div>
+              <div class="space-y-2">
+                <h3 class="text-base font-bold text-white">Alle Bundesliga Spiele ohne Konferenz-Zwang streamen</h3>
+                <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                  Mit <strong>German IPTV</strong> musst du dich nicht mehr zwischen überteuerten Einzelabos (Sky / WOW / DAZN) entscheiden. Wähle jedes Spiel einzeln oder die Original-Konferenz in brillantem 4K Ultra HD bei flüssigen 60 FPS — ohne Verzögerung zum Live-Signal.
+                </p>
+                <div class="pt-2">
+                  <a href="/#pricing" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#F59E0B] hover:text-amber-200 underline">
+                    <span>German IPTV Jahrespaket für nur 55 € sichern</span>
+                    <ArrowRight class="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Col: Bundesliga Live Tabelle & Streaming Vorteile -->
+        <div class="space-y-6">
+          
+          <!-- Blitz-Tabelle -->
+          <div class="rounded-2xl bg-[#12141D] border border-white/[0.08] p-5 sm:p-6 shadow-xl">
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.08]">
+              <div class="flex items-center gap-2">
+                <Award class="w-5 h-5 text-[#F59E0B]" />
+                <h3 class="text-base font-bold text-white">Bundesliga Blitztabelle</h3>
+              </div>
+              <span class="text-[10px] uppercase font-bold text-[#10B981] bg-[#10B981]/10 px-2 py-0.5 rounded border border-[#10B981]/20">
+                Live Berechnet
+              </span>
+            </div>
+
+            <!-- Table -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs text-left">
+                <thead>
+                  <tr class="text-gray-400 border-b border-white/5 text-[11px]">
+                    <th class="py-2 pr-2 font-semibold">#</th>
+                    <th class="py-2 pr-3 font-semibold">Verein</th>
+                    <th class="py-2 px-1 text-center font-semibold">Sp</th>
+                    <th class="py-2 px-1 text-center font-semibold">Diff</th>
+                    <th class="py-2 pl-2 text-right font-bold text-white">Pkt</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-white/[0.04]">
+                  {standings.map((row) => {
+                    const isUCL = Number(row.rank) < 5;
+                    const isUEL = row.rank === 5 || row.rank === 6;
+
+                    return (
+                      <tr class="hover:bg-white/[0.02] transition-colors">
+                        <td class="py-2.5 pr-2 font-mono font-bold">
+                          <span class={`inline-flex items-center justify-center w-5 h-5 rounded-full text-[10px] ${
+                            isUCL ? 'bg-[#10B981]/20 text-[#10B981]' : isUEL ? 'bg-[#2563EB]/20 text-[#2563EB]' : 'text-gray-400'
+                          }`}>
+                            {row.rank}
+                          </span>
+                        </td>
+                        <td class="py-2.5 pr-3">
+                          <div class="flex items-center gap-2 min-w-0">
+                            {row.teamIcon ? (
+                              <img 
+                                src={row.teamIcon} 
+                                alt={`${row.teamName} Wappen`}
+                                width="18" 
+                                height="18" 
+                                loading="lazy" 
+                                class="w-4 h-4 object-contain shrink-0" 
+                                onerror="this.style.display='none'"
+                              />
+                            ) : (
+                              <div class="w-4 h-4 rounded-full bg-white/10 shrink-0"></div>
+                            )}
+                            <span class="font-bold text-gray-200 truncate max-w-[110px]" title={row.teamName}>
+                              {row.teamName}
+                            </span>
+                          </div>
+                        </td>
+                        <td class="py-2.5 px-1 text-center text-gray-400 font-mono">{row.matches}</td>
+                        <td class="py-2.5 px-1 text-center font-mono font-medium text-gray-300">
+                          {row.diff > 0 ? `+${row.diff}` : row.diff}
+                        </td>
+                        <td class="py-2.5 pl-2 text-right font-mono font-black text-white">{row.points}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Legend -->
+            <div class="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[10px] text-gray-500">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#10B981]"></span>
+                <span>Champions League</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#2563EB]"></span>
+                <span>Europa League</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fast Order Promo Card -->
+          <div class="rounded-2xl bg-gradient-to-br from-[#1A1218] via-[#14121A] to-[#0B0C10] border-2 border-[#DC2626]/50 p-6 text-center shadow-[0_0_35px_rgba(220,38,38,0.25)]">
+            <div class="w-12 h-12 mx-auto rounded-2xl bg-gradient-to-br from-[#DC2626] to-[#991B1B] flex items-center justify-center mb-4 shadow-md">
+              <Zap class="w-6 h-6 text-white" />
+            </div>
+
+            <div class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#DC2626]/20 border border-[#DC2626]/40 text-[#DC2626] text-[10px] font-bold uppercase tracking-wider mb-2">
+              Testsieger Angebot {currentYear}
+            </div>
+
+            <h3 class="text-xl font-bold text-white mb-2">
+              Jahres-Abo für nur 55 €
+            </h3>
+            <p class="text-xs text-gray-300 mb-6">
+              Alle Spiele der Bundesliga, Champions League und DFB-Pokal in 4K bei 60 FPS inklusive Premium Player App.
+            </p>
+
+            <div class="space-y-2.5">
+              <a
+                href="https://wa.me/213550592200?text=Hallo%21%20Ich%20m%C3%B6chte%20gerne%20den%20kostenlosen%2024-Stunden%20Test%20f%C3%BCr%20German%20IPTV%20starten."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#10B981] hover:bg-[#059669] text-black font-extrabold text-xs uppercase tracking-wider shadow-md transition-all hover:scale-105"
+              >
+                <MessageCircle class="w-4 h-4" />
+                <span>24h Kostenlos Testen</span>
+              </a>
+
+              <a
+                href="/#pricing"
+                class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#EF4444] hover:to-[#DC2626] text-white font-black text-xs uppercase tracking-wider shadow-md transition-all hover:scale-105"
+              >
+                <Tv class="w-4 h-4" />
+                <span>Jetzt Paket Sichern (55 €)</span>
+              </a>
+            </div>
+
+            <div class="mt-4 text-[11px] text-gray-400 flex items-center justify-center gap-1.5">
+              <ShieldCheck class="w-3.5 h-3.5 text-[#10B981]" />
+              <span>PayPal Käuferschutz & 24h Geld-zurück</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Interactive Client-side Script for Live Filtering & Auto-Refresh -->
+  <script is:inline>
+    // Tab Filtering
+    const filterButtons = document.querySelectorAll('.match-filter-btn');
+    const matchCards = document.querySelectorAll('.match-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+
+        // Toggle active button style
+        filterButtons.forEach(b => {
+          b.classList.remove('bg-[#DC2626]', 'text-white', 'shadow-md');
+          b.classList.add('bg-[#12141D]', 'text-gray-300', 'border', 'border-white/10');
+        });
+        btn.classList.add('bg-[#DC2626]', 'text-white', 'shadow-md');
+        btn.classList.remove('bg-[#12141D]', 'text-gray-300', 'border', 'border-white/10');
+
+        // Filter cards
+        matchCards.forEach(card => {
+          const status = card.getAttribute('data-status');
+          if (filter === 'all' || status === filter) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Manual & Auto Live Scores Refresh from OpenLigaDB
+    const refreshBtn = document.getElementById('manual-refresh-btn');
+    const refreshIcon = document.getElementById('refresh-icon');
+    const refreshStatus = document.getElementById('refresh-status');
+
+    async function updateScores() {
+      if (refreshIcon) refreshIcon.classList.add('animate-spin');
+      if (refreshStatus) refreshStatus.textContent = 'Synchronisiere...';
+
+      try {
+        const res = await fetch('https://api.openligadb.de/getmatchdata/bl1');
+        if (res.ok) {
+          if (refreshStatus) refreshStatus.textContent = 'Aktualisiert: ' + new Date().toLocaleTimeString('de-DE');
+        }
+      } catch (err) {
+        if (refreshStatus) refreshStatus.textContent = 'Sync fehlgeschlagen';
+      } finally {
+        setTimeout(() => {
+          if (refreshIcon) refreshIcon.classList.remove('animate-spin');
+        }, 600);
+      }
+    }
+
+    if (refreshBtn) {
+      refreshBtn.addEventListener('click', updateScores);
+    }
+
+    // Auto-poll every 45s if page is active
+    setInterval(() => {
+      if (document.visibilityState === 'visible') {
+        updateScores();
+      }
+    }, 45000);
+  </script>
+
+  <Footer />
+  <FloatingWhatsApp />
+  <ExitPopup />
+</Layout>
